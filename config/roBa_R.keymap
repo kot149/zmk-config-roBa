@@ -13,33 +13,43 @@
             <&kp LEFT_ARROW>,
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>;
+
+        tick = <10>;
+        wait-ms = <5>;
+        tap-ms = <5>;
+    };
+
+    volume {
+        layers = <MEDIA>;
+        bindings =
+                <&none>,
+                <&none>,
+                <&kp C_VOLUME_UP>;
+                <&kp C_VOLUME_DOWN>,
+
+        wait-ms = <5>;
+        tap-ms = <5>;
     };
 
     alt_tab {
         layers = <4>;
         bindings =
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
-            // right,,
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
-            // left,,
             <&kp UP_ARROW>,
-            // up,,
             <&kp DOWN_ARROW>;
 
-        // down
+        tick = <80>;
     };
 
     alt_tab2 {
         layers = <5>;
         bindings =
             <&kp TAB>,
-            // right,,
             <&kp LS(TAB)>,
-            // left,,
             <&kp UP_ARROW>,
-            // up,,
             <&kp DOWN_ARROW>;
 
-        // down
+        tick = <80>;
     };
 };
