@@ -38,8 +38,6 @@
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>;
-
-        tick = <80>;
     };
 
     alt_tab2 {
