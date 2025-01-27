@@ -17,5 +17,13 @@
 #     artifact-name: corne_left_with_logging
 #
 ---
-board: ["seeeduino_xiao_ble"]
-shield: ["roBa_R","roBa_L","settings_reset"]
+include:
+ - board: seeeduino_xiao_ble
+   shield: roBa_R
+   keymap: roBa_R.keymap
+   snippet: studio-rpc-usb-uart
+ - board: seeeduino_xiao_ble
+   shield: roBa_L
+   keymap: roBa_L.keymap
+ - board: seeeduino_xiao_ble
+   shield: settings_reset
