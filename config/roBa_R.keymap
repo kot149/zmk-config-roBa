@@ -24,8 +24,8 @@
         bindings =
                 <&none>,
                 <&none>,
-                <&kp C_VOLUME_UP>;
-                <&kp C_VOLUME_DOWN>,
+                <&kp C_VOLUME_UP>,
+                <&kp C_VOLUME_DOWN>;
 
         wait-ms = <5>;
         tap-ms = <5>;
