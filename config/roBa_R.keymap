@@ -20,7 +20,7 @@
     };
 
     volume {
-        layers = <1>;
+        layers = <2>;
         bindings =
                 <&none>,
                 <&none>,
