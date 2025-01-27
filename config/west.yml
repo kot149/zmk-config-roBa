@@ -2,15 +2,15 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: kumamuk-git
-      url-base: https://github.com/kumamuk-git
+    - name: kot149
+      url-base: https://github.com/kot149
   projects:
     - name: zmk
       remote: zmkfirmware
       revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: kumamuk-git
-      revision: main
+      remote: kot149
+      revision: feature/ball-action
   self:
     path: config
