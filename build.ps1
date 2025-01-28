@@ -1,25 +1,27 @@
-# コンテナIDを設定
+# ID of ZMK container in which build.sh is executed
 $CONTAINER_ID = "78cdf07e86e3"
 
-# コンテナの状態をチェック
+# Check container status
 try {
-    $containerState = docker container inspect -f "{{.State.Running}}" $CONTAINER_ID 2>$null
-    if ($null -eq $containerState) {
-        Write-Error "エラー: コンテナID ${CONTAINER_ID} が見つかりません。"
-        Write-Error "Dockerが起動していることと、コンテナIDが正しいことを確認してください。"
+    # First, check if container exists
+    $containerExists = docker container inspect $CONTAINER_ID 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Error: Container ID ${CONTAINER_ID} not found."
+        Write-Error "Please check if Docker is running and the container ID is correct."
         exit 1
     }
 
+    $containerState = docker container inspect -f "{{.State.Running}}" $CONTAINER_ID
     if ($containerState -ne "true") {
-        Write-Host "コンテナを起動しています..."
+        Write-Host "Starting container..."
         docker start $CONTAINER_ID | Out-Null
         if ($LASTEXITCODE -ne 0) {
-            Write-Error "エラー: コンテナの起動に失敗しました。"
-            Write-Error "Dockerが起動していることを確認してください。"
+            Write-Error "Error: Failed to start container."
+            Write-Error "Please check if Docker is running."
             exit 1
         }
 
-        # コンテナの起動を待機（最大10秒）
+        # Wait for container to start (max 10 seconds)
         $timeout = 10
         $startTime = Get-Date
         $containerReady = $false
@@ -28,21 +30,21 @@ try {
             $containerState = docker container inspect -f "{{.State.Running}}" $CONTAINER_ID 2>$null
             if ($containerState -eq "true") {
                 $containerReady = $true
-                Write-Host "コンテナの起動が完了しました。"
+                Write-Host "Container startup completed."
             } else {
                 if (((Get-Date) - $startTime).TotalSeconds -gt $timeout) {
-                    Write-Error "エラー: コンテナの起動がタイムアウトしました。"
+                    Write-Error "Error: Container startup timed out."
                     exit 1
                 }
                 Start-Sleep -Milliseconds 500
             }
         }
     } else {
-        Write-Host "コンテナはすでに起動しています。"
+        Write-Host "Container is already running."
     }
 
-    # build.shを実行
-	Write-Host "ビルドを開始します..."
+    # Execute build.sh
+    Write-Host "Running build.sh in container..."
     docker exec $CONTAINER_ID /workspaces/zmk-config/build.sh $args
 }
 catch {
