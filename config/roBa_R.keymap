@@ -15,8 +15,6 @@
             <&kp DOWN_ARROW>;
 
         tick = <10>;
-        wait-ms = <0>;
-        tap-ms = <0>;
     };
 
     volume {
@@ -26,9 +24,6 @@
                 <&none>,
                 <&kp C_VOLUME_UP>,
                 <&kp C_VOLUME_DOWN>;
-
-        wait-ms = <0>;
-        tap-ms = <0>;
     };
 
     alt_tab {
@@ -40,8 +35,6 @@
             <&kp DOWN_ARROW>;
 
         tick = <10>;
-        wait-ms = <0>;
-        tap-ms = <0>;
     };
 
     alt_tab2 {
