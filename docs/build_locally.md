@@ -62,11 +62,14 @@ docker volume create --driver local -o o=bind -o type=none -o device="/absolute/
 
 #### ZMKのコンテナ作成
 クローンしたzmkディレクトリをVSCodeで開く。
+
 Command Paletteから`Remote: Show Remote Menu`を実行し、`Reopen in Container`を選択する。
+
+コンテナが作成され、コンテナ内の`/workspaces/zmk/`ディレクトリでVSCodeが開かれる。
 
 ### Westの初期化
 
-> ![important]
+> [!important]
 > 以降の操作は全てコンテナ内の`/workspaces/zmk`ディレクトリで行うこと。
 
 以下のコマンドを順に実行する。
