@@ -45,7 +45,7 @@ try {
 
     # Execute build.sh
     Write-Host "Running build.sh in container..."
-    docker exec $CONTAINER_ID /workspaces/zmk-config/build.sh $args
+    docker exec $CONTAINER_ID /workspaces/zmk-config/scripts/build.sh $args
 }
 catch {
     Write-Error $_.Exception.Message

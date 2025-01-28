@@ -115,15 +115,15 @@ west update
 	```
 
 ### ビルドスクリプト
-このリポジトリの`build.sh`は上記3つのビルドを同時並行で行い、結果を`zmk-config-roBa/build`に保存するスクリプトである。
+このリポジトリの`scripts/build.sh`は上記3つのビルドを同時並行で行い、結果を`zmk-config-roBa/build`に保存するスクリプトである。
 以下のコマンドで実行できる。
 - 初回ビルド
 	```sh
-	../zmk-config/build.sh -f
+	../zmk-config/scripts/build.sh -f
 	```
 - 2回目以降の省略ビルド
 	```sh
-	../zmk-config/build.sh
+	../zmk-config/scripts/build.sh
 	```
 
-このリポジトリの`build.ps1`は、コンテナの外から`build.sh`を実行するPowerShellスクリプトである。
+このリポジトリの`scripts/build.ps1`は、コンテナの外から`scripts/build.sh`を実行するPowerShellスクリプトである。
