@@ -41,6 +41,8 @@ while getopts "f" opt; do
     esac
 done
 
+cd /workspaces/zmk
+
 # 出力ディレクトリの作成
 OUTPUT_DIR="/workspaces/zmk-config/build"
 mkdir -p "$OUTPUT_DIR"
@@ -50,15 +52,15 @@ info_msg "Starting firmware builds..."
 # ビルドコマンドの設定
 if [ "$FULL_BUILD" = true ]; then
     # フルビルド用のコマンド
-    RIGHT_BUILD_CMD="west build -s /workspaces/zmk/app -d build/right -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_R -DZMK_EXTRA_MODULES=/workspaces/zmk-config"
-    LEFT_BUILD_CMD="west build -s /workspaces/zmk/app -d build/left -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_L -DZMK_EXTRA_MODULES=/workspaces/zmk-config"
-    RESET_BUILD_CMD="west build -s /workspaces/zmk/app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset -DZMK_EXTRA_MODULES=/workspaces/zmk-config"
+    RIGHT_BUILD_CMD="west build -s app -d build/right -b seeeduino_xiao_ble -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_R -DZMK_EXTRA_MODULES=/workspaces/zmk-modules/zmk-pmw3610-driver"
+    LEFT_BUILD_CMD="west build -s app -d build/left  -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_L"
+    RESET_BUILD_CMD="west build -s app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset"
     info_msg "Performing full build..."
 else
     # 高速ビルド用のコマンド
-    RIGHT_BUILD_CMD="west build -s /workspaces/zmk/app -d build/right"
-    LEFT_BUILD_CMD="west build -s /workspaces/zmk/app -d build/left"
-    RESET_BUILD_CMD="west build -s /workspaces/zmk/app -d build/reset"
+    RIGHT_BUILD_CMD="west build -s app -d build/right"
+    LEFT_BUILD_CMD="west build -s app -d build/left"
+    RESET_BUILD_CMD="west build -s app -d build/reset"
     info_msg "Performing quick build..."
 fi
 
@@ -90,7 +92,7 @@ if [ $right_status -eq 0 ] && [ $left_status -eq 0 ] && [ $reset_status -eq 0 ];
     success_msg "All builds completed successfully!\n"
 
     # ビルドファイルのコピー
-    info_msg "Copying firmware files to host OS..."
+    info_msg "Copying firmware files to $OUTPUT_DIR ..."
     cp build/right/zephyr/zmk.uf2 "$OUTPUT_DIR/roBa_R-seeeduino_xiao_ble-zmk.uf2"
     cp build/left/zephyr/zmk.uf2 "$OUTPUT_DIR/roBa_L-seeeduino_xiao_ble-zmk.uf2"
     cp build/reset/zephyr/zmk.uf2 "$OUTPUT_DIR/settings_reset-seeeduino_xiao_ble-zmk.uf2"
