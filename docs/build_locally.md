@@ -1,6 +1,8 @@
 # roBa ローカルビルド手順
 roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
+
 コンテナや一部の中間ファイルを使いまわすことが可能になりビルド時間が短縮されることに加え、ビルド結果のダウンロード・解凍の手間を省くことができます。
+
 基本的には公式ドキュメントに説明されている通りにやるだけですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
 
 目次
@@ -60,10 +62,13 @@ docker volume create --driver local -o o=bind -o type=none -o device="/absolute/
 
 #### ZMKのコンテナ作成
 クローンしたzmkディレクトリをVSCodeで開く。
-Command Paletteから`Remote: Show Remote Menu`を実行し、`Rpen in Container`を選択する。
+Command Paletteから`Remote: Show Remote Menu`を実行し、`Reopen in Container`を選択する。
 
 ### Westの初期化
-※以降の操作は全てコンテナ内の`/workspaces/zmk`ディレクトリで行うこと。※
+
+> ![important]
+> 以降の操作は全てコンテナ内の`/workspaces/zmk`ディレクトリで行うこと。
+
 以下のコマンドを順に実行する。
 ```sh
 west init -l app
