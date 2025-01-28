@@ -125,3 +125,5 @@ west update
 	```sh
 	../zmk-config/build.sh
 	```
+
+このリポジトリの`build.ps1`は、コンテナの外から`build.sh`を実行するPowerShellスクリプトである。
