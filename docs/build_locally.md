@@ -6,7 +6,8 @@ roBaのファームウェアをGitHub Actionsを使わずローカルPCでビル
 
 また、ビルド結果のダウンロード・解凍の手間も省けます。
 
-手順は基本的には公式ドキュメントに説明されている通りにやるだけですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
+手順は基本的には公式ドキュメントに説明されている通りですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
+なお、公式ドキュメントにはDocker(VSCode/Dev Conteiner CLI/Podman)/ネイティブ環境と複数パターン書かれていますが、ここではDocker+VSCodeでの方法だけ記載します。
 
 目次
 - [roBa ローカルビルド手順](#roba-ローカルビルド手順)
@@ -23,6 +24,10 @@ roBaのファームウェアをGitHub Actionsを使わずローカルPCでビル
 		- [2回目以降のビルド](#2回目以降のビルド)
 		- [ビルドスクリプト](#ビルドスクリプト)
 
+## 公式ドキュメント
+- [環境構築/コンテナ](https://zmk.dev/docs/development/local-toolchain/setup/container)
+- [環境構築/ネイティブ](https://zmk.dev/docs/development/local-toolchain/setup/native)
+- [ビルド](https://zmk.dev/docs/development/local-toolchain/build-flash)
 
 ## 環境構築
 
@@ -45,7 +50,6 @@ git clone https://github.com/zmkfirmware/zmk.git
 
 ### ツールのインストール
 - Docker Desktopをインストールする
-  - 公式ドキュメントにはPodmanを使う方法も書いてある
 - VSCodeをインストールする
 - VSCodeのRemote Containers拡張機能をインストールする
 
