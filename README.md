@@ -12,6 +12,7 @@
 
 ### roBa個人用
 - [zmk-config](https://github.com/kot149/zmk-config-roBa)
+- [zmk-pmw3610-driver](https://github.com/kot149/zmk-pmw3610-driver)
 - [ZMK](https://github.com/kot149/zmk)
 - [GitHub Actions Workflow](https://github.com/kot149/zmk-config-roBa/actions/workflows/build.yml)
 - [Keyballキーマップ](https://github.com/kot149/keyball/blob/master/qmk_firmware/keyboards/keyball/keyball39/keymaps/viax/keymap.c)
