@@ -52,9 +52,9 @@ info_msg "Starting firmware builds..."
 # ビルドコマンドの設定
 if [ "$FULL_BUILD" = true ]; then
     # フルビルド用のコマンド
-    RIGHT_BUILD_CMD="west build -s app -d build/right -b seeeduino_xiao_ble -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_R -DZMK_EXTRA_MODULES=/workspaces/zmk-modules/zmk-pmw3610-driver"
-    LEFT_BUILD_CMD="west build -s app -d build/left  -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_L"
-    RESET_BUILD_CMD="west build -s app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset"
+    RIGHT_BUILD_CMD="west build -p -s app -d build/right -b seeeduino_xiao_ble -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_R -DZMK_EXTRA_MODULES=/workspaces/zmk-modules/zmk-pmw3610-driver"
+    LEFT_BUILD_CMD="west build -p -s app -d build/left  -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_L"
+    RESET_BUILD_CMD="west build -p -s app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset"
     info_msg "Performing full build..."
 else
     # 高速ビルド用のコマンド
