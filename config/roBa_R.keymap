@@ -26,24 +26,35 @@
                 <&kp C_VOLUME_DOWN>;
     };
 
-    alt_tab {
+    ctrl_alt_tab {
         layers = <4>;
         bindings =
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
-            <&kp UP_ARROW>,
-            <&kp DOWN_ARROW>;
+            <&tab_with_kt_on_and_sl LCTRL 6>,
+            <&tab_with_kt_on_and_sl LCTRL 6>;
 
         tick = <10>;
     };
 
-    alt_tab2 {
+    alt_tab {
         layers = <5>;
         bindings =
             <&kp TAB>,
             <&kp LS(TAB)>,
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>;
+
+        tick = <80>;
+    };
+
+    ctrl_tab {
+        layers = <6>;
+        bindings =
+            <&kp UP_ARROW>,
+            <&kp DOWN_ARROW>,
+            <&kp LS(TAB)>,
+            <&kp TAB>;
 
         tick = <80>;
     };
