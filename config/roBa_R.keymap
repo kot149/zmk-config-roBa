@@ -21,10 +21,10 @@
     volume {
         layers = <MEDIA>;
         bindings =
-                <&none>,
-                <&none>,
-                <&kp C_VOLUME_UP>,
-                <&kp C_VOLUME_DOWN>;
+            <&none>,
+            <&none>,
+            <&kp C_VOLUME_UP>,
+            <&kp C_VOLUME_DOWN>;
     };
 
     ctrl_alt_tab {
