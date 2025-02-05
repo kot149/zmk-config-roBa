@@ -9,16 +9,19 @@
 #include <dt-bindings/zmk/pointing.h>
 
 #define DEFAULT 0
-#define LANG1 1
+#define LANG1_ETD 1
 #define NUMPAD_AND_SYMBOLS 2
 #define FUNCTIONS_AND_CONTROLS 3
 #define MISC 4
 #define ALT_TAB 5
 #define CTRL_TAB 6
-#define MOUSE 7
-#define MEDIA 8
-#define EXTRA_FINCTIONS 9
-#define CONFIGURATION 10
+#define CTRL_ALT_TAB_TB 7
+#define ALT_TAB_TB 8
+#define CTRL_TAB_TB 9
+#define MOUSE 10
+#define MEDIA 11
+#define EXTRA_FINCTIONS 12
+#define CONFIGURATION 13
 
 &mt {
     quick-tap-ms = <250>;
@@ -462,19 +465,19 @@
             bindings = <
 &mt_exit_AML LWIN Q               &kp_exit_AML W             &kp_exit_AML E  &kp_exit_AML R                 &lt_exit_AML 13 T                                                                               &lt_exit_AML 13 Y                  &kp_exit_AML U  &kp_exit_AML I          &kp_exit_AML O       &lt_exit_AML 11 P
 &mt_exit_AML LCTRL A              &kp_exit_AML S             &kp_exit_AML D  &kp_exit_AML F                 &kp_exit_AML G                     &kp C_MUTE                 &zoom_in                          &kp_exit_AML H                     &kp_exit_AML J  &kp_exit_AML K          &kp_exit_AML L       &lt_exit_AML 12 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt_exit_AML LEFT_SHIFT X  &kp_exit_AML C  &kp_exit_AML V                 &lt_exit_AML_disable_alt_ctrl 4 B  &alt_tab LEFT_ALT TAB      &zoom_out                         &lt_exit_AML_disable_alt_ctrl 4 N  &kp_exit_AML M  &mod_morph_exclamation  &mod_morph_question  &mt_exit_AML LEFT_SHIFT SLASH
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt_exit_AML LEFT_SHIFT X  &kp_exit_AML C  &kp_exit_AML V                 &lt_exit_AML_disable_alt_ctrl 4 B  &mo_exit_AML_disable_alt_ctrl CTRL_ALT_TAB_TB      &zoom_out                         &lt_exit_AML_disable_alt_ctrl 4 N  &kp_exit_AML M  &mod_morph_exclamation  &mod_morph_question  &mt_exit_AML LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN               &kp LEFT_ALT    &eager_tap_dance LANGUAGE_2 1  &lt_exit_AML_on_hold 3 SPACE       &lt_exit_AML 2 TAB         &lt_exit_AML_on_hold 2 BACKSPACE  &lt_exit_AML_on_hold 3 ENTER                                                                    &mt_exit_AML LEFT_SHIFT ESCAPE
             >;
 
             sensor-bindings = <&encoder_volume>;
         };
 
-        LANG1 {
+        LANG1_ETD {
             bindings = <
 &trans  &trans  &trans  &trans                    &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &eager_tap_dance LANG1 1  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_ETD  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 

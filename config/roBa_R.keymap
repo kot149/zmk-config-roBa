@@ -4,7 +4,7 @@
 
 &trackball {
     automouse-layer = <MOUSE>;
-    scroll-layers = <9>;
+    scroll-layers = <EXTRA_FINCTIONS>;
     // snipe-layers = <3>;
 
     arrows {
@@ -28,18 +28,18 @@
     };
 
     ctrl_alt_tab {
-        layers = <MISC>;
+        layers = <CTRL_ALT_TAB_TB>;
         bindings =
-            <&tab_with_kt_on_and_sl LEFT_ALT 5>,
-            <&tab_with_kt_on_and_sl LEFT_ALT 5>,
-            <&tab_with_kt_on_and_sl LCTRL 6>,
-            <&tab_with_kt_on_and_sl LCTRL 6>;
+            <&tab_with_kt_on_and_sl LEFT_ALT ALT_TAB_TB>,
+            <&tab_with_kt_on_and_sl LEFT_ALT ALT_TAB_TB>,
+            <&tab_with_kt_on_and_sl LCTRL CTRL_TAB_TB>,
+            <&tab_with_kt_on_and_sl LCTRL CTRL_TAB_TB>;
 
         tick = <10>;
     };
 
     alt_tab {
-        layers = <ALT_TAB>;
+        layers = <ALT_TAB_TB>;
         bindings =
             <&kp TAB>,
             <&kp LS(TAB)>,
@@ -50,7 +50,7 @@
     };
 
     ctrl_tab {
-        layers = <CTRL_TAB>;
+        layers = <CTRL_TAB_TB>;
         bindings =
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>,
