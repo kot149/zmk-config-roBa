@@ -183,22 +183,31 @@
             label = "KP_WITH_KT_ON";
         };
 
-        kp_with_sl: kp_with_sl {
+        kp_to: kp_to {
             compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &macro_param_2to1 &to MACRO_PLACEHOLDER>;
-            label = "KP_WITH_SL";
+            label = "kp_to";
         };
 
-        tab_with_kt_on_and_sl: tab_with_kt_on_and_sl {
+        tab_kt_on_to: tab_kt_on_to {
             compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to2 &kp_with_sl TAB MACRO_PLACEHOLDER>;
-            label = "TAB_WITH_KT_ON_AND_SL";
+            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to2 &kp_to TAB MACRO_PLACEHOLDER>;
+            label = "tab_kt_on_to";
+        };
+
+        shift_tab_kt_on_to: shift_tab_kt_on_to {
+            compatible = "zmk,behavior-macro-two-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <2>;
+            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to2 &kp_to LS(TAB) MACRO_PLACEHOLDER>;
+            label = "shift_tab_kt_on_to";
         };
 
         zoom_in: zoom_in {
@@ -503,8 +512,8 @@
 
         MISC {
             bindings = <
-&tab_with_kt_on_and_sl LEFT_ALT 5  &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                      &td_alt_f4         &kp LC(W)                 &kp LS(LC(T))          &kp LC(T)          &tab_with_kt_on_and_sl LEFT_ALT 5
-&tab_with_kt_on_and_sl LCTRL 6     &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &trans      &trans      &trans  &kp K_VOLUME_UP    &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML UP_ARROW  &kp LC(PAGE_DOWN)  &tab_with_kt_on_and_sl LCTRL 6
+&tab_kt_on_to LEFT_ALT 5  &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                      &td_alt_f4         &kp LC(W)                 &kp LS(LC(T))          &kp LC(T)          &tab_kt_on_to LEFT_ALT 5
+&tab_kt_on_to LCTRL 6     &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &trans      &trans      &trans  &kp K_VOLUME_UP    &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML UP_ARROW  &kp LC(PAGE_DOWN)  &tab_kt_on_to LCTRL 6
 &kp LA(LC(LG(DOWN)))               &kp LG(LEFT_ARROW)      &kp LG(DOWN)      &kp LG(LS(RIGHT_ARROW))  &trans      &trans      &trans  &kp K_VOLUME_DOWN  &kp LA(LEFT)              &kp DOWN               &kp LA(RIGHT)      &trans
 &trans                             &trans                  &trans            &trans                   &trans      &trans      &trans  &trans                                                                                 &trans
             >;

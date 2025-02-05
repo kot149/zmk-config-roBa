@@ -30,10 +30,10 @@
     ctrl_alt_tab {
         layers = <CTRL_ALT_TAB_TB>;
         bindings =
-            <&tab_with_kt_on_and_sl LEFT_ALT ALT_TAB_TB>,
-            <&tab_with_kt_on_and_sl LEFT_ALT ALT_TAB_TB>,
-            <&tab_with_kt_on_and_sl LCTRL CTRL_TAB_TB>,
-            <&tab_with_kt_on_and_sl LCTRL CTRL_TAB_TB>;
+            <&tab_kt_on_to LEFT_ALT ALT_TAB_TB>,
+            <&shift_tab_kt_on_to LEFT_ALT ALT_TAB_TB>,
+            <&shift_tab_kt_on_to LCTRL CTRL_TAB_TB>,
+            <&tab_kt_on_to LCTRL CTRL_TAB_TB>;
 
         tick = <10>;
     };
