@@ -43,7 +43,7 @@
         eq {
             bindings = <&kp EQUAL>;
             key-positions = <0 1>;
-            layers = <2>;
+            layers = <NUMPAD_AND_SYMBOLS>;
         };
 
         Escape {
@@ -54,13 +54,13 @@
         hat {
             bindings = <&kp CARET>;
             key-positions = <10 11>;
-            layers = <2>;
+            layers = <NUMPAD_AND_SYMBOLS>;
         };
 
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <18 19>;
-            layers = <8>;
+            layers = <MOUSE>;
         };
 
         caps_word {
@@ -120,7 +120,7 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
                 <&macro_tap>,
-                <&sl 8>;
+                <&sl MOUSE>;
 
             label = "MKP_EXIT_AML";
         };
