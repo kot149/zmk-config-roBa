@@ -8,7 +8,7 @@
     // snipe-layers = <3>;
 
     arrows {
-        layers = <3>;
+        layers = <FUNCTIONS_AND_CONTROLS>;
         bindings =
             <&kp RIGHT_ARROW>,
             <&kp LEFT_ARROW>,
@@ -28,7 +28,7 @@
     };
 
     ctrl_alt_tab {
-        layers = <4>;
+        layers = <MISC>;
         bindings =
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
             <&tab_with_kt_on_and_sl LEFT_ALT 5>,
@@ -39,7 +39,7 @@
     };
 
     alt_tab {
-        layers = <5>;
+        layers = <ALT_TAB>;
         bindings =
             <&kp TAB>,
             <&kp LS(TAB)>,
@@ -50,7 +50,7 @@
     };
 
     ctrl_tab {
-        layers = <6>;
+        layers = <CTRL_TAB>;
         bindings =
             <&kp UP_ARROW>,
             <&kp DOWN_ARROW>,
