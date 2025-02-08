@@ -5,21 +5,25 @@
 目次
 - [キーマップ](#キーマップ)
 	- [全角半角](#全角半角)
+		- [作り方](#作り方)
 	- [Alt-Tab, Cmd-Tab, Ctrl-Tab](#alt-tab-cmd-tab-ctrl-tab)
 		- [1. タイムアウトでAltを離す](#1-タイムアウトでaltを離す)
-			- [作り方](#作り方)
+			- [作り方](#作り方-1)
 		- [2. 確定は別キーにする](#2-確定は別キーにする)
 		- [3. Layer-TapでAltを代用](#3-layer-tapでaltを代用)
-			- [作り方](#作り方-1)
-		- [4. トラボでTabを代用](#4-トラボでtabを代用)
 			- [作り方](#作り方-2)
+		- [4. トラボでTabを代用](#4-トラボでtabを代用)
+			- [作り方](#作り方-3)
 	- [Auto Mouse Layer関連](#auto-mouse-layer関連)
+		- [作り方](#作り方-4)
+			- [マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける](#マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける)
+			- [マウスキーを押したらタイムアウトを延長する・マウスキーを押すまでマウスレイヤーに留まる](#マウスキーを押したらタイムアウトを延長するマウスキーを押すまでマウスレイヤーに留まる)
 
 ## 全角半角
 全角半角を1キーだけでのトグル式にするのではなく、変換・無変換に分ける方がストレスが減るというのは有名な話。
 
 これの本質は、同じ動作で異なる効果を出すのをやめて、異なる効果には異なる動作をさせることだ。
-変換無変換は異なる2キーに分けることで解決したわけだが、自分は**シングルタップとダブルタップで分ける方法**を推したい。
+変換無変換は異なる2キーに分けることで解決したわけだが、私は**シングルタップとダブルタップで分ける方法**を推したい。
 
 シングルタップとダブルタップで異なる動作をするのは、マウスのダブルクリックで広く普及しているが、一般的なキーボードにはなぜか採用されていない。QMKやZMKでは、Tap DanceというN回タップにN個の異なる動作を割り当てる機能がある。
 
@@ -34,10 +38,45 @@
 
 ちなみに、AutoHotKeyやKarabiner Elementsでもこの機能は実現できる。
 
-TODO: 作り方を載せる
+### 作り方
+以下のようなSticky Layerを使ったマクロで作れる。
+```dts
+/ {
+	macros {
+		eager_tap_dance: eager_tap_dance {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&exit_AML &macro_param_2to1 &sl_250 MACRO_PLACEHOLDER>;
+
+            label = "eager_tap_dance";
+        };
+	};
+
+	keymap {
+		layer_0 {
+			bindings = <
+				&eager_tap_dance LANGUAGE_2 1
+			>;
+		};
+
+		layer_1 {
+			bindings = <
+				&eager_tap_dance LANGUAGE_1 1
+			>;
+		};
+	};
+}
+```
 
 ## Alt-Tab, Cmd-Tab, Ctrl-Tab
-アプリやタブを切り替えるショートカット。以下、Altの場合で書く。
+アプリやタブを切り替えるショートカット。以下、Altの場合で書く。X
 
 これらのショートカットは単純にAlt+Tabを押すだけでなく、`[Alt↓]`, `[Tab↓↑]`×N回, `[Alt↑]`のような動作が求められるので、少ないキー数で実現するには工夫が必要。
 
@@ -95,7 +134,7 @@ Enterはどこかに割り当ててるだろうから実質1キー消費で済�
 みたいなのをマクロとレイヤー移動の組み合わせで作れる。
 Layer-Tapはどこかにあるだろうから実質1キー消費。レイヤー0のキー数消費に関しては実質0と言ってもいい。
 
-自分はさらに、TabとShift+Tabを並べ、Alt+TabとAlt+Shift+Tabができるようにした上で逆から押し始めたらCtrl+Tab, Ctrl+Shift+Tabとして動作するようにしている。
+私はさらに、TabとShift+Tabを並べ、Alt+TabとAlt+Shift+Tabができるようにした上で逆から押し始めたらCtrl+Tab, Ctrl+Shift+Tabとして動作するようにしている。
 
 作り方はかなり煩雑。
 
@@ -108,6 +147,7 @@ Layer-Tapはどこかにあるだろうから実質1キー消費。レイヤー0
 - タップするとCtrl pressとTab tapを発行し、レイヤーyへtoするマクロを作成し、lt先レイヤーに配置する
 
 なお、`[Alt↑]`や`[Ctrl↑]`は10回ぐらいやらないと動作してくれないときがあるので、そこもマクロにしている。
+[zmk-listeners](https://github.com/ssbb/zmk-listeners) を使った方がいいかも。
 
 TODO: keymapのコードを載せる
 
@@ -120,10 +160,11 @@ TODO: keymapのコードを載せる
 ## Auto Mouse Layer関連
 トラボを動かすと一定時間だけマウスレイヤーが有効になるという機能。
 このタイムアウトを使いこなすのは難しく、誤爆に悩まされる人が後を絶たない。
+
 解決策としては、AMLを諦める(ltなどで手動でマウスレイヤーに移動するか、レイヤー0にマウスキーを配置する)か、マウスキーを押すまでマウスレイヤーに留まるようにするという方法がとられている。
 
-自分の場合は、タイムアウトを無限(タイムアウトなし)にして、マウスレイヤーから戻るには必ずマウスキー以外を押すという設定にしている。
-誤爆の原因はタイムアウトを脳が把握しきれないからであって、タイムアウトをなくすことが解決につながると理解している。
+私の場合は、タイムアウトを無限(タイムアウトなし)にして、マウスレイヤーから戻るには必ずマウスキー以外を押すという設定にしている。
+誤爆の原因はタイムアウトを脳が把握できないからであって、タイムアウトをなくすことが解決につながると理解している。
 それには2つの方向があって、タイムアウトを0にするという方向だとAMLを諦めることになり、逆の方向に行くと、タイムアウトを無限にすることになるわけだ。
 
 なお、ZMKのAMLの実装(正確には、ZMKで用意されている機能ではなく、zmk-pmw3610-driverで実装されている)はQMKよりも単純で、QMKの
@@ -133,4 +174,139 @@ TODO: keymapのコードを載せる
 という仕様がない。それ+マウスキーを押すまでマウスレイヤーに留まる機能をZMKでも求める人は少なくない。
 これらはマクロで再現できる。
 
-TODO: 作り方を載せる
+### 作り方
+#### マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける
+マウスレイヤーを抜けるマクロ`exit_AML`を作り、それを織り込んだ`kp`、`mo`、`lt`をマクロとbehaviorで作る。
+普段使用する`kp`、`mo`、`lt`をそれで置き換えたら完了。
+```dts
+/{
+	macros {
+        exit_AML: exit_AML {
+            compatible = "zmk,behavior-macro";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <0>;
+            bindings = <&tog_off MOUSE>;
+            label = "exit_AML";
+        };
+
+		kp_exit_AML: kp_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_AML>;
+            label = "KP_exit_AML";
+        };
+
+	    mod_exit_AML: mod_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&exit_AML>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+
+            label = "MOD_exit_AML";
+        };
+
+		mo_exit_AML: mo_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&exit_AML>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
+                <&macro_tap>;
+
+            label = "MO_exit_AML";
+        };
+	};
+
+	behaviors {
+		lt_exit_AML: lt_exit_AML {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_exit_AML";
+            bindings = <&mo_exit_AML>, <&kp_exit_AML>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+
+		lt_exit_AML_on_hold: lt_exit_AML_on_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_exit_AML_ON_HOLD";
+            bindings = <&mo_exit_AML>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+
+        mt_exit_AML: mt_exit_AML {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_exit_AML";
+            bindings = <&mod_exit_AML>, <&kp_exit_AML>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            quick-tap-ms = <200>;
+        };
+
+        mt_exit_AML_on_tap: mt_exit_AML_on_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_exit_AML_ON_TAP";
+            bindings = <&kp>, <&kp_exit_AML>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            quick-tap-ms = <200>;
+        };
+	};
+}
+```
+#### マウスキーを押したらタイムアウトを延長する・マウスキーを押すまでマウスレイヤーに留まる
+マウスキーを押すまでマウスレイヤーに留まる場合でも、ダブルクリックの猶予を与えるために一定時間待たなければならない。
+そのため、「マウスキーを押したらタイムアウトを延長する」「マウスキーを押すまでマウスレイヤーに留まる」は同じマクロで、タイムアウトの長さの違いだけで作れる。
+
+具体的には、このマクロを`mkp`の代わりに使用すればOK。
+マウスキーを押すまでマウスレイヤーに留まるなら、AMLのタイムアウトは眺めにしておく。
+```dts
+&sl { release-after-ms = <1000>; }; // タイムアウトを指定
+
+/{
+	macros {
+		mkp_exit_AML: mkp_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&sl MOUSE>;
+
+            label = "MKP_EXIT_AML";
+        };
+	}
+}
+```
