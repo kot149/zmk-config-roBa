@@ -87,7 +87,7 @@ sl_250のrelease-after-msを変更すると、タイムアウト時間を変更�
 ```
 
 ## Alt-Tab, Cmd-Tab, Ctrl-Tab
-アプリやタブを切り替えるショートカット。以下、Altの場合で書く。X
+アプリやタブを切り替えるショートカット。以下、Altの場合で書く。
 
 これらのショートカットは単純にAlt+Tabを押すだけでなく、`[Alt↓]`, `[Tab↓↑]`×N回, `[Alt↑]`のような動作が求められるので、少ないキー数で実現するには工夫が必要。
 
@@ -99,7 +99,7 @@ sl_250のrelease-after-msを変更すると、タイムアウト時間を変更�
 
 ### 1. タイムアウトでAltを離す
 完全に1キーでやるならこれしかない。
-個人的には体感動作が遅くなるので微妙。
+個人的には体感動作が遅くなる・迷ってる間にタイムアウトしてしまうと困るので微妙。
 
 #### 作り方
 以下のマクロで作れる。
@@ -111,7 +111,11 @@ sl_250のrelease-after-msを変更すると、タイムアウト時間を変更�
         alt_tab: alt_tab {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER &macro_param_1to1 &sk MACRO_PLACEHOLDER &macro_param_1to1 &kt_off MACRO_PLACEHOLDER>;
+            bindings =
+                <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER>,
+                <&macro_param_2to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_param_1to1 &sk MACRO_PLACEHOLDER>,
+                <&macro_param_1to1 &kt_off MACRO_PLACEHOLDER>;
             label = "ALT_TAB";
         };
     };
@@ -175,7 +179,6 @@ Layer-Tapはどこかにあるだろうから実質1キー消費。レイヤー0
 / {
     layer_listeners {
         compatible = "zmk,layer-listeners";
-
 
         release_alt {
             layers = <ALT_TAB>;
