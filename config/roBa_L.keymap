@@ -179,15 +179,6 @@
             label = "MO_exit_AML_to_0";
         };
 
-        kp_with_kt_on: kp_with_kt_on {
-            compatible = "zmk,behavior-macro-two-param";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER>;
-            label = "KP_WITH_KT_ON";
-        };
-
         kp_to: kp_to {
             compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
@@ -195,24 +186,6 @@
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &macro_param_2to1 &to MACRO_PLACEHOLDER>;
             label = "kp_to";
-        };
-
-        tab_kt_on_to: tab_kt_on_to {
-            compatible = "zmk,behavior-macro-two-param";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to2 &kp_to TAB MACRO_PLACEHOLDER>;
-            label = "tab_kt_on_to";
-        };
-
-        shift_tab_kt_on_to: shift_tab_kt_on_to {
-            compatible = "zmk,behavior-macro-two-param";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to2 &kp_to LS(TAB) MACRO_PLACEHOLDER>;
-            label = "shift_tab_kt_on_to";
         };
 
         to_kp: to_kp {
