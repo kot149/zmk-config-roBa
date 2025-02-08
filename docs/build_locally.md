@@ -124,6 +124,7 @@ west update
 
 ### ビルドスクリプト
 このリポジトリの[`scripts/build.sh`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.sh) は上記3つのビルドを同時並行で行い、結果を`zmk-config-roBa/build`に保存するスクリプトである。
+なお、[zmk-listeners](https://github.com/ssbb/zmk-listeners) も使うビルドコマンドになっているので注意。
 以下のコマンドで実行できる。
 - 初回ビルド
 	```sh
@@ -134,4 +135,5 @@ west update
 	../zmk-config/scripts/build.sh
 	```
 
-このリポジトリの[`scripts/build.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.ps1) は、コンテナの外から`scripts/build.sh`を実行するPowerShellスクリプトである。
+[`scripts/flash.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/flash.ps1) は、ビルド結果をフラッシュするPowerShellスクリプトである。
+[`scripts/build.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.ps1) は、コンテナの外から`scripts/build.sh`を実行した後、`scripts/flash.ps1`を実行するPowerShellスクリプトである。
