@@ -40,6 +40,40 @@
 &sl { release-after-ms = <1000>; };
 
 / {
+    layer_listeners {
+        compatible = "zmk,layer-listeners";
+
+        release_alt {
+            layers = <ALT_TAB ALT_TAB_TB>;
+            bindings = <&kt_on LEFT_ALT &kt_off LEFT_ALT>;
+        };
+
+        release_ctrl {
+            layers = <CTRL_TAB CTRL_TAB_TB>;
+            bindings = <&kt_on LCTRL &kt_off LCTRL>;
+        };
+
+        // release_alt2 {
+        //     layers = <MISC>;
+        //     bindings = <&none &kt_off LEFT_ALT>;
+        // };
+
+        // release_ctrl2 {
+        //     layers = <MISC>;
+        //     bindings = <&none &kt_off LCTRL>;
+        // };
+
+        // release_alt3 {
+        //     layers = <DEFAULT>;
+        //     bindings = <&kt_off LEFT_ALT &none>;
+        // };
+
+        // release_ctrl3 {
+        //     layers = <DEFAULT>;
+        //     bindings = <&kt_off LCTRL &none>;
+        // };
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -170,7 +204,7 @@
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <0>;
-            bindings = <&to 0 &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL &kt_off LEFT_ALT &kt_off LCTRL>;
+            bindings = <&to 0>;
             label = "DISABLE_ALT_CTRL";
         };
 
@@ -208,6 +242,13 @@
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to2 &kp_to LS(TAB) MACRO_PLACEHOLDER>;
             label = "shift_tab_kt_on_to";
+        };
+
+        to_kp: to_kp {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            bindings = <&macro_param_1to1 &to MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER>;
+            label = "to_kp";
         };
 
         zoom_in: zoom_in {
@@ -512,8 +553,8 @@
 
         MISC {
             bindings = <
-&tab_kt_on_to LEFT_ALT 5  &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                      &td_alt_f4         &kp LC(W)                 &kp LS(LC(T))          &kp LC(T)          &tab_kt_on_to LEFT_ALT 5
-&tab_kt_on_to LCTRL 6     &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &trans      &trans      &trans  &kp K_VOLUME_UP    &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML UP_ARROW  &kp LC(PAGE_DOWN)  &tab_kt_on_to LCTRL 6
+&to_kp 5 TAB  &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                      &td_alt_f4         &kp LC(W)                 &kp LS(LC(T))          &kp LC(T)          &to_kp 5 TAB
+&to_kp 6 TAB     &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &trans      &trans      &trans  &kp K_VOLUME_UP    &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML UP_ARROW  &kp LC(PAGE_DOWN)  &to_kp 6 TAB
 &kp LA(LC(LG(DOWN)))               &kp LG(LEFT_ARROW)      &kp LG(DOWN)      &kp LG(LS(RIGHT_ARROW))  &trans      &trans      &trans  &kp K_VOLUME_DOWN  &kp LA(LEFT)              &kp DOWN               &kp LA(RIGHT)      &trans
 &trans                             &trans                  &trans            &trans                   &trans      &trans      &trans  &trans                                                                                 &trans
             >;
