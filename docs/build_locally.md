@@ -135,5 +135,5 @@ west update
 	../zmk-config/scripts/build.sh
 	```
 
-[`scripts/flash.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/flash.ps1) は、ビルド結果をフラッシュするPowerShellスクリプトである。
-[`scripts/build.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.ps1) は、コンテナの外から`scripts/build.sh`を実行した後、`scripts/flash.ps1`を実行するPowerShellスクリプトである。
+[`scripts/flash.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/flash.ps1) は、Windows上でビルド結果をフラッシュするPowerShellスクリプトである。
+[`scripts/build.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.ps1) は、Windows上でコンテナの外から`scripts/build.sh`を実行した後、`scripts/flash.ps1`を実行するPowerShellスクリプトである。
