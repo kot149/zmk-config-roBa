@@ -52,6 +52,11 @@
             layers = <CTRL_TAB CTRL_TAB_TB>;
             bindings = <&kt_on LCTRL &kt_off LCTRL>;
         };
+
+        // AML_indicator {
+        //     layers = <MOUSE>;
+        //     bindings = <&kp LS(LA(LC(LG(H)))) &kp LS(LA(LC(LG(H))))>;
+        // };
     };
 
     combos {
