@@ -455,6 +455,16 @@
             tapping-term-ms = <250>;
             bindings = <&none>, <&none>, <&bt BT_CLR_ALL>;
         };
+
+        screenshot_active_window: screenshot_active_window {
+            compatible = "zmk,behavior-mod-morph";
+            label = "SCREENSHOT_ACTIVE_WINDOW";
+            bindings = <&kp LA(PRINTSCREEN)>, <&kp LA(PRINTSCREEN)>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_LALT)>;
+            keep-mods = <(MOD_LALT)>;
+        };
     };
 
     keymap {
@@ -493,10 +503,10 @@
 
         FUNCTIONS_AND_CONTROLS {
             bindings = <
-&kp LS(F11)          &kp F1          &kp F2          &kp F3           &td_alt_f4                                               &kp F6        &kp F7    &kp F8        &kp F11    &kp F12
-&kp LA(PRINTSCREEN)  &kp LS(LG(S))   &kp UP_ARROW    &none            &kp F5      &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp F5        &kp HOME  &kp UP_ARROW  &kp END    &kp F9
-&kp LEFT_SHIFT       &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none       &kp EQUAL                    &kp LC(HOME)    &kp LC(LEFT)  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LC(RIGHT)
-&kp LCTRL            &kp LEFT_WIN    &kp LEFT_ALT    &trans           &trans      &trans                       &kp DELETE      &trans                                           &kp PIPE
+&kp LS(F11)                &kp F1          &kp F2          &kp F3           &td_alt_f4                                               &kp F6        &kp F7    &kp F8        &kp F11    &kp F12
+&screenshot_active_window  &kp LS(LG(S))   &kp UP_ARROW    &none            &kp F5      &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp F5        &kp HOME  &kp UP_ARROW  &kp END    &kp F9
+&kp LEFT_SHIFT             &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none       &kp EQUAL                    &kp LC(HOME)    &kp LC(LEFT)  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LC(RIGHT)
+&kp LCTRL                  &kp LEFT_WIN    &kp LEFT_ALT    &trans           &trans      &trans                       &kp DELETE      &trans                                           &kp PIPE
             >;
         };
 
