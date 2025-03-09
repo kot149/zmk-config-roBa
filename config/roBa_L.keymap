@@ -314,7 +314,7 @@
 
         windows_sleep: windows_sleep {
             compatible = "zmk,behavior-macro";
-            wait-ms = <100>;
+            wait-ms = <200>;
             tap-ms = <100>;
             #binding-cells = <0>;
             bindings = <&kp LG(X) &kp U &kp S>;
