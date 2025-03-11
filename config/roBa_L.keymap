@@ -6,7 +6,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/pointing.h>
 
 #define DEFAULT 0
 #define LANG1_ETD 1
@@ -465,6 +464,15 @@
             mods = <(MOD_LSFT|MOD_LALT)>;
             keep-mods = <(MOD_LALT)>;
         };
+
+        td_copy_paste: td_copy_paste {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_COPY_PASTE";
+            #binding-cells = <0>;
+            bindings = <&kp_exit_AML LC(C)>, <&kp_exit_AML V>;
+
+            tapping-term-ms = <250>;
+        };
     };
 
     keymap {
@@ -472,10 +480,10 @@
 
         DEFAULT {
             bindings = <
-&mt_exit_AML LWIN Q               &kp_exit_AML W             &kp_exit_AML E  &kp_exit_AML R                 &lt_exit_AML 13 T                                                                                      &lt_exit_AML 13 Y             &kp_exit_AML U  &kp_exit_AML I          &kp_exit_AML O       &lt_exit_AML 11 P
-&mt_exit_AML LCTRL A              &kp_exit_AML S             &kp_exit_AML D  &kp_exit_AML F                 &kp_exit_AML G                &kp C_MUTE                             &zoom_in                          &kp_exit_AML H                &kp_exit_AML J  &kp_exit_AML K          &kp_exit_AML L       &lt_exit_AML 12 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt_exit_AML LEFT_SHIFT X  &kp_exit_AML C  &kp_exit_AML V                 &lt_exit_AML_to_0 4 B         &mo_exit_AML_to_0 CTRL_ALT_TAB_TB      &zoom_out                         &lt_exit_AML_to_0 4 N         &kp_exit_AML M  &mod_morph_exclamation  &mod_morph_question  &mt_exit_AML LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN               &kp LEFT_ALT    &eager_tap_dance LANGUAGE_2 1  &lt_exit_AML_on_hold 3 SPACE  &lt_exit_AML 2 TAB                     &lt_exit_AML_on_hold 2 BACKSPACE  &lt_exit_AML_on_hold 3 ENTER                                                               &mt_exit_AML LEFT_SHIFT ESCAPE
+&mt_exit_AML LWIN Q               &kp_exit_AML W             &kp_exit_AML E  &kp_exit_AML R                 &lt_exit_AML 13 T                                                                       &lt_exit_AML 13 Y             &kp_exit_AML U  &kp_exit_AML I          &kp_exit_AML O       &lt_exit_AML 11 P
+&mt_exit_AML LCTRL A              &kp_exit_AML S             &kp_exit_AML D  &kp_exit_AML F                 &kp_exit_AML G                &kp C_MUTE              &zoom_in                          &kp_exit_AML H                &kp_exit_AML J  &kp_exit_AML K          &kp_exit_AML L       &lt_exit_AML 12 MINUS
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt_exit_AML LEFT_SHIFT X  &kp_exit_AML C  &kp_exit_AML V                 &lt_exit_AML_to_0 4 B         &td_copy_paste          &zoom_out                         &lt_exit_AML_to_0 4 N         &kp_exit_AML M  &mod_morph_exclamation  &mod_morph_question  &mt_exit_AML LEFT_SHIFT SLASH
+&kp LCTRL                         &kp LEFT_WIN               &kp LEFT_ALT    &eager_tap_dance LANGUAGE_2 1  &lt_exit_AML_on_hold 3 SPACE  &lt_exit_AML 2 TAB      &lt_exit_AML_on_hold 2 BACKSPACE  &lt_exit_AML_on_hold 3 ENTER                                                               &mt_exit_AML LEFT_SHIFT ESCAPE
             >;
 
             sensor-bindings = <&encoder_volume>;
