@@ -469,7 +469,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_COPY_PASTE";
             #binding-cells = <0>;
-            bindings = <&kp_exit_AML LC(C)>, <&kp_exit_AML V>;
+            bindings = <&kp_exit_AML LC(C)>, <&kp_exit_AML LC(V)>;
 
             tapping-term-ms = <250>;
         };
