@@ -454,7 +454,7 @@ Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit
 };
 ```
 
-#### 低CPI/高CPIモード
+## 低CPI/高CPIモード
 ZMKのinput-listenrを使って設定できる。
 roBa_R.overlayに以下を追記すると、レイヤー2のではカーソル移動量3分の1、レイヤー3では3倍になる。
 ```dts
