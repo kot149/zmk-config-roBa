@@ -453,3 +453,28 @@ Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit
     };
 };
 ```
+
+#### 低CPI/高CPIモード
+ZMKのinput-listenrを使って設定できる。
+roBa_R.overlayに以下を追記すると、レイヤー2のではカーソル移動量3分の1、レイヤー3では3倍になる。
+```dts
+#include <input/processors.dtsi>
+/ {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        cpi-low {
+            layers = <2>;
+            input-processors = <&zip_xy_scaler 1 3>;
+        };
+
+        cpi-high {
+            layers = <3>;
+            input-processors = <&zip_xy_scaler 3 1>;
+        };
+    };
+};
+```
+
+zmk-pmw3610-driverのsnipe-layersを使う手もある。こっちだとデフォルトと別CPIの2パターンだけになってしまうが、大抵はそれで充分。
