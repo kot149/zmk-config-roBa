@@ -5,7 +5,7 @@
 
 - [ローカルビルド手順](https://github.com/kot149/zmk-config-roBa/blob/main/docs/build_locally.md)
 - [ローカルビルド用スクリプト](https://github.com/kot149/zmk-config-roBa/blob/main/scripts)
-- [キーマップ説明](https://github.com/kot149/zmk-config-roBa/blob/main/docs/keymap.md)
+- [キーマップ解説](https://github.com/kot149/zmk-config-roBa/blob/main/docs/keymap.md)
 - README
 
 を加えています。
