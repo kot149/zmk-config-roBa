@@ -15,6 +15,9 @@
     - [オートマウスレイヤー](#オートマウスレイヤー)
       - [`excluded-positions`を使用しない例](#excluded-positionsを使用しない例)
       - [`excluded-positions`を使用する例](#excluded-positionsを使用する例)
+  - [トラボで矢印キー入力](#トラボで矢印キー入力)
+    - [単純なキー割り当て](#単純なキー割り当て)
+    - [マクロの割り当て](#マクロの割り当て)
   - [Alt-Tab, Cmd-Tab, Ctrl-Tab](#alt-tab-cmd-tab-ctrl-tab)
     - [1. タイムアウトでAltを離す](#1-タイムアウトでaltを離す)
       - [作り方](#作り方-2)
@@ -268,9 +271,9 @@ Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit
 ```
 
 ## Input Processorあれこれ
-可変CPI、スクロールレイヤー、オートマウスレイヤーといったPMW3610ドライバーで用意されている機能は、後からZMKに追加されたInput Processorでも設定可能。
+可変CPI、スクロールレイヤー、オートマウスレイヤーといったzmk-pmw3610-driverで用意されている機能は、後からZMKに追加されたInput Processorでも設定可能。
 スクロールレイヤーやAMLは若干挙動が異なるので、人によってはInput Processorを使う方が好みかもしれない。
-特にAMLの方はキー押下ででAML解除してくれる機能を設定できるが、これはPMW3610ドライバーにはない仕様。
+特にAMLの方はキー押下ででAML解除してくれる機能を設定できるが、これはzmk-pmw3610-driverにはない仕様。
 
 ### 低CPI/高CPIモード
 `roBa_R.overlay`に以下を追記すると、レイヤー2ではカーソル移動量3分の1、レイヤー3では3倍になる。
@@ -299,7 +302,7 @@ zmk-pmw3610-driverの`snipe-layers`を使う手もある。こっちだとデフ
 ### スクロールレイヤー
 `roBa_R.overlay`に以下を追記すると、レイヤー4ではカーソル移動がスクロールに変換される。
 自分の試したところ、y方向のスクロールが逆になったので`&zip_xy_transform`で反転させている。
-スクロール量が多すぎるor少なすぎる場合は、`&zip_xy_scaler`の部分をコメントアウトして調整できる。
+スクロール量が多すぎるor少なすぎる場合は、`&zip_xy_scaler`の部分をコメント解除して調整できる。
 ```dts
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
@@ -372,6 +375,66 @@ Input Processorを使用する場合は、zmk-pmw3610-driverのAMLは無効化�
     };
 };
 ```
+
+## トラボで矢印キー入力
+トラボの上下左右操作にキーを割り当てる機能が[kumamuk-git/zmk-pmw3610-driver](https://github.com/kumamuk-git/zmk-pmw3610-driver) には実装されている(私がプルリクしました)。
+
+### 単純なキー割り当て
+単純に矢印キーなどを割り当てるだけなら、`roBa_R.overlay`に記述するだけで済む。
+```dts
+#include <dt-bindings/zmk/keys.h>
+
+&spi0 {
+    ...
+
+    trackball: trackball@0 {
+        ...
+
+        arrows {
+            layers = <3>;
+            bindings =
+                <&kp RIGHT_ARROW>,
+                <&kp LEFT_ARROW>,
+                <&kp UP_ARROW>,
+                <&kp DOWN_ARROW>;
+
+            /*   optional: ball action configuration  */
+            tick = <10>;
+            // wait-ms = <5>;
+            // tap-ms = <5>;
+        };
+    };
+};
+```
+
+### マクロの割り当て
+マクロは`roBa.keymap`に記述されているので、そのままでは`roBa_R.overlay`から参照できない。
+
+それを可能にするには、`roBa.keymap`で`roBa_R.overlay`をincludeし、`&trackball`を参照できるようにすることで、keymap側からトラボの設定をする。
+ただし、それをやると左手側のビルドが通らなくなってしまう。
+これを解決するには、左右でキーマップを分ける必要がある。具体的には、
+1. `roBa.keymap`を`roBa_L.keymap`にリネームする
+2. `roBa_R.keymap`を作成し、`roBa_L.keymap`をincludeする
+3. `roBa_R.keymap`に`&trackball`の設定を記述する
+
+これで左右のビルドが通るようになる。
+
+なお、`roBa_L.keymap`をインクルードしているので、トラボの依存しない設定は`roBa_L.keymap`だけ書き換えれば右手側にも反映される。
+[Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) は複数キーマップをサポートしており、画面上部で編集するキーマップを選択できる。
+デフォルトで選択されるキーマップはおそらくアルファベット順で早い方で、`roBa_L.keymap`が選択されるので、特に意識することなく使用できる。
+
+<details>
+<summary style="font-weight: bold;">キーマップファイルのファイル名に関する仕様</summary>
+
+keymapファイルの名前解決手順は、例えば`roBa_R`のビルドの場合、
+1. `roBa.keymap`を探す
+2. 見つからない場合は`roBa_R.keymap`を探す
+3. それも見つからない場合はエラー
+
+となっている模様。
+このため、`roBa.keymap`を`roBa_R.keymap`の2ファイル構成にしようと思うと、先に`roBa_R.keymap`が読まれてしまい、トラボの設定が無効になってしまう。
+また、`roBa_right.keymap`のような名前にすることもできない。
+</details>
 
 
 ## Alt-Tab, Cmd-Tab, Ctrl-Tab
@@ -570,6 +633,4 @@ Layer-Tapはどこかにあるだろうから実質1キー消費。レイヤー0
 空いてる上下をCtrl+Tab, Ctrl+Shift+Tabに当てるのもアリ。
 
 #### 作り方
-方法3の実装を流用する。
-
-TODO: トラボにキーを割り当てる機能の説明
+方法3の実装を流用する。トラボへのマクロ割り当ては[こちら](#マクロの割り当て) を参照。
