@@ -494,6 +494,8 @@ roBa_R.overlayに以下を追記すると、レイヤー4ではカーソル移�
 自分の試したところ、y方向のスクロールが逆になったので`&zip_xy_transform`で反転させている。
 スクロール量が多すぎるor少なすぎる場合は、`&zip_xy_scaler`の部分をコメントアウトして調整できる。
 ```dts
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
@@ -515,6 +517,7 @@ roBa_R.overlayに以下を追記すると、トラボ使用後10秒間、レイ�
 非マウスキーを押すと自動でAML解除してくれるが、これはPMW3610ドライバーにはない仕様。
 `&zip_temp_layer`を再定義すると、マウスキー以外にも任意のキー位置をAML解除対象外に設定できる。
 ```dts
+#include <input/processors.dtsi>
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
