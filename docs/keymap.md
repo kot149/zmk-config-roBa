@@ -1,6 +1,5 @@
 # キーマップ
-キーマップについて語り、その設定方法を紹介する。
-なお、ZMK(roBa)を中心に書くが、一部QMK(Keyball)や、AutoHotKeyやKarabiner Elements(非カスタムキーボード向け)の話も書くかもしれない。
+キーマップについて語りつつ、その設定方法を紹介する。
 
 目次
 - [キーマップ](#キーマップ)
@@ -109,8 +108,10 @@ zmk-pmw3610-driverで実装されているAMLはQMKよりも単純で、QMKの
 ※[後述のInput Processorを使用する方法](#オートマウスレイヤー) を参照。
 
 <details>
-<summary>Input Processorを使用しない方法</summary>
-Input Processerを使わなくても、マクロで再現できる。
+<summary style="font-weight: bold;">Input Processorを使用しない方法</summary>
+
+Input Processerを使わなくても、マクロで再現することができる。
+
 だいたいはInput Processorで十分だが、「`lt`や`mt`のホールド/タップのどちらかのみAMLを解除/維持したい」という場合には、Input Processorでは対応できない。
 そうしたい具体的なケースとしては、Shift+クリックがある。これはタップ時のみAML解除しホールド時はAML維持するようにしなければ、Shiftをホールドした後に一度カーソルを動かしてからクリックしないといけなくなる。
 
