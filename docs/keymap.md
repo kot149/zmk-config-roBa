@@ -5,7 +5,7 @@
 - [キーマップ](#キーマップ)
   - [全角半角](#全角半角)
     - [作り方](#作り方)
-  - [Auto Mouse Layer関連](#auto-mouse-layer関連)
+  - [Auto Mouse Layer(AML)関連](#auto-mouse-layeraml関連)
     - [作り方](#作り方-1)
       - [マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける](#マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける)
       - [マウスキーを押したらタイムアウトを延長する・マウスキーを押したらマウスレイヤーを抜ける](#マウスキーを押したらタイムアウトを延長するマウスキーを押したらマウスレイヤーを抜ける)
@@ -45,7 +45,7 @@
 
 ### 作り方
 以下のようなSticky Layerを使ったマクロで作れる。
-sl_250のrelease-after-msを変更すると、タイムアウト時間を変更できる。
+`sl_250`の`release-after-ms`を変更すると、タイムアウト時間を変更できる。
 ```dts
 / {
     macros {
@@ -90,9 +90,10 @@ sl_250のrelease-after-msを変更すると、タイムアウト時間を変更�
     };
 };
 ```
-## Auto Mouse Layer関連
+## Auto Mouse Layer(AML)関連
 トラボを動かすと一定時間だけマウスレイヤーが有効になるという機能。
 
+roBaやmoNaのデフォルトのconfigでは、zmk-pmw3610-driverのAML機能を使用している。
 zmk-pmw3610-driverで実装されているAMLはQMKよりも単純で、QMKの
 
 - マウスキーを押したらタイムアウトを延長する
@@ -328,6 +329,8 @@ Input Processorを使用した方法では、`excluded-positions`を設定する
 - 「マウスキーかそれ以外か」ではなく、「`excluded-positions`で設定したキーかそれ以外か」なので、QMK(Keyball)から来た人は混乱しやすい
 - `excluded-positions`を設定しなければ、「どのキーを押してもAMLが**解除されない**」。この仕様はちょっと分かりづらい
 - `excluded-positions`を押下しても、タイムアウトの延長はしてくれない。それをしたい場合は[このマクロ](#マウスキーを押したらタイムアウトを延長するマウスキーを押したらマウスレイヤーを抜ける) を使う必要がある
+
+Input Processorを使用する場合は、zmk-pmw3610-driverのAMLは無効化しておくこと。具体的には、`roBa_R.overlay`の`automouse-layer = <...>;`を消しておく。
 
 #### `excluded-positions`を使用しない例
 `roBa_R.overlay`に以下を追記すると、トラボ使用後10秒間、レイヤー5が有効になる。
