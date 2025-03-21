@@ -419,10 +419,6 @@ Input Processorを使用する場合は、zmk-pmw3610-driverのAMLは無効化�
 
 これで左右のビルドが通るようになる。
 
-なお、`roBa_L.keymap`をインクルードしているので、トラボの依存しない設定は`roBa_L.keymap`だけ書き換えれば右手側にも反映される。
-[Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) は複数キーマップをサポートしており、画面上部で編集するキーマップを選択できる。
-デフォルトで選択されるキーマップはおそらくアルファベット順で早い方で、`roBa_L.keymap`が選択されるので、特に意識することなく使用できる。
-
 <details>
 <summary style="font-weight: bold;">キーマップファイルのファイル名に関する仕様</summary>
 
@@ -436,6 +432,9 @@ keymapファイルの名前解決手順は、例えば`roBa_R`のビルドの場
 また、`roBa_right.keymap`のような名前にすることもできない。
 </details>
 
+なお、`roBa_L.keymap`をインクルードしているので、トラボの依存しない設定は`roBa_L.keymap`だけ書き換えれば右手側にも反映される。
+[Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) は複数キーマップをサポートしており、画面上部で編集するキーマップを選択できる。
+デフォルトで選択されるキーマップはおそらくアルファベット順で早い方で、`roBa_L.keymap`が選択されるので、特に意識することなく使用できる。
 
 ## Alt-Tab, Cmd-Tab, Ctrl-Tab
 アプリやタブを切り替えるショートカット。以下、Altの場合で書く。
