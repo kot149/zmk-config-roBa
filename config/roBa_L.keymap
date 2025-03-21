@@ -480,10 +480,10 @@
 
         DEFAULT {
             bindings = <
-&mt_exit_AML LWIN Q               &kp_exit_AML W             &kp_exit_AML E  &kp_exit_AML R                 &lt_exit_AML 13 T                                                                       &lt_exit_AML 13 Y             &kp_exit_AML U  &kp_exit_AML I          &kp_exit_AML O       &lt_exit_AML 11 P
-&mt_exit_AML LCTRL A              &kp_exit_AML S             &kp_exit_AML D  &kp_exit_AML F                 &kp_exit_AML G                &kp C_MUTE              &zoom_in                          &kp_exit_AML H                &kp_exit_AML J  &kp_exit_AML K          &kp_exit_AML L       &lt_exit_AML 12 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt_exit_AML LEFT_SHIFT X  &kp_exit_AML C  &kp_exit_AML V                 &lt_exit_AML_to_0 4 B         &td_copy_paste          &zoom_out                         &lt_exit_AML_to_0 4 N         &kp_exit_AML M  &mod_morph_exclamation  &mod_morph_question  &mt_exit_AML LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN               &kp LEFT_ALT    &eager_tap_dance LANGUAGE_2 1  &lt_exit_AML_on_hold 3 SPACE  &lt_exit_AML 2 TAB      &lt_exit_AML_on_hold 2 BACKSPACE  &lt_exit_AML_on_hold 3 ENTER                                                               &mt_exit_AML LEFT_SHIFT ESCAPE
+&mt LWIN Q               &kp W             &kp E  &kp R                 &lt 13 T                                                                       &lt 13 Y             &kp U  &kp I          &kp O       &lt 11 P
+&mt LCTRL A              &kp S             &kp D  &kp F                 &kp G                &kp C_MUTE              &zoom_in                          &kp H                &kp J  &kp K          &kp L       &lt 12 MINUS
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C  &kp V                 &lt_exit_AML_to_0 4 B         &td_copy_paste          &zoom_out                         &lt_exit_AML_to_0 4 N         &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
+&kp LCTRL                         &kp LEFT_WIN               &kp LEFT_ALT    &eager_tap_dance LANGUAGE_2 1  &lt 3 SPACE  &lt 2 TAB      &lt 2 BACKSPACE  &lt 3 ENTER                                                               &mt LEFT_SHIFT ESCAPE
             >;
 
             sensor-bindings = <&encoder_volume>;

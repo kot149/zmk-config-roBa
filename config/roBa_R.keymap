@@ -2,8 +2,29 @@
 
 #include "boards/shields/Test/roBa_R.overlay"
 
+#include <input/processors.dtsi>
+/ {
+    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        excluded-positions = <
+            18 // J
+            19 // K
+            21 // ;
+            22 // Z
+            34 // Ctrl
+        >;
+    };
+
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        input-processors = <&zip_temp_layer MOUSE 2147483647>;
+    };
+};
+
 &trackball {
-    automouse-layer = <MOUSE>;
     scroll-layers = <EXTRA_FINCTIONS>;
     // snipe-layers = <3>;
 

@@ -6,16 +6,8 @@
 - [キーマップ](#キーマップ)
   - [全角半角](#全角半角)
     - [作り方](#作り方)
-  - [Alt-Tab, Cmd-Tab, Ctrl-Tab](#alt-tab-cmd-tab-ctrl-tab)
-    - [1. タイムアウトでAltを離す](#1-タイムアウトでaltを離す)
-      - [作り方](#作り方-1)
-    - [2. 確定は別キーにする](#2-確定は別キーにする)
-    - [3. Layer-TapでAltを代用](#3-layer-tapでaltを代用)
-      - [作り方](#作り方-2)
-    - [4. トラボでTabを代用](#4-トラボでtabを代用)
-      - [作り方](#作り方-3)
   - [Auto Mouse Layer関連](#auto-mouse-layer関連)
-    - [作り方](#作り方-4)
+    - [作り方](#作り方-1)
       - [マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける](#マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける)
       - [マウスキーを押したらタイムアウトを延長する・マウスキーを押したらマウスレイヤーを抜ける](#マウスキーを押したらタイムアウトを延長するマウスキーを押したらマウスレイヤーを抜ける)
   - [Input Processorあれこれ](#input-processorあれこれ)
@@ -24,6 +16,14 @@
     - [オートマウスレイヤー](#オートマウスレイヤー)
       - [`excluded-positions`を使用しない例](#excluded-positionsを使用しない例)
       - [`excluded-positions`を使用する例](#excluded-positionsを使用する例)
+  - [Alt-Tab, Cmd-Tab, Ctrl-Tab](#alt-tab-cmd-tab-ctrl-tab)
+    - [1. タイムアウトでAltを離す](#1-タイムアウトでaltを離す)
+      - [作り方](#作り方-2)
+    - [2. 確定は別キーにする](#2-確定は別キーにする)
+    - [3. Layer-TapでAltを代用](#3-layer-tapでaltを代用)
+      - [作り方](#作り方-3)
+    - [4. トラボでTabを代用](#4-トラボでtabを代用)
+      - [作り方](#作り方-4)
 
 ## 全角半角
 全角半角を1キーだけでのトグル式にするのではなく、変換・無変換に分ける方がストレスが減るというのは有名な話。
@@ -91,6 +91,285 @@ sl_250のrelease-after-msを変更すると、タイムアウト時間を変更�
     };
 };
 ```
+## Auto Mouse Layer関連
+トラボを動かすと一定時間だけマウスレイヤーが有効になるという機能。
+このタイムアウトを使いこなすのは難しく、誤爆に悩まされる人が後を絶たない。
+
+その対策の一つとして、マウスキーを押すまでマウスレイヤーに留まる(マウスキーを押したらマウスレイヤーを抜ける)ようにするという方法がある。
+これはマクロとレイヤー移動の組み合わせで作成できる。
+
+なお、zmk-pmw3610-driverで実装されているAMLはQMKよりも単純で、QMKの
+
+- マウスキーを押したらタイムアウトを延長する
+- マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける
+
+という仕様がない。これらはZMKのInput Processorまたはマクロで解決できる。
+
+### 作り方
+#### マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける
+※[後述のInput Processorを使用する方法](#オートマウスレイヤー) を参照。
+
+<details>
+<summary>Input Processorを使用しない方法</summary>
+Input Processerを使わなくても、マクロで再現できる。
+だいたいはInput Processorで十分だが、「`lt`や`mt`のホールド/タップのどちらかのみAMLを解除/維持したい」という場合には、Input Processorでは対応できない。
+そうしたい具体的なケースとしては、Shift+クリックがある。これはタップ時のみAML解除しホールド時はAML維持するようにしなければ、Shiftをホールドした後に一度カーソルを動かしてからクリックしないといけなくなる。
+
+マウスレイヤーを抜けるマクロ`exit_AML`を作り、それを仕込んだ`kp`、`mo`、`lt`をマクロとbehaviorで作る。
+普段使用する`kp`、`mo`、`lt`をそれで置き換えたら完了。
+
+なお、これを使うとQuick Tap(Hold-Tapにおいて、素早くダブルタップした後ホールドし続けるとタップの連打を発行する機能)が動作しない。
+Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit_AML_on_hold`と`mt_exit_AML_on_tap`を作成して使用する。
+```dts
+#define MOUSE 4 // 各自のマウスレイヤーに合わせて設定
+
+/{
+    macros {
+        exit_AML: exit_AML {
+            compatible = "zmk,behavior-macro";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <0>;
+            bindings = <&tog_off MOUSE>;
+            label = "exit_AML";
+        };
+
+        kp_exit_AML: kp_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_AML>;
+            label = "KP_exit_AML";
+        };
+
+        mod_exit_AML: mod_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&exit_AML>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+
+            label = "MOD_exit_AML";
+        };
+
+        mo_exit_AML: mo_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            wait-ms = <0>;
+            tap-ms = <0>;
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&exit_AML>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
+                <&macro_tap>;
+
+            label = "MO_exit_AML";
+        };
+    };
+
+    behaviors {
+        tog_off: toggle_layer_off {
+            compatible = "zmk,behavior-toggle-layer";
+            #binding-cells = <1>;
+            display-name = "Toggle Layer Off";
+            toggle-mode = "off";
+        };
+
+        lt_exit_AML: lt_exit_AML {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_exit_AML";
+            bindings = <&mo_exit_AML>, <&kp_exit_AML>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+
+        lt_exit_AML_on_hold: lt_exit_AML_on_hold {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LT_exit_AML_ON_HOLD";
+            bindings = <&mo_exit_AML>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+
+        mt_exit_AML: mt_exit_AML {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_exit_AML";
+            bindings = <&mod_exit_AML>, <&kp_exit_AML>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            quick-tap-ms = <200>;
+        };
+
+        mt_exit_AML_on_tap: mt_exit_AML_on_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT_exit_AML_ON_TAP";
+            bindings = <&kp>, <&kp_exit_AML>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
+            quick-tap-ms = <200>;
+        };
+    };
+}
+```
+</details>
+
+#### マウスキーを押したらタイムアウトを延長する・マウスキーを押したらマウスレイヤーを抜ける
+マウスキーを押したらマウスレイヤーを抜ける場合でも、ダブルクリックの猶予を与えるために一定時間待たなければならない。
+そのため、実は「マウスキーを押したらタイムアウトを延長する」と「マウスキーを押すまでマウスレイヤーに留まる」は同じ実装で、タイムアウトの違いしかない。
+
+具体的には、このマクロを`mkp`の代わりに使用すればよい。
+マウスキーを押すまでマウスレイヤーに留まるなら、AMLのタイムアウトは長めにしておく。
+```dts
+#define MOUSE 4 // 各自のマウスレイヤーに合わせて設定
+
+&sl { release-after-ms = <1000>; }; // タイムアウトを指定
+
+/{
+    macros {
+        mkp_exit_AML: mkp_exit_AML {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&sl MOUSE>;
+
+            label = "MKP_EXIT_AML";
+        };
+    };
+};
+```
+
+## Input Processorあれこれ
+可変CPI、スクロールレイヤー、オートマウスレイヤーといったPMW3610ドライバーで用意されている機能は、後からZMKに追加されたInput Processorでも設定可能。
+スクロールレイヤーやAMLは若干挙動が異なるので、人によってはInput Processorを使う方が好みかもしれない。
+特にAMLの方はキー押下ででAML解除してくれる機能を設定できるが、これはPMW3610ドライバーにはない仕様。
+
+### 低CPI/高CPIモード
+`roBa_R.overlay`に以下を追記すると、レイヤー2ではカーソル移動量3分の1、レイヤー3では3倍になる。
+```dts
+#include <input/processors.dtsi>
+/ {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        cpi-low {
+            layers = <2>;
+            input-processors = <&zip_xy_scaler 1 3>;
+        };
+
+        cpi-high {
+            layers = <3>;
+            input-processors = <&zip_xy_scaler 3 1>;
+        };
+    };
+};
+```
+
+zmk-pmw3610-driverの`snipe-layers`を使う手もある。こっちだとデフォルトと別CPIの2パターンだけになってしまうが、大抵はそれで充分。
+
+### スクロールレイヤー
+`roBa_R.overlay`に以下を追記すると、レイヤー4ではカーソル移動がスクロールに変換される。
+自分の試したところ、y方向のスクロールが逆になったので`&zip_xy_transform`で反転させている。
+スクロール量が多すぎるor少なすぎる場合は、`&zip_xy_scaler`の部分をコメントアウトして調整できる。
+```dts
+#include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
+/ {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        scroller {
+            layers = <4>;
+            input-processors =
+                // <&zip_xy_scaler 3 2>,
+                <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+                <&zip_xy_to_scroll_mapper>;
+        };
+    };
+};
+```
+
+### オートマウスレイヤー
+トラボを動かすと一定時間だけマウスレイヤーが有効になるという機能。
+zmk-pmw3610-driverで用意されていた機能だが、後に追加されたInput Processorでも設定可能。
+
+Input Processorを使用した方法では、`excluded-positions`を設定すると、そのキー以外の押下時にAML解除される。これはzmk-pmw3610-driverのAMLにはない仕様。
+
+ただし、注意点がいくつかある。
+- 「マウスキーかそれ以外か」ではなく、「`excluded-positions`で設定したキーかそれ以外か」なので、QMK(Keyball)から来た人は混乱しやすい
+- `excluded-positions`を設定しなければ、「どのキーを押してもAMLが**解除されない**」。この仕様はちょっと分かりづらい
+- `excluded-positions`を押下しても、タイムアウトの延長はしてくれない。それをしたい場合は[このマクロ](#マウスキーを押したらタイムアウトを延長するマウスキーを押したらマウスレイヤーを抜ける) を使う必要がある
+
+#### `excluded-positions`を使用しない例
+`roBa_R.overlay`に以下を追記すると、トラボ使用後10秒間、レイヤー5が有効になる。
+```dts
+#include <input/processors.dtsi>
+/ {
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        input-processors = <&zip_temp_layer 5 10000>;
+    };
+};
+```
+
+#### `excluded-positions`を使用する例
+`roBa_R.overlay`に以下を追記すると、トラボ使用後10秒間、レイヤー5が有効になる。
+`J`, `K`, `;`, `Z`(`Shift`), `Ctrl`の位置をAML解除対象外に設定している。
+```dts
+#include <input/processors.dtsi>
+/ {
+    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        excluded-positions = <
+            18 // J
+            19 // K
+            21 // ;
+            22 // Z
+            34 // Ctrl
+        >;
+    };
+
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        input-processors = <&zip_temp_layer 5 10000>;
+    };
+};
+```
+
 
 ## Alt-Tab, Cmd-Tab, Ctrl-Tab
 アプリやタブを切り替えるショートカット。以下、Altの場合で書く。
@@ -291,270 +570,3 @@ Layer-Tapはどこかにあるだろうから実質1キー消費。レイヤー0
 方法3の実装を流用する。
 
 TODO: トラボにキーを割り当てる機能の説明
-
-## Auto Mouse Layer関連
-トラボを動かすと一定時間だけマウスレイヤーが有効になるという機能。
-このタイムアウトを使いこなすのは難しく、誤爆に悩まされる人が後を絶たない。
-
-その対策の一つとして、マウスキーを押すまでマウスレイヤーに留まる(マウスキーを押したらマウスレイヤーを抜ける)ようにするという方法がある。
-これはマクロとレイヤー移動の組み合わせで作成できる。
-
-なお、zmk-pmw3610-driverで実装されているAMLはQMKよりも単純で、QMKの
-
-- マウスキーを押したらタイムアウトを延長する
-- マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける
-
-という仕様がない。これらはZMKのInput Processorまたはマクロで解決できる。
-
-### 作り方
-#### マウスキー以外を押したらタイムアウト関係なしにマウスレイヤーを抜ける
-※[後述のInput Processorを使用する方法](#オートマウスレイヤー) を参照。
-
-<details>
-<summary>Input Processorを使用しない方法</summary>
-Input Processerを使わなくても、マクロで再現できる。
-だいたいはInput Processorで十分だが、「`lt`や`mt`のホールド/タップのどちらかのみAMLを解除/維持したい」という場合には、Input Processorでは対応できない。
-そうしたい具体的なケースとしては、Shift+クリックがある。これはタップ時のみAML解除しホールド時はAML維持するようにしなければ、Shiftをホールドした後に一度カーソルを動かしてからクリックしないといけなくなる。
-
-マウスレイヤーを抜けるマクロ`exit_AML`を作り、それを仕込んだ`kp`、`mo`、`lt`をマクロとbehaviorで作る。
-普段使用する`kp`、`mo`、`lt`をそれで置き換えたら完了。
-
-なお、これを使うとQuick Tap(Hold-Tapにおいて、素早くダブルタップした後ホールドし続けるとタップの連打を発行する機能)が動作しない。
-Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit_AML_on_hold`と`mt_exit_AML_on_tap`を作成して使用する。
-```dts
-#define MOUSE 4 // 各自のマウスレイヤーに合わせて設定
-
-/{
-    macros {
-        exit_AML: exit_AML {
-            compatible = "zmk,behavior-macro";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <0>;
-            bindings = <&tog_off MOUSE>;
-            label = "exit_AML";
-        };
-
-        kp_exit_AML: kp_exit_AML {
-            compatible = "zmk,behavior-macro-one-param";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_AML>;
-            label = "KP_exit_AML";
-        };
-
-        mod_exit_AML: mod_exit_AML {
-            compatible = "zmk,behavior-macro-one-param";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <1>;
-            bindings =
-                <&macro_press>,
-                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
-                <&macro_tap>,
-                <&exit_AML>,
-                <&macro_pause_for_release>,
-                <&macro_release>,
-                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-
-            label = "MOD_exit_AML";
-        };
-
-        mo_exit_AML: mo_exit_AML {
-            compatible = "zmk,behavior-macro-one-param";
-            wait-ms = <0>;
-            tap-ms = <0>;
-            #binding-cells = <1>;
-            bindings =
-                <&macro_press>,
-                <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
-                <&macro_tap>,
-                <&exit_AML>,
-                <&macro_pause_for_release>,
-                <&macro_release>,
-                <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
-                <&macro_tap>;
-
-            label = "MO_exit_AML";
-        };
-    };
-
-    behaviors {
-        tog_off: toggle_layer_off {
-            compatible = "zmk,behavior-toggle-layer";
-            #binding-cells = <1>;
-            display-name = "Toggle Layer Off";
-            toggle-mode = "off";
-        };
-
-        lt_exit_AML: lt_exit_AML {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LT_exit_AML";
-            bindings = <&mo_exit_AML>, <&kp_exit_AML>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            flavor = "balanced";
-        };
-
-        lt_exit_AML_on_hold: lt_exit_AML_on_hold {
-            compatible = "zmk,behavior-hold-tap";
-            label = "LT_exit_AML_ON_HOLD";
-            bindings = <&mo_exit_AML>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            flavor = "balanced";
-        };
-
-        mt_exit_AML: mt_exit_AML {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MT_exit_AML";
-            bindings = <&mod_exit_AML>, <&kp_exit_AML>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
-            quick-tap-ms = <200>;
-        };
-
-        mt_exit_AML_on_tap: mt_exit_AML_on_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "MT_exit_AML_ON_TAP";
-            bindings = <&kp>, <&kp_exit_AML>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            flavor = "balanced";
-            quick-tap-ms = <200>;
-        };
-    };
-}
-```
-</details>
-
-#### マウスキーを押したらタイムアウトを延長する・マウスキーを押したらマウスレイヤーを抜ける
-マウスキーを押したらマウスレイヤーを抜ける場合でも、ダブルクリックの猶予を与えるために一定時間待たなければならない。
-そのため、実は「マウスキーを押したらタイムアウトを延長する」と「マウスキーを押すまでマウスレイヤーに留まる」は同じ実装で、タイムアウトの違いしかない。
-
-具体的には、このマクロを`mkp`の代わりに使用すればよい。
-マウスキーを押すまでマウスレイヤーに留まるなら、AMLのタイムアウトは長めにしておく。
-```dts
-#define MOUSE 4 // 各自のマウスレイヤーに合わせて設定
-
-&sl { release-after-ms = <1000>; }; // タイムアウトを指定
-
-/{
-    macros {
-        mkp_exit_AML: mkp_exit_AML {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings =
-                <&macro_press>,
-                <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
-                <&macro_pause_for_release>,
-                <&macro_release>,
-                <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
-                <&macro_tap>,
-                <&sl MOUSE>;
-
-            label = "MKP_EXIT_AML";
-        };
-    };
-};
-```
-
-## Input Processorあれこれ
-可変CPI、スクロールレイヤー、オートマウスレイヤーといったPMW3610ドライバーで用意されている機能は、後からZMKに追加されたInput Processorでも設定可能。
-スクロールレイヤーやAMLは若干挙動が異なるので、人によってはInput Processorを使う方が好みかもしれない。
-<!-- 特にAMLの方は非マウスキーを押すと自動でAML解除してくれるが、これはPMW3610ドライバーにはない仕様。 -->
-
-### 低CPI/高CPIモード
-roBa_R.overlayに以下を追記すると、レイヤー2ではカーソル移動量3分の1、レイヤー3では3倍になる。
-```dts
-#include <input/processors.dtsi>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        cpi-low {
-            layers = <2>;
-            input-processors = <&zip_xy_scaler 1 3>;
-        };
-
-        cpi-high {
-            layers = <3>;
-            input-processors = <&zip_xy_scaler 3 1>;
-        };
-    };
-};
-```
-
-zmk-pmw3610-driverのsnipe-layersを使う手もある。こっちだとデフォルトと別CPIの2パターンだけになってしまうが、大抵はそれで充分。
-
-### スクロールレイヤー
-roBa_R.overlayに以下を追記すると、レイヤー4ではカーソル移動がスクロールに変換される。
-自分の試したところ、y方向のスクロールが逆になったので`&zip_xy_transform`で反転させている。
-スクロール量が多すぎるor少なすぎる場合は、`&zip_xy_scaler`の部分をコメントアウトして調整できる。
-```dts
-#include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        scroller {
-            layers = <4>;
-            input-processors =
-                // <&zip_xy_scaler 3 2>,
-                <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-                <&zip_xy_to_scroll_mapper>;
-        };
-    };
-};
-```
-
-### オートマウスレイヤー
-roBa_R.overlayに以下を追記すると、トラボ使用後10秒間、レイヤー5が有効になる。
-`excluded-positions`を設定すると、そのキー以外の押下時にAML解除される。これはPMW3610ドライバーにはない仕様。
-「マウスキーかそれ以外か」ではなく、「`excluded-positions`で設定したキーかそれ以外か」なので、QMK(Keyball)から来た人は混乱しやすい。
-
-なお、`excluded-positions`を設定しなければ、「どのキーを押してもAMLが**解除されない**」ので注意。この仕様はちょっと分かりづらい。
-
-#### `excluded-positions`を使用しない例
-```dts
-#include <input/processors.dtsi>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        input-processors = <&zip_temp_layer 5 10000>;
-    };
-};
-```
-
-#### `excluded-positions`を使用する例
-J, K, ;の位置をAML解除対象外に設定している。
-```dts
-#include <input/processors.dtsi>
-/ {
-    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #input-processor-cells = <2>;
-        excluded-positions = <18 19 21>;
-    };
-
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        input-processors = <&zip_temp_layer 5 10000>;
-    };
-};
-```
