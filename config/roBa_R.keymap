@@ -8,14 +8,14 @@
         compatible = "zmk,input-processor-temp-layer";
         #input-processor-cells = <2>;
         excluded-positions = <
-            // 18 // J
-            // 19 // K
+            18 // J
+            19 // K
             // 20 // L
             // 21 // ;
             22 // Z
-            31 // .
-            32 // ,
-            33 // /
+            // 31 // .
+            // 32 // ,
+            // 33 // /
             34 // Ctrl
         >;
     };
