@@ -23,8 +23,8 @@
 #define CONFIGURATION 13
 
 &mt {
-    quick-tap-ms = <250>;
     tapping-term-ms = <200>;
+    quick-tap-ms = <250>;
     flavor = "balanced";
 };
 
@@ -55,6 +55,11 @@
         // AML_indicator {
         //     layers = <MOUSE>;
         //     bindings = <&kp LS(LA(LC(LG(H)))) &kp LS(LA(LC(LG(H))))>;
+        // };
+
+        // AML {
+        //     layers = <MOUSE>;
+        //     bindings = <&to MOUSE &none>;
         // };
     };
 
@@ -262,7 +267,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_RIGHT_CLICK";
             #binding-cells = <0>;
-            bindings = <&mkp_exit_AML RCLK>, <&kp LC(W)>;
+            bindings = <&mkp RCLK>, <&kp LC(W)>;
 
             tapping-term-ms = <250>;
         };
@@ -577,7 +582,7 @@
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans    &trans           &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp_exit_AML MB1  &td_right_click &trans &mo 12
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click &trans &mo 12
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans    &trans           &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                     &trans
             >;
