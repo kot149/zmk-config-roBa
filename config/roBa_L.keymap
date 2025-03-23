@@ -107,7 +107,6 @@
             tap-ms = <0>;
             #binding-cells = <0>;
             bindings = <&tog_off 10>;
-            label = "exit_AML";
         };
 
         kp_exit_AML: kp_exit_AML {
@@ -116,7 +115,6 @@
             tap-ms = <0>;
             #binding-cells = <1>;
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_AML>;
-            label = "KP_exit_AML";
         };
 
         mod_exit_AML: mod_exit_AML {
@@ -132,8 +130,6 @@
                 <&macro_pause_for_release>,
                 <&macro_release>,
                 <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
-
-            label = "MOD_exit_AML";
         };
 
         mkp_exit_AML: mkp_exit_AML {
@@ -147,8 +143,6 @@
                 <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
                 <&macro_tap>,
                 <&sl 10>;
-
-            label = "MKP_EXIT_AML";
         };
 
         mo_exit_AML: mo_exit_AML {
@@ -165,8 +159,6 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
                 <&macro_tap>;
-
-            label = "MO_exit_AML";
         };
 
         mo_exit_AML_to_0: mo_exit_AML_to_0 {
@@ -184,8 +176,6 @@
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
                 <&macro_tap>,
                 <&to 0>;
-
-            label = "MO_exit_AML_to_0";
         };
 
         kp_to: kp_to {
@@ -194,28 +184,24 @@
             tap-ms = <0>;
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &macro_param_2to1 &to MACRO_PLACEHOLDER>;
-            label = "kp_to";
         };
 
         to_kp: to_kp {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &to MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER>;
-            label = "to_kp";
         };
 
         zoom_in: zoom_in {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kt_on LCTRL &msc SCRL_UP &kt_off LCTRL>;
-            label = "ZOOM_IN";
         };
 
         zoom_out: zoom_out {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kt_on LCTRL &msc SCRL_DOWN &kt_off LCTRL>;
-            label = "ZOOM_OUT";
         };
 
         eager_tap_dance: eager_tap_dance {
@@ -229,8 +215,6 @@
                 <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
                 <&macro_tap>,
                 <&exit_AML &macro_param_2to1 &sl_250 MACRO_PLACEHOLDER>;
-
-            label = "eager_tap_dance";
         };
     };
 
@@ -265,7 +249,6 @@
 
         td_right_click: td_right_click {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_RIGHT_CLICK";
             #binding-cells = <0>;
             bindings = <&mkp RCLK>, <&kp LC(W)>;
 
@@ -274,7 +257,6 @@
 
         td_colon: td_colon {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_COLON";
             #binding-cells = <0>;
             bindings = <&kp COLON>, <&kp SEMICOLON>;
 
@@ -283,7 +265,6 @@
 
         td_q_escape: td_q_escape {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_Q_ESCAPE";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&kp Q>, <&kp ESCAPE>;
@@ -293,8 +274,6 @@
             compatible = "zmk,behavior-tap-dance";
 
             // compatible = "zmk,behavior-eager-tap-dance";
-
-            label = "TD_ZENKAKUHANKAKU";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&kp LANGUAGE_2>, <&kp LANGUAGE_1>;
@@ -306,14 +285,12 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&td_ZenkakuHankaku &exit_AML>;
-            label = "TD_ZENKAKUHANKAKU_exit_AML";
         };
 
         alt_tab: alt_tab {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER &macro_param_1to1 &sk MACRO_PLACEHOLDER &macro_param_1to1 &kt_off MACRO_PLACEHOLDER>;
-            label = "ALT_TAB";
         };
 
         windows_sleep: windows_sleep {
@@ -322,19 +299,16 @@
             tap-ms = <100>;
             #binding-cells = <0>;
             bindings = <&kp LG(X) &kp U &kp S>;
-            label = "WINDOWS_SLEEP";
         };
 
         send_up: send_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp U &kp P &kp ENTER>;
-            label = "SEND_UP";
         };
 
         mod_morph_exclamation: mod_morph_exclamation {
             compatible = "zmk,behavior-mod-morph";
-            label = "MOD_MORPH_EXCLAMATION";
             bindings = <&kp COMMA>, <&kp EXCL>;
 
             #binding-cells = <0>;
@@ -343,7 +317,6 @@
 
         mod_morph_question: mod_morph_question {
             compatible = "zmk,behavior-mod-morph";
-            label = "MOD_MORPH_QUESTION";
             bindings = <&kp PERIOD>, <&kp QUESTION>;
 
             #binding-cells = <0>;
@@ -352,7 +325,6 @@
 
         mod_morph_slash: mod_morph_slash {
             compatible = "zmk,behavior-mod-morph";
-            label = "MOD_MORPH_SLASH";
             bindings = <&kp SLASH>, <&kp BACKSLASH>;
 
             #binding-cells = <0>;
@@ -361,7 +333,6 @@
 
         td_alt_f4: td_alt_f4 {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_ALT_F4";
             #binding-cells = <0>;
             bindings = <&kp F4>, <&kp LA(F4)>;
 
@@ -370,7 +341,6 @@
 
         lt_exit_AML: lt_exit_AML {
             compatible = "zmk,behavior-hold-tap";
-            label = "LT_exit_AML";
             bindings = <&mo_exit_AML>, <&kp_exit_AML>;
 
             #binding-cells = <2>;
@@ -381,7 +351,6 @@
 
         lt_exit_AML_to_0: lt_exit_AML_to_0 {
             compatible = "zmk,behavior-hold-tap";
-            label = "LT_exit_AML_to_0";
             bindings = <&mo_exit_AML_to_0>, <&kp_exit_AML>;
 
             #binding-cells = <2>;
@@ -392,7 +361,6 @@
 
         lt_exit_AML_on_hold: lt_exit_AML_on_hold {
             compatible = "zmk,behavior-hold-tap";
-            label = "LT_exit_AML_ON_HOLD";
             bindings = <&mo_exit_AML>, <&kp>;
 
             #binding-cells = <2>;
@@ -403,7 +371,6 @@
 
         mt_exit_AML: mt_exit_AML {
             compatible = "zmk,behavior-hold-tap";
-            label = "MT_exit_AML";
             bindings = <&mod_exit_AML>, <&kp_exit_AML>;
 
             #binding-cells = <2>;
@@ -414,7 +381,6 @@
 
         mt_exit_AML_on_tap: mt_exit_AML_on_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "MT_exit_AML_ON_TAP";
             bindings = <&kp>, <&kp_exit_AML>;
 
             #binding-cells = <2>;
@@ -437,7 +403,6 @@
 
         sl_250: sl_250 {
             compatible = "zmk,behavior-sticky-key";
-            label = "SL_250";
             bindings = <&mo>;
             #binding-cells = <1>;
             release-after-ms = <250>;
@@ -445,7 +410,6 @@
 
         td_bt_clear: td_bt_clear {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_BT_CLEAR";
             #binding-cells = <0>;
             bindings = <&none>, <&none>, <&bt BT_CLR>;
 
@@ -454,7 +418,6 @@
 
         td_bt_clear_all: td_bt_clear_all {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_BT_CLEAR_ALL";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&none>, <&none>, <&bt BT_CLR_ALL>;
@@ -462,7 +425,6 @@
 
         screenshot_active_window: screenshot_active_window {
             compatible = "zmk,behavior-mod-morph";
-            label = "SCREENSHOT_ACTIVE_WINDOW";
             bindings = <&kp LA(PRINTSCREEN)>, <&kp LA(PRINTSCREEN)>;
 
             #binding-cells = <0>;
@@ -472,7 +434,6 @@
 
         td_copy_paste: td_copy_paste {
             compatible = "zmk,behavior-tap-dance";
-            label = "TD_COPY_PASTE";
             #binding-cells = <0>;
             bindings = <&kp_exit_AML LC(C)>, <&kp_exit_AML LC(V)>;
 
