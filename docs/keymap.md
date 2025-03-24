@@ -15,6 +15,7 @@
     - [オートマウスレイヤー](#オートマウスレイヤー)
       - [`excluded-positions`を使用しない例](#excluded-positionsを使用しない例)
       - [`excluded-positions`を使用する例](#excluded-positionsを使用する例)
+      - [マウスキー押下でタイムアウトを延長する](#マウスキー押下でタイムアウトを延長する)
   - [トラボで矢印キー入力](#トラボで矢印キー入力)
     - [単純なキー割り当て](#単純なキー割り当て)
     - [マクロの割り当て](#マクロの割り当て)
@@ -112,7 +113,7 @@ zmk-pmw3610-driverで実装されているAMLはQMKよりも単純で、QMKの
 ※[後述のInput Processorを使用する方法](#オートマウスレイヤー) を参照。
 
 <details>
-<summary style="font-weight: bold;">Input Processorを使用しない方法</summary>
+<summary style="font-weight: bold;">マクロで再現する方法</summary>
 
 Input Processerを使わなくても、マクロで再現することができる。
 
@@ -240,10 +241,15 @@ Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit
 </details>
 
 #### マウスキーを押したらタイムアウトを延長する・マウスキーを押したらマウスレイヤーを抜ける
-マウスキーを押したらマウスレイヤーを抜ける場合でも、ダブルクリックの猶予を与えるために一定時間待たなければならない。
+[後述のInput Processorを使用する方法](#マウスキー押下でタイムアウトを延長する) を参照。
+
+なお、マウスキーを押したらマウスレイヤーを抜ける場合でも、ダブルクリックの猶予を与えるために一定時間待たなければならない。
 そのため、実は「マウスキーを押したらタイムアウトを延長する」と「マウスキーを押すまでマウスレイヤーに留まる」は同じ実装で、タイムアウトの違いしかない。
 
-具体的には、このマクロを`mkp`の代わりに使用すればよい。
+<details>
+<summary style="font-weight: bold;">マクロで再現する方法</summary>
+
+このマクロを`mkp`の代わりに使用することでも再現できる。
 マウスキーを押すまでマウスレイヤーに留まるなら、AMLのタイムアウトは長めにしておく。
 ```dts
 #define MOUSE 4 // 各自のマウスレイヤーに合わせて設定
@@ -269,6 +275,7 @@ Quick Tapを使いたい場合は、ホールド時のみAML解除する`lt_exit
     };
 };
 ```
+</details>
 
 ## Input Processorあれこれ
 可変CPI、スクロールレイヤー、オートマウスレイヤーといったzmk-pmw3610-driverで用意されている機能は、後からZMKに追加されたInput Processorでも設定可能。
@@ -331,7 +338,7 @@ Input Processorを使用した方法では、`excluded-positions`を設定する
 ただし、注意点がいくつかある。
 - 「マウスキーかそれ以外か」ではなく、「`excluded-positions`で設定したキーかそれ以外か」なので、QMK(Keyball)から来た人は混乱しやすい
 - `excluded-positions`を設定しなければ、「どのキーを押してもAMLが**解除されない**」。この仕様はちょっと分かりづらい
-- `excluded-positions`を押下しても、タイムアウトの延長はしてくれない。それをしたい場合は[このマクロ](#マウスキーを押したらタイムアウトを延長するマウスキーを押したらマウスレイヤーを抜ける) を使う必要がある
+- `excluded-positions`を押下しても、タイムアウトの延長はしてくれない。これをやるには、`&mkp`に対してInput Processorを設定する。
 
 Input Processorを使用する場合は、zmk-pmw3610-driverのAMLは無効化しておくこと。具体的には、`roBa_R.overlay`の`automouse-layer = <...>;`を消しておく。
 
@@ -351,7 +358,8 @@ Input Processorを使用する場合は、zmk-pmw3610-driverのAMLは無効化�
 
 #### `excluded-positions`を使用する例
 `roBa_R.overlay`に以下を追記すると、トラボ使用後10秒間、レイヤー5が有効になる。
-`J`, `K`, `;`, `Z`(`Shift`), `Ctrl`の位置をAML解除対象外に設定している。
+`excluded-positions`以外のキーを押すとAMLが解除される。
+ここでは、`J`, `K`, `;`, `Z`(`Shift`), `Ctrl`の位置を`excluded-positions`に設定している。
 ```dts
 #include <input/processors.dtsi>
 / {
@@ -373,6 +381,17 @@ Input Processorを使用する場合は、zmk-pmw3610-driverのAMLは無効化�
 
         input-processors = <&zip_temp_layer 5 10000>;
     };
+};
+```
+
+#### マウスキー押下でタイムアウトを延長する
+`roBa_L.keymap`に以下を追記すると、クリックしたときに10秒間レイヤー5が有効になる。
+これでクリックしたときにタイムアウトを延長する機能を実現できる。
+```dts
+#include <input/processors.dtsi>
+
+&mkp_input_listener {
+    input-processors = <&zip_temp_layer 5 10000>;
 };
 ```
 
