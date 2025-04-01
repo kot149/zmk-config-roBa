@@ -450,8 +450,8 @@
         DEFAULT {
             bindings = <
 &mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 13 T                                                &lt 13 Y               &kp U  &kp I                   &kp O                &lt 11 P
-&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                  &kp ESCAPE      &mmv MOVE_X(0)   &kp H                  &kp J  &kp K                   &kp L                &lt 12 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &lt_exit_AML_to_0 4 B  &kp ESCAPE      &mmv MOVE_X(0)   &lt_exit_AML_to_0 4 N  &kp M  &mod_morph_exclamation  &mod_morph_question  &kp SLASH
+&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                  &none           &zoom_in         &kp H                  &kp J  &kp K                   &kp L                &lt 12 MINUS
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &lt_exit_AML_to_0 4 B  &kp ESCAPE      &zoom_out        &lt_exit_AML_to_0 4 N  &kp M  &mod_morph_exclamation  &mod_morph_question  &kp SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt 3 SPACE            &lt 2 TAB       &lt 2 BACKSPACE  &lt 3 ENTER                                                                &mt LEFT_SHIFT ESCAPE
             >;
 
@@ -469,10 +469,10 @@
 
         NUMPAD_AND_SYMBOLS {
             bindings = <
-&kp PLUS         &kp N7               &kp N8                &kp N9  &kp CARET                                &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
-&kp ASTERISK     &kp N4               &kp N5                &kp N6  &kp MINUS  &kp EQUAL      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
-&lt 3 N0         &kp N1               &kp N2                &kp N3  &kp SLASH  &kp SPACE      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
-&mt LCTRL COMMA  &mt LEFT_WIN PERIOD  &mt LEFT_ALT PERCENT  &trans  &kp ENTER  &trans         &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
+&kp PLUS         &kp N7                &kp N8               &kp N9  &kp MINUS                                &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
+&kp ASTERISK     &kp N4                &kp N5               &kp N6  &kp SLASH  &kp EQUAL      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
+&lt 3 N0         &kp N1                &kp N2               &kp N3  &kp COMMA  &kp SPACE      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
+&mt LCTRL COMMA  &mt LEFT_WIN PERCENT  &mt LEFT_ALT PERIOD  &trans  &kp ENTER  &trans         &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PLUS) LC(MINUS)>;
