@@ -49,11 +49,25 @@ mkdir -p "$OUTPUT_DIR"
 
 info_msg "Starting firmware builds..."
 
+# モジュールの設定
+EXTRA_MODULES_LEFT=(
+    "/workspaces/zmk-modules/zmk-listeners"
+    "/workspaces/zmk-modules/zmk-rgbled-widget"
+)
+EXTRA_MODULES_RIGHT=(
+    "/workspaces/zmk-modules/zmk-pmw3610-driver"
+)
+EXTRA_MODULES_RIGHT+=(${EXTRA_MODULES_LEFT[@]})
+
+# ;で区切って結合し、""で囲う
+EXTRA_MODULES_STR_LEFT=$(IFS=';'; echo "\"${EXTRA_MODULES_LEFT[*]}\"")
+EXTRA_MODULES_STR_RIGHT=$(IFS=';'; echo "\"${EXTRA_MODULES_RIGHT[*]}\"")
+
 # ビルドコマンドの設定
 if [ "$FULL_BUILD" = true ]; then
     # フルビルド用のコマンド
-    RIGHT_BUILD_CMD="west build -p -s app -d build/right -b seeeduino_xiao_ble -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_R -DZMK_EXTRA_MODULES=\"/workspaces/zmk-modules/zmk-pmw3610-driver;/workspaces/zmk-modules/zmk-listeners\""
-    LEFT_BUILD_CMD="west build -p -s app -d build/left  -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_L -DZMK_EXTRA_MODULES=/workspaces/zmk-modules/zmk-listeners"
+    RIGHT_BUILD_CMD="west build -p -s app -d build/right -b seeeduino_xiao_ble -S studio-rpc-usb-uart -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_R -DZMK_EXTRA_MODULES=$EXTRA_MODULES_STR_RIGHT"
+    LEFT_BUILD_CMD="west build -p -s app -d build/left  -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=roBa_L -DZMK_EXTRA_MODULES=$EXTRA_MODULES_STR_LEFT"
     RESET_BUILD_CMD="west build -p -s app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset"
     info_msg "Performing full build..."
 else
@@ -63,6 +77,9 @@ else
     RESET_BUILD_CMD="west build -s app -d build/reset"
     info_msg "Performing quick build..."
 fi
+
+# echo $RIGHT_BUILD_CMD
+# exit
 
 # 並行してビルドを実行
 echo -e "\n${KEYBOARD} Building right-hand firmware..."
