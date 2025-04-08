@@ -1,5 +1,5 @@
 # キーマップ
-キーマップについて語りつつ、その設定方法を紹介する。
+備忘録を兼ねて、キーマップについて語りつつ、その設定方法を紹介する。
 
 目次
 - [キーマップ](#キーマップ)
@@ -19,6 +19,9 @@
   - [トラボで矢印キー入力](#トラボで矢印キー入力)
     - [単純なキー割り当て](#単純なキー割り当て)
     - [マクロの割り当て](#マクロの割り当て)
+  - [マウスカーソルのポーリングレート](#マウスカーソルのポーリングレート)
+    - [Bluetoothの通信間隔](#bluetoothの通信間隔)
+    - [PMW3610のポーリングレート](#pmw3610のポーリングレート)
   - [Alt-Tab, Cmd-Tab, Ctrl-Tab](#alt-tab-cmd-tab-ctrl-tab)
     - [1. タイムアウトでAltを離す](#1-タイムアウトでaltを離す)
       - [作り方](#作り方-2)
@@ -454,6 +457,36 @@ keymapファイルの名前解決手順は、例えば`roBa_R`のビルドの場
 なお、`roBa_L.keymap`をインクルードしているので、トラボの依存しない設定は`roBa_L.keymap`だけ書き換えれば右手側にも反映される。
 [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) は複数キーマップをサポートしており、画面上部で編集するキーマップを選択できる。
 デフォルトで選択されるキーマップはおそらくアルファベット順で早い方で、`roBa_L.keymap`が選択されるので、特に意識することなく使用できる。
+
+## マウスカーソルのポーリングレート
+
+### Bluetoothの通信間隔
+`roBa_R.conf`の以下をパラメーターでPCとの通信間隔？を設定できる。これにより、マウスカーソルのポーリングレートが向上する。
+
+デフォルトはMIN`24`、MAX`40`。値は`6`～`3199`の値で設定する。単位は1.25ms。
+
+```dts
+CONFIG_BT_PERIPHERAL_PREF_MIN_INT=12
+CONFIG_BT_PERIPHERAL_PREF_MAX_INT=12
+```
+
+- `6`なら7.5ms/回、133.33Hz
+- `12`なら15ms/回、66.66Hz
+- `24`なら30ms/回、33.33Hz
+
+という計算。
+
+公式ドキュメント:
+- [CONFIG_BT_PERIPHERAL_PREF_MIN_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MIN_INT.html)
+- [CONFIG_BT_PERIPHERAL_PREF_MAX_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MAX_INT.html)
+
+### PMW3610のポーリングレート
+また、PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`の以下をいずれかを設定する。
+```dts
+CONFIG_PMW3610_POLLING_RATE_125=y      # 125Hz
+CONFIG_PMW3610_POLLING_RATE_125_SW=y   # ハードは250Hz動作、ソフトで125Hzで制御
+CONFIG_PMW3610_POLLING_RATE_250=y      # 250Hz
+```
 
 ## Alt-Tab, Cmd-Tab, Ctrl-Tab
 アプリやタブを切り替えるショートカット。以下、Altの場合で書く。
