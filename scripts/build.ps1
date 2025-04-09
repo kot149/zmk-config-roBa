@@ -1,5 +1,5 @@
 # ID of ZMK container in which build.sh is executed
-$CONTAINER_ID = "78cdf07e86e3"
+$CONTAINER_ID = "b72fa8b67fee1e7d49163023c9a09ddf8044cf2d7f6650805d570698e309466c"
 
 # Check container status
 try {
@@ -42,6 +42,11 @@ try {
     } else {
         Write-Host "Container is already running."
     }
+
+    # Set up ../zmk-config symlink
+    Write-Host "Setting up ../zmk-config symlink..."
+    $cwdFullPath = $PWD.Path
+    New-Item -ItemType SymbolicLink -Path "$cwdFullPath\..\zmk-config" -Target $cwdFullPath -Force | Out-Null
 
     # Execute build.sh
     Write-Host "Running build.sh in container..."

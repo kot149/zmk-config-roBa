@@ -90,6 +90,12 @@ function Test-BinaryFile {
         [string]$path
     )
 
+    $textFileExtensions = @("yml", "yaml", "defconfig", "shield", "conf", "overlay", "dtsi", "json", "keymap", "md", "ps1", "sh", ".gitignore")
+
+    if ($textFileExtensions -contains [System.IO.Path]::GetExtension($path).TrimStart('.')) {
+        return $false # テキストファイルとみなす
+    }
+
     try {
         $bytes = [System.IO.File]::ReadAllBytes($path)
         $charCount = 0
