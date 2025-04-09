@@ -43,6 +43,11 @@ try {
         Write-Host "Container is already running."
     }
 
+    # Set up ../zmk-config symlink
+    Write-Host "Setting up ../zmk-config symlink..."
+    $cwdFullPath = $PWD.Path
+    New-Item -ItemType SymbolicLink -Path "$cwdFullPath\..\zmk-config" -Target $cwdFullPath -Force | Out-Null
+
     # Execute build.sh
     Write-Host "Running build.sh in container..."
     docker exec $CONTAINER_ID /workspaces/zmk-config/scripts/build.sh $args
