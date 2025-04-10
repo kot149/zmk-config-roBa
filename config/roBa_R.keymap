@@ -33,7 +33,7 @@
     // snipe-layers = <3>;
 
     arrows {
-        layers = <FUNCTIONS_AND_CONTROLS>;
+        layers = <MISC>;
         bindings =
             <&kp RIGHT_ARROW>,
             <&kp LEFT_ARROW>,
