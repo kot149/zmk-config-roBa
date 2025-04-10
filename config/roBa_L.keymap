@@ -477,10 +477,10 @@
 
         NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS         &kp N7              &kp N8               &kp N9  &kp MINUS                               &trans        &trans    &trans        &trans     &trans
-&kp ASTERISK     &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp LC(HOME)  &kp HOME  &kp UP_ARROW  &kp END    &kp LC(END)
-&lt 3 N0         &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LC(RIGHT)
-&mt LCTRL COMMA  &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                           &trans
+&kp PLUS           &kp N7              &kp N8               &kp N9  &kp MINUS                               &trans        &trans    &trans        &trans     &trans
+&kp ASTERISK       &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp LC(HOME)  &kp HOME  &kp UP_ARROW  &kp END    &kp LC(END)
+&mt LEFT_SHIFT N0  &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LC(RIGHT)
+&mt LCTRL COMMA    &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                           &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PLUS) LC(MINUS)>;
