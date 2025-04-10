@@ -11,8 +11,8 @@
 
 #define DEFAULT 0
 #define LANG1_ETD 1
-#define NUMPAD_AND_SYMBOLS 2
-#define FUNCTIONS_AND_CONTROLS 3
+#define NUMPAD_AND_ARROWS 2
+#define FUNCTIONS_AND_SYMBOLS 3
 #define MISC 4
 #define ALT_TAB 5
 #define CTRL_TAB 6
@@ -475,23 +475,23 @@
             >;
         };
 
-        NUMPAD_AND_SYMBOLS {
+        NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS         &kp N7              &kp N8               &kp N9  &kp MINUS                                  &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
-&kp ASTERISK     &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
-&lt 3 N0         &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
-&mt LCTRL COMMA  &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
+&kp PLUS         &kp N7              &kp N8               &kp N9  &kp MINUS                                   &kp F6        &kp F7    &kp F8        &kp F11    &kp F10
+&kp ASTERISK     &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &kp UNDERSCORE  &kp F5        &kp HOME  &kp UP_ARROW  &kp END    &kp F9
+&lt 3 N0         &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &kp LC(HOME)    &kp LC(LEFT)  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LC(RIGHT)
+&mt LCTRL COMMA  &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE      &trans                                           &kp PIPE
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PLUS) LC(MINUS)>;
         };
 
-        FUNCTIONS_AND_CONTROLS {
+        FUNCTIONS_AND_SYMBOLS {
             bindings = <
-&kp LS(F11)       &kp F1          &kp F2          &kp F3           &td_alt_f4                                               &kp F6        &kp F7    &kp F8        &kp F11    &kp F10
-&screenshot_copy  &none           &kp UP_ARROW    &none            &kp F5      &kp LC(LA(KP_NUMBER_0))      &kp UNDERSCORE  &kp F5        &kp HOME  &kp UP_ARROW  &kp END    &kp F9
-&kp LEFT_SHIFT    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none       &kp EQUAL                    &kp LC(HOME)    &kp LC(LEFT)  &kp LEFT  &kp DOWN      &kp RIGHT  &kp LC(RIGHT)
-&kp LCTRL         &kp LEFT_WIN    &kp LEFT_ALT    &trans           &trans      &trans                       &kp DELETE      &trans                                           &kp PIPE
+&kp LS(F11)       &kp F1          &kp F2          &kp F3           &td_alt_f4                                              &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
+&screenshot_copy  &none           &kp UP_ARROW    &none            &kp F5      &kp LC(LA(KP_NUMBER_0))      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
+&kp LEFT_SHIFT    &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &none       &kp EQUAL                    &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
+&kp LCTRL         &kp LEFT_WIN    &kp LEFT_ALT    &trans           &trans      &trans                       &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
             >;
         };
 
