@@ -450,7 +450,7 @@ keymapファイルの名前解決手順は、例えば`roBa_R`のビルドの場
 3. それも見つからない場合はエラー
 
 となっている模様。
-このため、`roBa.keymap`を`roBa_R.keymap`の2ファイル構成にしようと思うと、先に`roBa_R.keymap`が読まれてしまい、トラボの設定が無効になってしまう。
+このため、`roBa.keymap`と`roBa_R.keymap`の2ファイル構成にしようと思うと、先に`roBa_R.keymap`が読まれてしまい、トラボの設定が無効になってしまう。
 また、`roBa_right.keymap`のような名前にすることもできない。
 </details>
 
@@ -481,7 +481,7 @@ CONFIG_BT_PERIPHERAL_PREF_MAX_INT=12
 - [CONFIG_BT_PERIPHERAL_PREF_MAX_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MAX_INT.html)
 
 ### PMW3610のポーリングレート
-また、PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`の以下をいずれかを設定する。
+また、PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`で以下をいずれかを設定する。
 ```dts
 CONFIG_PMW3610_POLLING_RATE_125=y      # 125Hz
 CONFIG_PMW3610_POLLING_RATE_125_SW=y   # ハードは250Hz動作、ソフトで125Hzで制御
