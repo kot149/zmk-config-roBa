@@ -1,13 +1,13 @@
 # ID of ZMK container in which build.sh is executed
 $CONTAINER_ID = "b72fa8b67fee1e7d49163023c9a09ddf8044cf2d7f6650805d570698e309466c"
 
+# Set up ../zmk-config symlink
+$cwdFullPath = $PWD.Path
+Write-Host "Setting up ../zmk-config symlink to $cwdFullPath..."
+New-Item -ItemType SymbolicLink -Path "$cwdFullPath\..\zmk-config" -Target $cwdFullPath -Force | Out-Null
+
 # Check container status
 try {
-    # Set up ../zmk-config symlink
-    $cwdFullPath = $PWD.Path
-    Write-Host "Setting up ../zmk-config symlink to $cwdFullPath..."
-    New-Item -ItemType SymbolicLink -Path "$cwdFullPath\..\zmk-config" -Target $cwdFullPath -Force | Out-Null
-
     # Check if container exists
     $containerExists = docker container inspect $CONTAINER_ID 2>$null
     if ($LASTEXITCODE -ne 0) {
