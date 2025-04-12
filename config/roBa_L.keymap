@@ -104,7 +104,9 @@
     };
 
     macros {
-        /omit-if-no-ref/ exit_AML: exit_AML {
+        /omit-if-no-ref/
+
+        exit_AML: exit_AML {
             compatible = "zmk,behavior-macro";
             wait-ms = <0>;
             tap-ms = <0>;
@@ -112,7 +114,9 @@
             bindings = <&tog_off 10>;
         };
 
-        /omit-if-no-ref/ kp_exit_AML: kp_exit_AML {
+        /omit-if-no-ref/
+
+        kp_exit_AML: kp_exit_AML {
             compatible = "zmk,behavior-macro-one-param";
             wait-ms = <0>;
             tap-ms = <0>;
@@ -120,7 +124,9 @@
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &exit_AML>;
         };
 
-        /omit-if-no-ref/ mod_exit_AML: mod_exit_AML {
+        /omit-if-no-ref/
+
+        mod_exit_AML: mod_exit_AML {
             compatible = "zmk,behavior-macro-one-param";
             wait-ms = <0>;
             tap-ms = <0>;
@@ -135,7 +141,9 @@
                 <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
         };
 
-        /omit-if-no-ref/ mkp_exit_AML: mkp_exit_AML {
+        /omit-if-no-ref/
+
+        mkp_exit_AML: mkp_exit_AML {
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings =
@@ -148,7 +156,9 @@
                 <&sl 10>;
         };
 
-        /omit-if-no-ref/ mo_exit_AML: mo_exit_AML {
+        /omit-if-no-ref/
+
+        mo_exit_AML: mo_exit_AML {
             compatible = "zmk,behavior-macro-one-param";
             wait-ms = <0>;
             tap-ms = <0>;
@@ -164,7 +174,9 @@
                 <&macro_tap>;
         };
 
-        /omit-if-no-ref/ mo_exit_alttab: mo_exit_alttab_ctrltab {
+        /omit-if-no-ref/
+
+        mo_exit_alttab: mo_exit_alttab_ctrltab {
             compatible = "zmk,behavior-macro-one-param";
             wait-ms = <0>;
             tap-ms = <0>;
@@ -177,11 +189,12 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
                 <&macro_tap>,
-                <&tog_off ALT_TAB>,
-                <&tog_off CTRL_TAB>;
+                <&tog_off ALT_TAB &tog_off CTRL_TAB>;
         };
 
-        /omit-if-no-ref/ kp_to: kp_to {
+        /omit-if-no-ref/
+
+        kp_to: kp_to {
             compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
             tap-ms = <0>;
@@ -189,25 +202,33 @@
             bindings = <&macro_param_1to1 &kp MACRO_PLACEHOLDER &macro_param_2to1 &to MACRO_PLACEHOLDER>;
         };
 
-        /omit-if-no-ref/ to_kp: to_kp {
+        /omit-if-no-ref/
+
+        to_kp: to_kp {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &to MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER>;
         };
 
-        /omit-if-no-ref/ zoom_in: zoom_in {
+        /omit-if-no-ref/
+
+        zoom_in: zoom_in {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kt_on LCTRL &msc SCRL_UP &kt_off LCTRL>;
         };
 
-        /omit-if-no-ref/ zoom_out: zoom_out {
+        /omit-if-no-ref/
+
+        zoom_out: zoom_out {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kt_on LCTRL &msc SCRL_DOWN &kt_off LCTRL>;
         };
 
-        /omit-if-no-ref/ eager_tap_dance: eager_tap_dance {
+        /omit-if-no-ref/
+
+        eager_tap_dance: eager_tap_dance {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             bindings =
@@ -222,35 +243,45 @@
     };
 
     behaviors {
-        /omit-if-no-ref/ tog_on: toggle_layer_on {
+        /omit-if-no-ref/
+
+        tog_on: toggle_layer_on {
             compatible = "zmk,behavior-toggle-layer";
             #binding-cells = <1>;
             display-name = "Toggle Layer On";
             toggle-mode = "on";
         };
 
-        /omit-if-no-ref/ tog_off: toggle_layer_off {
+        /omit-if-no-ref/
+
+        tog_off: toggle_layer_off {
             compatible = "zmk,behavior-toggle-layer";
             #binding-cells = <1>;
             display-name = "Toggle Layer Off";
             toggle-mode = "off";
         };
 
-        /omit-if-no-ref/ kt_on: key_toggle_on_only {
+        /omit-if-no-ref/
+
+        kt_on: key_toggle_on_only {
             compatible = "zmk,behavior-key-toggle";
             #binding-cells = <1>;
             display-name = "Key Toggle On";
             toggle-mode = "on";
         };
 
-        /omit-if-no-ref/ kt_off: key_toggle_off_only {
+        /omit-if-no-ref/
+
+        kt_off: key_toggle_off_only {
             compatible = "zmk,behavior-key-toggle";
             #binding-cells = <1>;
             display-name = "Key Toggle Off";
             toggle-mode = "off";
         };
 
-        /omit-if-no-ref/ td_right_click: td_right_click {
+        /omit-if-no-ref/
+
+        td_right_click: td_right_click {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&mkp RCLK>, <&kp LC(W)>;
@@ -258,7 +289,9 @@
             tapping-term-ms = <250>;
         };
 
-        /omit-if-no-ref/ td_colon: td_colon {
+        /omit-if-no-ref/
+
+        td_colon: td_colon {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&kp COLON>, <&kp SEMICOLON>;
@@ -266,14 +299,18 @@
             tapping-term-ms = <250>;
         };
 
-        /omit-if-no-ref/ td_q_escape: td_q_escape {
+        /omit-if-no-ref/
+
+        td_q_escape: td_q_escape {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&kp Q>, <&kp ESCAPE>;
         };
 
-        /omit-if-no-ref/ td_ZenkakuHankaku: td_ZenkakuHankaku {
+        /omit-if-no-ref/
+
+        td_ZenkakuHankaku: td_ZenkakuHankaku {
             compatible = "zmk,behavior-tap-dance";
 
             // compatible = "zmk,behavior-eager-tap-dance";
@@ -283,7 +320,9 @@
             bindings = <&kp LANGUAGE_2>, <&kp LANGUAGE_1>;
         };
 
-        /omit-if-no-ref/ td_ZenkakuHankaku_exit_AML: td_ZenkakuHankaku_exit_AML {
+        /omit-if-no-ref/
+
+        td_ZenkakuHankaku_exit_AML: td_ZenkakuHankaku_exit_AML {
             wait-ms = <0>;
             tap-ms = <0>;
             compatible = "zmk,behavior-macro";
@@ -291,13 +330,17 @@
             bindings = <&td_ZenkakuHankaku &exit_AML>;
         };
 
-        /omit-if-no-ref/ alt_tab: alt_tab {
+        /omit-if-no-ref/
+
+        alt_tab: alt_tab {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER &macro_param_1to1 &sk MACRO_PLACEHOLDER &macro_param_1to1 &kt_off MACRO_PLACEHOLDER>;
         };
 
-        /omit-if-no-ref/ windows_sleep: windows_sleep {
+        /omit-if-no-ref/
+
+        windows_sleep: windows_sleep {
             compatible = "zmk,behavior-macro";
             wait-ms = <200>;
             tap-ms = <100>;
@@ -305,14 +348,18 @@
             bindings = <&kp LG(X) &kp U &kp S>;
         };
 
-        /omit-if-no-ref/ screensot_save: screensot_save {
+        /omit-if-no-ref/
+
+        screensot_save: screensot_save {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LS(F11)>;
             label = "SCREENSOT_SAVE";
         };
 
-        /omit-if-no-ref/ screenshot_copy: screenshot_copy {
+        /omit-if-no-ref/
+
+        screenshot_copy: screenshot_copy {
             compatible = "zmk,behavior-mod-morph";
             bindings = <&kp LA(PRINTSCREEN)>, <&kp LA(PRINTSCREEN)>;
 
@@ -321,7 +368,9 @@
             keep-mods = <(MOD_LALT)>;
         };
 
-        /omit-if-no-ref/ mod_morph_exclamation: mod_morph_exclamation {
+        /omit-if-no-ref/
+
+        mod_morph_exclamation: mod_morph_exclamation {
             compatible = "zmk,behavior-mod-morph";
             bindings = <&kp COMMA>, <&kp EXCL>;
 
@@ -329,7 +378,9 @@
             mods = <(MOD_LSFT)>;
         };
 
-        /omit-if-no-ref/ mod_morph_question: mod_morph_question {
+        /omit-if-no-ref/
+
+        mod_morph_question: mod_morph_question {
             compatible = "zmk,behavior-mod-morph";
             bindings = <&kp PERIOD>, <&kp QUESTION>;
 
@@ -337,7 +388,9 @@
             mods = <(MOD_LSFT)>;
         };
 
-        /omit-if-no-ref/ mod_morph_slash: mod_morph_slash {
+        /omit-if-no-ref/
+
+        mod_morph_slash: mod_morph_slash {
             compatible = "zmk,behavior-mod-morph";
             bindings = <&kp SLASH>, <&kp BACKSLASH>;
 
@@ -345,7 +398,9 @@
             mods = <(MOD_LSFT)>;
         };
 
-        /omit-if-no-ref/ td_alt_f4: td_alt_f4 {
+        /omit-if-no-ref/
+
+        td_alt_f4: td_alt_f4 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&kp F4>, <&kp LA(F4)>;
@@ -353,7 +408,9 @@
             tapping-term-ms = <250>;
         };
 
-        /omit-if-no-ref/ lt_exit_AML: lt_exit_AML {
+        /omit-if-no-ref/
+
+        lt_exit_AML: lt_exit_AML {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&mo_exit_AML>, <&kp_exit_AML>;
 
@@ -363,7 +420,9 @@
             flavor = "balanced";
         };
 
-        /omit-if-no-ref/ lt_exit_AML_on_hold: lt_exit_AML_on_hold {
+        /omit-if-no-ref/
+
+        lt_exit_AML_on_hold: lt_exit_AML_on_hold {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&mo_exit_AML>, <&kp>;
 
@@ -373,7 +432,9 @@
             flavor = "balanced";
         };
 
-        /omit-if-no-ref/ lt_exit_alttab: lt_exit_alttab_ctrltab_on_hold_release {
+        /omit-if-no-ref/
+
+        lt_exit_alttab: lt_exit_alttab_ctrltab_on_hold_release {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&mo_exit_alttab>, <&kp>;
 
@@ -383,7 +444,9 @@
             flavor = "balanced";
         };
 
-        /omit-if-no-ref/ mt_exit_AML: mt_exit_AML {
+        /omit-if-no-ref/
+
+        mt_exit_AML: mt_exit_AML {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&mod_exit_AML>, <&kp_exit_AML>;
 
@@ -393,7 +456,9 @@
             quick-tap-ms = <200>;
         };
 
-        /omit-if-no-ref/ mt_exit_AML_on_tap: mt_exit_AML_on_tap {
+        /omit-if-no-ref/
+
+        mt_exit_AML_on_tap: mt_exit_AML_on_tap {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&kp>, <&kp_exit_AML>;
 
@@ -403,26 +468,34 @@
             quick-tap-ms = <200>;
         };
 
-        /omit-if-no-ref/ encoder_zoom: encoder_zoom {
+        /omit-if-no-ref/
+
+        encoder_zoom: encoder_zoom {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&zoom_out>, <&zoom_in>;
         };
 
-        /omit-if-no-ref/ encoder_volume: encoder_volume {
+        /omit-if-no-ref/
+
+        encoder_volume: encoder_volume {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
             bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
         };
 
-        /omit-if-no-ref/ sl_250: sl_250 {
+        /omit-if-no-ref/
+
+        sl_250: sl_250 {
             compatible = "zmk,behavior-sticky-key";
             bindings = <&mo>;
             #binding-cells = <1>;
             release-after-ms = <250>;
         };
 
-        /omit-if-no-ref/ td_bt_clear: td_bt_clear {
+        /omit-if-no-ref/
+
+        td_bt_clear: td_bt_clear {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&none>, <&none>, <&bt BT_CLR>;
@@ -430,14 +503,18 @@
             tapping-term-ms = <250>;
         };
 
-        /omit-if-no-ref/ td_bt_clear_all: td_bt_clear_all {
+        /omit-if-no-ref/
+
+        td_bt_clear_all: td_bt_clear_all {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
             bindings = <&none>, <&none>, <&bt BT_CLR_ALL>;
         };
 
-        /omit-if-no-ref/ td_copy_paste: td_copy_paste {
+        /omit-if-no-ref/
+
+        td_copy_paste: td_copy_paste {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&kp_exit_AML LC(C)>, <&kp_exit_AML LC(V)>;
@@ -451,10 +528,10 @@
 
         DEFAULT {
             bindings = <
-&mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 13 T                                                          &lt 13 Y                   &kp U  &kp I                   &kp O                &lt 11 P
-&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                      &kp LEFT_SHIFT        &zoom_in         &kp H                      &kp J  &kp K                   &kp L                &lt 12 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                      &mt LCTRL ESCAPE      &zoom_out        &kp N                      &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB             &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &mt LCTRL ESCAPE
+&mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 13 T                                                                         &lt 13 Y                 &kp U  &kp I                   &kp O                &lt 11 P
+&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 12 MINUS
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &mt LCTRL ESCAPE
             >;
 
             sensor-bindings = <&encoder_volume>;
@@ -471,7 +548,7 @@
 
         NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS           &kp N7              &kp N8               &kp N9  &kp MINUS                               &trans        &kp LC(HOME)  &trans        &kp LC(END)  &to_kp 5 TAB
+&kp PLUS           &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &to_kp 5 TAB
 &kp ASTERISK       &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &to_kp 6 TAB
 &mt LEFT_SHIFT N0  &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
 &mt LCTRL COMMA    &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
