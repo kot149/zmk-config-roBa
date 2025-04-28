@@ -4,31 +4,32 @@
 
 #include <input/processors.dtsi>
 / {
-    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #input-processor-cells = <2>;
-        excluded-positions = <
-            18 // J
-            19 // K
-            // 20 // L
-            21 // ;
-            22 // Z
-            // 31 // .
-            // 32 // ,
-            // 33 // /
-            34 // Ctrl
-        >;
-    };
+    // /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
+    //     compatible = "zmk,input-processor-temp-layer";
+    //     #input-processor-cells = <2>;
+    //     excluded-positions = <
+    //         18 // J
+    //         19 // K
+    //         // 20 // L
+    //         21 // ;
+    //         22 // Z
+    //         // 31 // .
+    //         // 32 // ,
+    //         // 33 // /
+    //         34 // Ctrl
+    //     >;
+    // };
 
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
+    // trackball_listener {
+    //     compatible = "zmk,input-listener";
+    //     device = <&trackball>;
 
-        input-processors = <&zip_temp_layer MOUSE 10000>;
-    };
+    //     input-processors = <&zip_temp_layer MOUSE 10000>;
+    // };
 };
 
 &trackball {
+    automouse-layer = <MOUSE>;
     scroll-layers = <EXTRA_FINCTIONS>;
     // snipe-layers = <3>;
 
