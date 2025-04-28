@@ -2,7 +2,7 @@
 
 #include "boards/shields/Test/roBa_R.overlay"
 
-#include <input/processors.dtsi>
+// #include <input/processors.dtsi>
 / {
     // /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
     //     compatible = "zmk,input-processor-temp-layer";

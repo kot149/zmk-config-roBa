@@ -2,7 +2,7 @@
 
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 700
 
-#include <input/processors.dtsi>
+// #include <input/processors.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -39,7 +39,7 @@
 
 &sl { release-after-ms = <1000>; };
 
-&mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
+// &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
 / {
     layer_listeners {
