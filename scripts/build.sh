@@ -52,7 +52,6 @@ info_msg "Starting firmware builds..."
 # モジュールの設定
 EXTRA_MODULES_LEFT=(
     "/workspaces/zmk-modules/zmk-listeners"
-    "/workspaces/zmk-modules/zmk-rgbled-widget"
 )
 EXTRA_MODULES_RIGHT=(
     "/workspaces/zmk-modules/zmk-pmw3610-driver"

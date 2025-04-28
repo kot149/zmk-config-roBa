@@ -3,7 +3,6 @@
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 700
 
 #include <input/processors.dtsi>
-#include <behaviors/rgbled_widget.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -652,7 +651,7 @@
         CONFIGURATION {
             bindings = <
 &bootloader  &sys_reset  &none  &none  &none                            &none         &none         &none         &sys_reset      &bootloader
-&none        &none       &none  &none  &none  &trans      &ind_con      &ind_bat      &none         &none         &windows_sleep  &none
+&none        &none       &none  &none  &none  &trans      &none         &none         &none         &none         &windows_sleep  &none
 &none        &none       &none  &none  &none  &none       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &td_bt_clear
 &none        &none       &none  &none  &none  &none       &none         &none                                                     &td_bt_clear_all
             >;
