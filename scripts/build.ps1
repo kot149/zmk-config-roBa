@@ -1,5 +1,5 @@
 # ID of ZMK container in which build.sh is executed
-$CONTAINER_ID = "b72fa8b67fee1e7d49163023c9a09ddf8044cf2d7f6650805d570698e309466c"
+$CONTAINER_ID = "ca53bb73c49f1c32b48ee235ab8c3e9673b4fd790df61c1fe4025dd4e576b9d6"
 
 # Set up ../zmk-config symlink
 $cwdFullPath = $PWD.Path
