@@ -7,33 +7,36 @@ param(
 # --------------------------------------------
 # Set file paths
 # --------------------------------------------
-$cwd = Get-Location
-$flashScriptPath = Join-Path $cwd "scripts" "flash.ps1"
+$flashScriptPath = Join-Path "scripts" "flash.ps1"
 $artifactsDownloadDir = Join-Path "build" "gh"
-$firmwareExtractDir = Join-Path $artifactsDownloadDir "firmware"
+
+if (-not (Test-Path $flashScriptPath)) {
+    Write-Error "Flash script not found at path: $flashScriptPath"
+    exit 1
+}
 
 # --------------------------------------------
 # Get repository information
 # --------------------------------------------
 $gitUrl = git remote get-url origin
 $gitUrl -match 'github\.com/(?<user>[^/]+)/(?<repo>[^/]+)\.git'
+if (-not $Matches) {
+    Write-Error "Failed to extract repository information from git remote get-url origin"
+    exit 1
+}
 $repoOwner = $Matches.user
 $repoName = $Matches.repo
 Write-Host "Detected repository: $repoOwner/$repoName"
 
 # --------------------------------------------
-# Remove old artifacts download directory
+# Init artifacts download directory
 # --------------------------------------------
 if (Test-Path $artifactsDownloadDir) {
     Write-Host "Removing old artifacts download directory: $artifactsDownloadDir"
     Remove-Item -Recurse -Force $artifactsDownloadDir
 }
 
-# --------------------------------------------
-# Create directories
-# --------------------------------------------
 New-Item -ItemType Directory -Path $artifactsDownloadDir | Out-Null
-New-Item -ItemType Directory -Path $firmwareExtractDir | Out-Null
 
 # --------------------------------------------
 # Fetch latest successful workflow run
@@ -47,20 +50,12 @@ if (-not $latestRunId) {
 }
 
 Write-Host "Latest successful run ID: $latestRunId"
-Write-Host "Downloading artifact(s) from run ID: $latestRunId to $artifactsDownloadDir"
-
-# --------------------------------------------
-# Clear download directory
-# --------------------------------------------
-if (Test-Path $artifactsDownloadDir) {
-    Write-Host "Removing old artifacts download directory: $artifactsDownloadDir"
-    Remove-Item -Recurse -Force $artifactsDownloadDir
-}
 
 # --------------------------------------------
 # Download artifact
 # --------------------------------------------
 $artifactName = "firmware"
+Write-Host "Downloading artifact(s) from run ID: $latestRunId to $artifactsDownloadDir"
 gh run download $latestRunId --repo "$repoOwner/$repoName" --dir $artifactsDownloadDir -n $artifactName
 
 # --------------------------------------------
@@ -81,4 +76,4 @@ Write-Host "Found firmware file: $($firmwareFile.FullName)"
 # --------------------------------------------
 # Flash firmware
 # --------------------------------------------
-& .\scripts\flash.ps1 -Uf2File $($firmwareFile.Name) -Side $Side -BuildDir $artifactsDownloadDir
+& $flashScriptPath -Uf2File $($firmwareFile.Name) -Side $Side -BuildDir $artifactsDownloadDir
