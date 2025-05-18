@@ -1,7 +1,5 @@
 #include "roBa_L.keymap"
 
-#include "boards/shields/Test/roBa_R.overlay"
-
 #include <input/processors.dtsi>
 / {
     /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
