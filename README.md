@@ -44,6 +44,7 @@
 | GitHub | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/zmkfirmware/zmk) |
 | ドキュメント | <img src="https://raw.githubusercontent.com/zmkfirmware/zmk/refs/heads/main/docs/static/img/zmk_logo.svg" width="16" height="16"> [zmk.dev/docs](https://zmk.dev/docs) |
 | Keymap Editor | [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) |
+| zmk-nix | <img src="https://github.com/favicon.ico" width="16" height="16"> [zmk-nix](https://github.com/lilyinstarlight/zmk-nix) |
 | zmk-rgbled-widget | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/caksoylar/zmk-rgbled-widget) |
 | zmk-battery-center | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/kot149/zmk-battery-center) |
 
