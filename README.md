@@ -3,12 +3,10 @@
 
 また、
 
-- [ローカルビルド手順](https://github.com/kot149/zmk-config-roBa/blob/main/docs/build_locally.md)
+- [ローカルビルド手順やキーマップ説明などのドキュメント](https://github.com/kot149/zmk-config-roBa/blob/main/docs)
 - [ローカルビルド用スクリプト](https://github.com/kot149/zmk-config-roBa/blob/main/scripts)
-- [キーマップ説明](https://github.com/kot149/zmk-config-roBa/blob/main/docs/keymap.md)
 - README
-
-等を加えています。
+を追加しています。
 
 ## リンク集
 
