@@ -7,7 +7,7 @@ on:
 
 jobs:
   update:
-    name: Update
+    name: Update nix flake lock
     runs-on: ubuntu-latest
     permissions:
       actions: write

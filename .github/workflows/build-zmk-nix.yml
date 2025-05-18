@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build with zmk-nix
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

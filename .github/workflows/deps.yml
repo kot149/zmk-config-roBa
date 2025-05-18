@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   update:
-    name: Update
+    name: Update nix deps
     runs-on: ubuntu-latest
     permissions:
       actions: write
