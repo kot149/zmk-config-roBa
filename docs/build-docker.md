@@ -1,6 +1,6 @@
 # roBa ローカルビルド手順
 Dockerを使用して、roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
-**[Nixを使う方法](./build-nix.md) の方が高速なのでおすすめです。**
+**[zmk-nixを使う方法](https://github.com/lilyinstarlight/zmk-nix) の方が高速なのでおすすめです。**
 
 手順は基本的には公式ドキュメントに説明されている通りですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
 なお、公式ドキュメントにはDocker(VSCode/Dev Conteiner CLI/Podman)/ネイティブ環境と複数パターン書かれていますが、ここではDocker+VSCodeでの方法だけ記載します。
