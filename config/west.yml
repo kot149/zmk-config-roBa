@@ -15,7 +15,7 @@ manifest:
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: kot149
-      revision: feature/scroll-acceleration
+      revision: main
     - name: zmk-listeners
       remote: ssbb
       revision: v1
