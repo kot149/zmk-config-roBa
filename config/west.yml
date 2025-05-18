@@ -1,26 +1,17 @@
 manifest:
-  remotes:
-    - name: zmkfirmware
-      url-base: https://github.com/zmkfirmware
-    - name: ssbb
-      url-base: https://github.com/ssbb
-    - name: kot149
-      url-base: https://github.com/kot149
-    - name: caksoylar
-      url-base: https://github.com/caksoylar
   projects:
     - name: zmk
-      remote: zmkfirmware
+      url: https://github.com/zmkfirmware/zmk
       revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
-      remote: kot149
+      url: https://github.com/kot149/zmk-pmw3610-driver
       revision: main
     - name: zmk-listeners
-      remote: ssbb
+      url: https://github.com/ssbb/zmk-listeners
       revision: v1
     - name: zmk-rgbled-widget
-      remote: caksoylar
+      url: https://github.com/caksoylar/zmk-rgbled-widget
       revision: main
   self:
     path: config
