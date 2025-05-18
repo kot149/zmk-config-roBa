@@ -1,4 +1,4 @@
-# roBa ローカルビルド手順
+# Dockerを使用したroBaローカルビルド手順
 Dockerを使用して、roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
 **[zmk-nixを使う方法](https://github.com/lilyinstarlight/zmk-nix) の方が高速なのでおすすめです。**
 
@@ -11,7 +11,7 @@ Dockerを使用して、roBaのファームウェアをGitHub Actionsを使わ�
 また、ビルド結果のダウンロード・解凍の手間も省けます。
 
 目次
-- [roBa ローカルビルド手順](#roba-ローカルビルド手順)
+- [Dockerを使用したroBaローカルビルド手順](#dockerを使用したrobaローカルビルド手順)
 	- [公式ドキュメント](#公式ドキュメント)
 	- [環境構築](#環境構築)
 		- [リポジトリのクローン](#リポジトリのクローン)
