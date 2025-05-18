@@ -1,4 +1,4 @@
-name: Build ZMK firmware (nix)
+name: Build with nix setup
 on:
   workflow_dispatch:
   # push:
