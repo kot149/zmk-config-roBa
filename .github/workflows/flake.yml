@@ -1,4 +1,4 @@
-name: Flake
+name: Update nix flake lock
 
 on:
   # schedule:
