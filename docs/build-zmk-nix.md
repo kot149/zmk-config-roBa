@@ -6,9 +6,6 @@ Nixは再現性の高いビルドを可能にするパッケージマネージ�
 厳密なビルドキャッシュの管理により、高速なビルドが可能になります。
 筆者環境では、GitHub Actionsを使うビルドが2分10秒ほど、Dockerを使用したビルドが1分10秒ほどかかるのに対して、zmk-nixを使うと30秒ほどで済みます。
 
-> [!warning]
-> この手順はZMK Studioには対応していません。
-
 ## 手順
 1. Windowsの場合、[公式ドキュメント](https://learn.microsoft.com/ja-jp/windows/wsl/install) に従い、WSLを導入する。以下WSL内で作業する
 1. [公式ドキュメント](https://nixos.org/download/) に従い、Nixをインストールする
@@ -32,19 +29,24 @@ Nixは再現性の高いビルドを可能にするパッケージマネージ�
    board = "seeeduino_xiao_ble";
    shield = "roBa_%PART%";
    parts = [ "R" "L" ];
+
+   # ZMK Studioを有効にする場合
+   extraCmakeFlags = [
+     "-DCONFIG_CBPRINTF_LIBC_SUBSTS=y"
+   ];
+   enableZmkStudio = true;
    ```
 1. ビルドする
    ```sh
    nix build .#firmware
    ```
    resultフォルダにビルド結果が保存される。
-1. 以下のようにハッシュが違うというエラーが出る場合
+1. 以下のようにハッシュが違うというエラーが出る場合、`flake.nix`の`zephyrDepsHash`の値を、`got:`の方のハッシュに書き換える
    ```sh
    error: hash mismatch in fixed-output derivation:
          specified: sha256-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             got:    sha256-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
-   `flake.nix`の`zephyrDepsHash`の値を、`got:`の方のハッシュに書き換える
 
 ## ビルドオプション
 ### 片側だけビルドする
