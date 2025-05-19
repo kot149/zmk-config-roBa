@@ -6,6 +6,9 @@ Nixは再現性の高いビルドを可能にするパッケージマネージ�
 厳密なビルドキャッシュの管理により、高速なビルドが可能になります。
 筆者環境では、GitHub Actionsを使うビルドが2分10秒ほど、Dockerを使用したビルドが1分10秒ほどかかるのに対して、zmk-nixを使うと30秒ほどで済みます。
 
+> [!warning]
+> この手順はZMK Studioには対応していません。
+
 ## 手順
 1. Windowsの場合、[公式ドキュメント](https://learn.microsoft.com/ja-jp/windows/wsl/install) に従い、WSLを導入する。以下WSL内で作業する
 1. [公式ドキュメント](https://nixos.org/download/) に従い、Nixをインストールする
