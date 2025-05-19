@@ -26,7 +26,7 @@
         # parts = [ "L" ];
         extraCmakeFlags = [ "-DCONFIG_NEWLIB_LIBC=y" ];
 
-        zephyrDepsHash = "sha256-r2BxlXWhhE8cdU/W1qdxUhPdYZtb1dTmun0smwaNdwM=";
+        zephyrDepsHash = "sha256-Vi4+owQhw8VRNQaBayMQEKxLdAN6EUalcIOYwB6+ZDI=";
 
         meta = {
           description = "ZMK firmware";
