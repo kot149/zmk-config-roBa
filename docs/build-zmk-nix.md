@@ -29,19 +29,24 @@ Nixは再現性の高いビルドを可能にするパッケージマネージ�
    board = "seeeduino_xiao_ble";
    shield = "roBa_%PART%";
    parts = [ "R" "L" ];
+
+   # ZMK Studioを有効にする場合
+   extraCmakeFlags = [
+     "-DCONFIG_CBPRINTF_LIBC_SUBSTS=y"
+   ];
+   enableZmkStudio = true;
    ```
 1. ビルドする
    ```sh
    nix build .#firmware
    ```
    resultフォルダにビルド結果が保存される。
-1. 以下のようにハッシュが違うというエラーが出る場合
+1. 以下のようにハッシュが違うというエラーが出る場合、`flake.nix`の`zephyrDepsHash`の値を、`got:`の方のハッシュに書き換える
    ```sh
    error: hash mismatch in fixed-output derivation:
          specified: sha256-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             got:    sha256-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
    ```
-   `flake.nix`の`zephyrDepsHash`の値を、`got:`の方のハッシュに書き換える
 
 ## ビルドオプション
 ### 片側だけビルドする
