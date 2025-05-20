@@ -28,7 +28,7 @@ Nixは再現性の高いビルドを可能にするパッケージマネージ�
    ```nix
    board = "seeeduino_xiao_ble";
    shield = "roBa_%PART%";
-   parts = [ "R" "L" ];
+   parts = [ "R" "L" ]; # ZMK Studioを使用する場合、Centralである"R"を先に書く
 
    # ZMK Studioを有効にする場合
    extraCmakeFlags = [

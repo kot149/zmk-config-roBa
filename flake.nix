@@ -22,9 +22,7 @@
         board = "seeeduino_xiao_ble";
         shield = "roBa_%PART% rgbled_adapter";
         parts = [ "R" "L" ];
-        # parts = [ "R" ];
-        # parts = [ "L" ];
-        extraCmakeFlags = [ "-DCONFIG_NEWLIB_LIBC=y" ];
+        extraCmakeFlags = [ "-DCONFIG_NEWLIB_LIBC=y" ]; # required for pmw3610 driver's scroll acceleration feature
 
         zephyrDepsHash = "sha256-Vi4+owQhw8VRNQaBayMQEKxLdAN6EUalcIOYwB6+ZDI=";
 
