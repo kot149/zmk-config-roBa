@@ -92,7 +92,6 @@ west update
 ```
 
 ## ビルド
-### 初回ビルド
 以下のコマンドを実行
 
 - 右手用
@@ -109,9 +108,9 @@ west update
 	```sh
 	west build -s app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset
 	```
-
+## ビルドオプション
 ### 2回目以降のビルド
-2回目以降のビルドでは、`-b`以降のオプションを省略してビルドを高速化できる。
+2回目以降のビルドでは、`-b`以降のオプションを省略できる。また、キャッシュが使用されるので高速になる。
 - 右手用
 	```sh
 	west build -s app -d build/right
@@ -124,4 +123,5 @@ west update
 	```sh
 	west build -s app -d build/reset
 	```
- 
+ ### ビルドキャッシュをクリアしてビルド
+ `west build`コマンドに`-p`オプションをつけるとビルドキャッシュをクリアできる。
