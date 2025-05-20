@@ -1,6 +1,8 @@
 # Dockerを使用したroBaローカルビルド手順
 Dockerを使用して、roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
-**[zmk-nixを使う方法](https://github.com/lilyinstarlight/zmk-nix) の方が高速なのでおすすめです。**
+
+> [!note]
+> **[zmk-nixを使う方法](./build-zmk-nix.md) の方が高速なのでおすすめです。**
 
 手順は基本的には公式ドキュメントに説明されている通りですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
 なお、公式ドキュメントにはDocker(VSCode/Dev Conteiner CLI/Podman)/ネイティブ環境と複数パターン書かれていますが、ここではDocker+VSCodeでの方法だけ記載します。
@@ -122,19 +124,4 @@ west update
 	```sh
 	west build -s app -d build/reset
 	```
-
-### ビルドスクリプト
-このリポジトリの[`scripts/build-docker.sh`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build-docker.sh) は上記3つのビルドを同時並行で行い、結果を`zmk-config-roBa/build`に保存するスクリプト。
-なお、[zmk-listeners](https://github.com/ssbb/zmk-listeners) も使うビルドコマンドになっているので注意。
-以下のコマンドで実行できる。
-- 初回ビルド
-	```sh
-	../zmk-config/scripts/build.sh -f
-	```
-- 2回目以降の省略ビルド
-	```sh
-	../zmk-config/scripts/build.sh
-	```
-
-[`scripts/flash.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/flash.ps1) は、Windows上でビルド結果をフラッシュするPowerShellスクリプト。
-[`scripts/build.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.ps1) は、Windows上でコンテナの外から`scripts/build.sh`を実行した後、`scripts/flash.ps1`を実行するPowerShellスクリプト。
+ 
