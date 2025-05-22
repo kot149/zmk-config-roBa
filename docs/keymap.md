@@ -302,6 +302,39 @@ zmk-pmw3610-driverの`snipe-layers`を使う手もある。こっちだとデフ
 };
 ```
 
+### 横スクロール無効化
+zmk-pmw3610-driverは縦横両方にスクロールするようになっており、横スクロールをオフにする機能はない。
+横スクロールはShift+スクロールなどでやるから普段は縦スクロールのみに固定したいという人もいるだろう。
+スクロール量に倍率をかけるInput Processorがあるので、これで横方向のスクロールを0倍にすれば無効化できる。
+
+以下を`roBa_R.overlay`に記述するとｋ、レイヤー10で横スクロールが無効になる。
+レイヤー10はスクロールレイヤーに指定されている必要があることに注意。
+```dts
+#include <input/processors.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+/{
+    input_processors {
+        wheel_x_scaler: wheel_x_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+    };
+
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        disable-scroll-x {
+            layers = <10>; //スクロールレイヤー
+            input-processors = <&wheel_x_scaler 0 1>;
+        };
+    };
+};
+```
+
 ### オートマウスレイヤー
 トラボを動かすと一定時間だけマウスレイヤーが有効になるという機能。
 zmk-pmw3610-driverで用意されていた機能だが、後に追加されたInput Processorでも設定可能。
