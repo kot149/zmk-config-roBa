@@ -7,7 +7,7 @@ param(
 $flashScriptPath = Join-Path "scripts" "flash.ps1"
 $artifactsDownloadDir = Join-Path "build" "nix"
 
-wsl --exec "./scripts/build-nix.sh"
+wsl --exec "./scripts/build-nix.sh" $Side
 
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Build failed"

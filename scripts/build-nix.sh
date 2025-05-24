@@ -1,6 +1,15 @@
 #!/bin/bash
 set -o pipefail
 
+# 引数処理
+SIDE="${1:-R}"
+if [ "$SIDE" != "R" ] && [ "$SIDE" != "L" ]; then
+    echo "Usage: $0 [R|L]"
+    echo "  R: Build right side firmware (default)"
+    echo "  L: Build left side firmware"
+    exit 1
+fi
+
 # Nix環境を読み込み、nixコマンドの存在を確認
 if [ -e "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]; then
     . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
@@ -35,47 +44,46 @@ info_msg() {
     echo -e "${BLUE}${GEAR} ${1}${NC}"
 }
 
-info_msg "Starting firmware builds with Nix..."
+info_msg "Starting firmware build for side $SIDE with Nix..."
 
-# 並行ビルド用の一時ファイルを準備
-tmp_R=$(mktemp)
-tmp_L=$(mktemp)
-
-echo -e "\n${KEYBOARD} Building firmware.R..."
-( nix build .#firmware.R --no-link --print-out-paths 2>&1 | tee "$tmp_R" ) & pid_R=$!
-echo -e "${KEYBOARD} Building firmware.L..."
-( nix build .#firmware.L --no-link --print-out-paths 2>&1 | tee "$tmp_L" ) & pid_L=$!
-
-# ビルド完了待機と終了ステータス取得
-wait $pid_R; r_status=$?
-[ $r_status -eq 0 ] && success_msg "firmware.R build succeeded" || error_msg "firmware.R build failed"
-wait $pid_L; l_status=$?
-[ $l_status -eq 0 ] && success_msg "firmware.L build succeeded" || error_msg "firmware.L build failed"
-
-echo -e "\n${BOLD}Build Results:${NC}"
-if [ $r_status -eq 0 ] && [ $l_status -eq 0 ]; then
-    success_msg "All builds completed successfully!\n"
-    info_msg "Copying firmware files to build/nix ..."
-
-    mkdir -p build/nix
-    out_R=$(tail -n1 "$tmp_R")
-    out_L=$(tail -n1 "$tmp_L")
-    cp "$out_R"/zmk.uf2 build/nix/zmk_R.uf2
-    cp "$out_L"/zmk.uf2 build/nix/zmk_L.uf2
-
-    success_msg "Firmware files have been copied:"
-    echo -e "${BLUE}  📁 Directory:${NC} build/nix/"
-    echo -e "${BLUE}  └── Right:${NC} $(basename "$out_R")"
-    echo -e "${BLUE}  └── Left:${NC} $(basename "$out_L")"
+# ビルド処理
+if [ "$SIDE" = "R" ]; then
+    echo -e "\n${KEYBOARD} Building firmware.R..."
+    if output=$(nix build .#firmware.R --no-link --print-out-paths 2>&1); then
+        success_msg "firmware.R build succeeded"
+        build_status=0
+    else
+        error_msg "firmware.R build failed"
+        echo "$output"
+        build_status=1
+    fi
 else
-    error_msg "Some builds failed:"
-    [ $r_status -ne 0 ] && error_msg "  firmware.R build failed"
-    [ $l_status -ne 0 ] && error_msg "  firmware.L build failed"
-    rm "$tmp_R" "$tmp_L"
-    exit 1
+    echo -e "\n${KEYBOARD} Building firmware.L..."
+    if output=$(nix build .#firmware.L --no-link --print-out-paths 2>&1); then
+        success_msg "firmware.L build succeeded"
+        build_status=0
+    else
+        error_msg "firmware.L build failed"
+        echo "$output"
+        build_status=1
+    fi
 fi
 
-# クリーンアップ
-rm "$tmp_R" "$tmp_L"
+echo -e "\n${BOLD}Build Results:${NC}"
+if [ $build_status -eq 0 ]; then
+    success_msg "Build completed successfully!\n"
+    info_msg "Copying firmware file to build/nix ..."
+
+    mkdir -p build/nix
+    out_path=$(echo "$output" | tail -n1)
+    cp "$out_path"/zmk.uf2 "build/nix/zmk_${SIDE}.uf2"
+
+    success_msg "Firmware file has been copied:"
+    echo -e "${BLUE}  📁 Directory:${NC} build/nix/"
+    echo -e "${BLUE}  └── ${SIDE} side:${NC} zmk_${SIDE}.uf2"
+else
+    error_msg "Build failed for firmware.${SIDE}"
+    exit 1
+fi
 
 info_msg "Done."
