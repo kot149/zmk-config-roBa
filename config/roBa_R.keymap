@@ -18,16 +18,31 @@
         >;
     };
 
+    input_processors {
+        wheel_x_scaler: wheel_x_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+    };
+
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
 
         input-processors = <&zip_temp_layer MOUSE 10000>;
+
+        disable-scroll-x {
+            layers = <MEDIA>;
+            input-processors = <&wheel_x_scaler 0 1>;
+        };
     };
 };
 
 &trackball {
-    scroll-layers = <EXTRA_FINCTIONS>;
+    scroll-layers = <EXTRA_FINCTIONS MEDIA>;
     // snipe-layers = <3>;
 
     arrows {
@@ -41,14 +56,14 @@
         tick = <10>;
     };
 
-    volume {
-        layers = <MEDIA>;
-        bindings =
-            <&none>,
-            <&none>,
-            <&kp C_VOLUME_UP>,
-            <&kp C_VOLUME_DOWN>;
-    };
+    // volume {
+    //     layers = <MEDIA>;
+    //     bindings =
+    //         <&none>,
+    //         <&none>,
+    //         <&kp C_VOLUME_UP>,
+    //         <&kp C_VOLUME_DOWN>;
+    // };
 
     ctrl_alt_tab {
         layers = <CTRL_ALT_TAB_TB>;
