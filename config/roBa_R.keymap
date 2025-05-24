@@ -32,7 +32,10 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
 
-        input-processors = <&zip_temp_layer MOUSE 10000>;
+        auto-mouse-layer {
+            layers = <DEFAULT MOUSE>;
+            input-processors = <&zip_temp_layer MOUSE 10000>;
+        };
 
         disable-scroll-x {
             layers = <MEDIA>;
