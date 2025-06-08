@@ -49,8 +49,8 @@ try {
     }
 
     # Execute build.sh
-    Write-Host "Running build.sh in container..."
-    docker exec $CONTAINER_ID /workspaces/zmk-config/scripts/build.sh $args
+    Write-Host "Running build-docker.sh in container..."
+    docker exec $CONTAINER_ID /workspaces/zmk-config/scripts/build-docker.sh $args
 
     if ($LASTEXITCODE -eq 0) {
         Write-Host "Build successful. Starting flash process..."

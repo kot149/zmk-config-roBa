@@ -1,4 +1,4 @@
 name: roBa
 build:
   settings:
-    board_root: config
+    board_root: .

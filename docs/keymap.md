@@ -1,7 +1,6 @@
 # キーマップ
 備忘録を兼ねて、キーマップについて語りつつ、その設定方法を紹介する。
 
-目次
 - [キーマップ](#キーマップ)
   - [全角半角](#全角半角)
     - [作り方](#作り方)
@@ -12,6 +11,7 @@
   - [Input Processorあれこれ](#input-processorあれこれ)
     - [低CPI/高CPIモード](#低cpi高cpiモード)
     - [スクロールレイヤー](#スクロールレイヤー)
+    - [横スクロール無効化](#横スクロール無効化)
     - [オートマウスレイヤー](#オートマウスレイヤー)
       - [`excluded-positions`を使用しない例](#excluded-positionsを使用しない例)
       - [`excluded-positions`を使用する例](#excluded-positionsを使用する例)
@@ -31,6 +31,7 @@
     - [4. トラボでTabを代用](#4-トラボでtabを代用)
       - [作り方](#作り方-4)
 
+
 ## 全角半角
 全角半角を1キーだけでのトグル式にするのではなく、変換・無変換に分ける方がストレスが減るというのは有名な話。
 
@@ -39,7 +40,7 @@
 
 シングルタップとダブルタップで異なる動作をするのは、マウスのダブルクリックで広く普及しているが、一般的なキーボードにはなぜか採用されていない。QMKやZMKでは、Tap DanceというN回タップにN個の異なる動作を割り当てる機能がある。
 
-ではTap Danceを使ってInternational 2とInternational 1を割り当てようとなるが、それだけでは微妙に使いにくい。というのも、
+ではTap Danceを使って半角(`International 2`)と全角(`International 1`)を割り当てようとなるが、それだけでは微妙に使いにくい。というのも、
 - 2回目のタップがないことが確定するまで、シングルタップを発行してくれない(遅延が発生する)
 - 3回連続でタップするとシングルタップと判定されてしまう
 
@@ -327,6 +328,40 @@ zmk-pmw3610-driverの`snipe-layers`を使う手もある。こっちだとデフ
                 // <&zip_xy_scaler 3 2>,
                 <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
                 <&zip_xy_to_scroll_mapper>;
+        };
+    };
+};
+```
+
+### 横スクロール無効化
+zmk-pmw3610-driverは縦横両方にスクロールするようになっており、横スクロールをオフにする機能はない。
+横スクロールはShift+スクロールなどでやるから普段は縦スクロールのみに固定したいという人もいるだろう。
+
+スクロール量に倍率をかけるInput Processorがあるので、これで横方向のスクロールを0倍にすれば無効化できる。
+
+以下を`roBa_R.overlay`に記述すると、レイヤー10で横スクロールが無効になる。
+レイヤー10はスクロールレイヤーに指定されている必要があることに注意。
+```dts
+#include <input/processors.dtsi>
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+/{
+    input_processors {
+        wheel_x_scaler: wheel_x_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+    };
+
+    trackball_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball>;
+
+        disable-scroll-x {
+            layers = <10>; //スクロールレイヤー
+            input-processors = <&wheel_x_scaler 0 1>;
         };
     };
 };

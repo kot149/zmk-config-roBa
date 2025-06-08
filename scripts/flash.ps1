@@ -2,20 +2,22 @@
 param(
     [Parameter(Mandatory=$false)]
     [ValidateSet('L', 'R')]
-    [string]$Side = 'R'
+    [string]$Side = 'R',
+    [Parameter(Mandatory=$false)]
+    [string]$BuildDir = "build",
+    [Parameter(Mandatory=$false)]
+    [string]$Uf2File = "roBa_$Side-seeeduino_xiao_ble-zmk.uf2"
 )
 
-# ビルドディレクトリのパスを設定
-$buildDir = Join-Path $PSScriptRoot ".." "build"
-$uf2File = Join-Path $buildDir "roBa_$Side-seeeduino_xiao_ble-zmk.uf2"
+$Uf2File = Join-Path $BuildDir $Uf2File
 
 # ファイルの存在確認
-if (-not (Test-Path $uf2File)) {
-    Write-Error "File '$uf2File' not found."
+if (-not (Test-Path $Uf2File)) {
+    Write-Error "File '$Uf2File' not found."
     exit 1
 }
 
-Write-Host "Firmware file: $uf2File"
+Write-Host "Firmware file: $Uf2File"
 Write-Host "Waiting for new drive... (Press Ctrl+C to cancel)"
 
 try {
@@ -34,18 +36,18 @@ try {
 
         if ($newDrives) {
             $targetDrive = $newDrives[0]
-            $targetPath = Join-Path ($targetDrive.Name + ":\") (Split-Path $uf2File -Leaf)
+            $targetPath = Join-Path ($targetDrive.Name + ":\") (Split-Path $Uf2File -Leaf)
 
             Write-Host "New drive detected: $($targetDrive.Name)"
             Write-Host "Copying firmware..."
 
             # ファイルサイズを取得
-            $fileSize = (Get-Item $uf2File).Length
+            $fileSize = (Get-Item $Uf2File).Length
             $buffer = New-Object byte[] 1MB
             $totalBytesRead = 0
 
             # ファイルストリームを開く
-            $source = [System.IO.File]::OpenRead($uf2File)
+            $source = [System.IO.File]::OpenRead($Uf2File)
             $destination = [System.IO.File]::Create($targetPath)
 
             try {

@@ -1,16 +1,19 @@
-# roBa ローカルビルド手順
-roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
+# Dockerを使用したroBaローカルビルド手順
+Dockerを使用して、roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
+
+> [!note]
+> **[zmk-nixを使う方法](./build-zmk-nix.md) の方が高速なのでおすすめです。**
+
+手順は基本的には公式ドキュメントに説明されている通りですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
+なお、公式ドキュメントにはDocker(VSCode/Dev Conteiner CLI/Podman)/ネイティブ環境と複数パターン書かれていますが、ここではDocker+VSCodeでの方法だけ記載します。
 
 コンテナや一部の中間ファイルを使いまわすことが可能になり、GitHub Actionsを使うよりビルド時間が短縮されます。
 具体的にには、筆者の環境では、GitHub Actionsを使うとビルドに2分以上かかるのに対し、ローカルビルドでは40秒～1分程度で済むようになりました。
 
 また、ビルド結果のダウンロード・解凍の手間も省けます。
 
-手順は基本的には公式ドキュメントに説明されている通りですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
-なお、公式ドキュメントにはDocker(VSCode/Dev Conteiner CLI/Podman)/ネイティブ環境と複数パターン書かれていますが、ここではDocker+VSCodeでの方法だけ記載します。
-
 目次
-- [roBa ローカルビルド手順](#roba-ローカルビルド手順)
+- [Dockerを使用したroBaローカルビルド手順](#dockerを使用したrobaローカルビルド手順)
 	- [公式ドキュメント](#公式ドキュメント)
 	- [環境構築](#環境構築)
 		- [リポジトリのクローン](#リポジトリのクローン)
@@ -89,7 +92,6 @@ west update
 ```
 
 ## ビルド
-### 初回ビルド
 以下のコマンドを実行
 
 - 右手用
@@ -106,9 +108,9 @@ west update
 	```sh
 	west build -s app -d build/reset -b seeeduino_xiao_ble -- -DZMK_CONFIG=/workspaces/zmk-config/config -DSHIELD=settings_reset
 	```
-
+## ビルドオプション
 ### 2回目以降のビルド
-2回目以降のビルドでは、`-b`以降のオプションを省略してビルドを高速化できる。
+2回目以降のビルドでは、`-b`以降のオプションを省略できる。また、キャッシュが使用されるので高速になる。
 - 右手用
 	```sh
 	west build -s app -d build/right
@@ -121,19 +123,5 @@ west update
 	```sh
 	west build -s app -d build/reset
 	```
-
-### ビルドスクリプト
-このリポジトリの[`scripts/build.sh`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.sh) は上記3つのビルドを同時並行で行い、結果を`zmk-config-roBa/build`に保存するスクリプトである。
-なお、[zmk-listeners](https://github.com/ssbb/zmk-listeners) も使うビルドコマンドになっているので注意。
-以下のコマンドで実行できる。
-- 初回ビルド
-	```sh
-	../zmk-config/scripts/build.sh -f
-	```
-- 2回目以降の省略ビルド
-	```sh
-	../zmk-config/scripts/build.sh
-	```
-
-[`scripts/flash.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/flash.ps1) は、Windows上でビルド結果をフラッシュするPowerShellスクリプトである。
-[`scripts/build.ps1`](https://github.com/kot149/zmk-config-roBa/blob/main/scripts/build.ps1) は、Windows上でコンテナの外から`scripts/build.sh`を実行した後、`scripts/flash.ps1`を実行するPowerShellスクリプトである。
+ ### ビルドキャッシュをクリアしてビルド
+ `west build`コマンドに`-p`オプションをつけるとビルドキャッシュをクリアできる。
