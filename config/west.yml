@@ -18,7 +18,7 @@ manifest:
       path: modules/zmk-rgbled-widget
     - name: zmk-layout-shift
       url: https://github.com/kot149/zmk-layout-shift
-      revision: main
+      revision: v1
       path: modules/zmk-layout-shift
   self:
     path: config
