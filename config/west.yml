@@ -2,23 +2,23 @@ manifest:
   projects:
     - name: zmk
       url: https://github.com/zmkfirmware/zmk
-      revision: eb99b4ede06bc01674ce16217ebbad40bc11ec50
+      revision: eb99b4ede06bc01674ce16217ebbad40bc11ec50 # main
       import: app/west.yml
     - name: zmk-pmw3610-driver
       url: https://github.com/kot149/zmk-pmw3610-driver
-      revision: b9511f92e4212697e4fd8747c9837c4b9dfc105a
+      revision: b9511f92e4212697e4fd8747c9837c4b9dfc105a # main
       path: modules/zmk-pmw3610-driver
     - name: zmk-listeners
       url: https://github.com/ssbb/zmk-listeners
-      revision: c240ceaf353d3138bea7695eef17049b7ade995b
+      revision: c240ceaf353d3138bea7695eef17049b7ade995b # v1
       path: modules/zmk-listeners
     - name: zmk-rgbled-widget
       url: https://github.com/caksoylar/zmk-rgbled-widget
-      revision: c12cf5cb28e44809d9f07e895ffcf10c0026d3dd
+      revision: c12cf5cb28e44809d9f07e895ffcf10c0026d3dd # main
       path: modules/zmk-rgbled-widget
     - name: zmk-layout-shift
       url: https://github.com/kot149/zmk-layout-shift
-      revision: 31871b0507751aab762db57d6a0ec3665252701e
+      revision: 31871b0507751aab762db57d6a0ec3665252701e # v1
       path: modules/zmk-layout-shift
   self:
     path: config
