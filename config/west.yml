@@ -27,7 +27,7 @@ manifest:
       path: modules/zmk-rgbled-widget
     - name: zmk-layout-shift
       remote: kot149
-      revision: 31871b0507751aab762db57d6a0ec3665252701e # v1
+      revision: c5cad13bfcb9d7324b04244441831af07f28d73c # v1
       path: modules/zmk-layout-shift
   self:
     path: config
