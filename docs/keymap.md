@@ -4,7 +4,7 @@
 - [キーマップ](#キーマップ)
   - [全角半角](#全角半角)
     - [作り方](#作り方)
-  - [Auto Mouse Layer(AML)関連](#auto-mouse-layeraml関連)
+  - [オートマウスレイヤー(AML)関連](#オートマウスレイヤーaml関連)
   - [Input Processorあれこれ](#input-processorあれこれ)
     - [低CPI/高CPIモード](#低cpi高cpiモード)
     - [スクロールレイヤー](#スクロールレイヤー)
@@ -92,7 +92,7 @@
     };
 };
 ```
-## Auto Mouse Layer(AML)関連
+## オートマウスレイヤー(AML)関連
 Zennに記事を作成したので、そちらを参照。
 
 https://zenn.dev/kot149/articles/zmk-auto-mouse-layer
