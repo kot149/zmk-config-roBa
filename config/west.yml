@@ -11,7 +11,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: eb99b4ede06bc01674ce16217ebbad40bc11ec50 # main
+      revision: 6b44d33db2f4bad7d98e475e6f7968493b05af73 # main
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: kot149
@@ -27,7 +27,7 @@ manifest:
       path: modules/zmk-rgbled-widget
     - name: zmk-layout-shift
       remote: kot149
-      revision: c5cad13bfcb9d7324b04244441831af07f28d73c # v1
+      revision: 9e1352ad966cee1312a7f92a430157ce4a2be54c # v1
       path: modules/zmk-layout-shift
   self:
     path: config
