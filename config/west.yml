@@ -8,6 +8,10 @@ manifest:
       url-base: https://github.com/ssbb
     - name: caksoylar
       url-base: https://github.com/caksoylar
+    - name: te9no
+      url-base: https://github.com/te9no
+    - name: zettaface
+      url-base: https://github.com/zettaface
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -29,5 +33,13 @@ manifest:
       remote: kot149
       revision: 3b87dc680ea75ab5d63c0b0ed2183aa14ec95d8f # v1
       path: modules/zmk-layout-shift
+    # - name: zmk-input-processor-keybind
+    #   remote: te9no
+    #   revision: main
+    #   path: modules/zmk-input-processor-keybind
+    - name: zmk-input-processor-keybind
+      remote: zettaface
+      revision: main
+      path: modules/zmk-input-processor-keybind-zettaface
   self:
     path: config

@@ -1,7 +1,10 @@
 #include "roBa_L.keymap"
 
 #include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors/zmk-input-processor-keybind.dtsi>
+
 / {
     /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
         compatible = "zmk,input-processor-temp-layer";
@@ -28,6 +31,25 @@
             codes = <INPUT_REL_HWHEEL>;
             track-remainders;
         };
+
+        zip_keybind_0: zip_keybind_0 {
+            compatible = "zmk,input-processor-keybind";
+            #input-processor-cells = <0>;
+            track_remainders;
+            bindings = <
+                &kp N0
+                &kp N0
+                &kp N0
+                &kp N0
+            >;
+            tick = <40>;
+            wait-ms = <0>;
+            tap-ms = <10>;
+            // mode = <1>
+            // threshold = <10>
+            // max_threshold = <200>
+            // max_pending_activations = <10>
+        };
     };
 
     trackball_listener {
@@ -40,67 +62,43 @@
             process-next;
         };
 
-        disable-scroll-x {
+        scroll-y {
             layers = <MEDIA>;
-            input-processors = <&wheel_x_scaler 0 1>;
+            input-processors =
+                <&zip_xy_scaler 3 2>,
+                <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+                <&zip_xy_to_scroll_mapper>,
+                <&wheel_x_scaler 0 1>;
+        };
+
+        scroll {
+            layers = <EXTRA_FINCTIONS>;
+            input-processors =
+                <&zip_xy_scaler 3 2>,
+                <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+                <&zip_xy_to_scroll_mapper>;
+        };
+
+        arrows {
+            layers = <FUNCTIONS_AND_SYMBOLS>;
+            input-processors = <&zip_keybind_keys>;
             process-next;
         };
-    };
-};
 
-&trackball {
-    scroll-layers = <EXTRA_FINCTIONS MEDIA>;
-    // snipe-layers = <3>;
+        arrows-prevent-mouse-move {
+            layers = <FUNCTIONS_AND_SYMBOLS>;
+            input-processors = <&zip_xy_scaler 0 1>;
+        };
 
-    arrows {
-        layers = <MISC>;
-        bindings =
-            <&kp RIGHT_ARROW>,
-            <&kp LEFT_ARROW>,
-            <&kp UP_ARROW>,
-            <&kp DOWN_ARROW>;
+        // layer0 {
+        //     layers = <0>;
+        //     input-processors = <&zip_keybind_0>;
+        //     process-next;
+        // };
 
-        tick = <10>;
-    };
-
-    // volume {
-    //     layers = <MEDIA>;
-    //     bindings =
-    //         <&none>,
-    //         <&none>,
-    //         <&kp C_VOLUME_UP>,
-    //         <&kp C_VOLUME_DOWN>;
-    // };
-
-    ctrl_alt_tab {
-        layers = <CTRL_ALT_TAB_TB>;
-        bindings =
-            <&to_kp ALT_TAB_TB TAB>,
-            <&to_kp ALT_TAB_TB LS(TAB)>,
-            <&to_kp CTRL_TAB_TB LCTRL>,
-            <&to_kp CTRL_TAB_TB LS(LCTRL)>;
-        tick = <10>;
-    };
-
-    alt_tab {
-        layers = <ALT_TAB_TB>;
-        bindings =
-            <&kp TAB>,
-            <&kp LS(TAB)>,
-            <&kp UP_ARROW>,
-            <&kp DOWN_ARROW>;
-
-        tick = <80>;
-    };
-
-    ctrl_tab {
-        layers = <CTRL_TAB_TB>;
-        bindings =
-            <&kp UP_ARROW>,
-            <&kp DOWN_ARROW>,
-            <&kp LS(TAB)>,
-            <&kp TAB>;
-
-        tick = <80>;
+        // layer0-prevent-mouse-move {
+        //     layers = <0>;
+        //     input-processors = <&zip_xy_scaler 0 1>;
+        // };
     };
 };
