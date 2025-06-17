@@ -24,7 +24,7 @@
         parts = [ "R" "L" ];
         extraCmakeFlags = [ "-DCONFIG_NEWLIB_LIBC=y" ]; # required for pmw3610 driver's scroll acceleration feature
 
-        zephyrDepsHash = "sha256-BULhIKo9Q6rOPVzt1cSAB0YnuBeqottJvS5vXG7tTEw=";
+        zephyrDepsHash = "sha256-SaA4PDSZL9kcx+GWQIu46+u9ZTvTjAo+uWCINytmLLg=";
 
         meta = {
           description = "ZMK firmware";
