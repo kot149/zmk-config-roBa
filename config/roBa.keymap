@@ -1,5 +1,4 @@
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
-
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 1000
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 700
 
 #include <input/processors.dtsi>
@@ -46,25 +45,19 @@
 
 &sl { release-after-ms = <1000>; };
 
-&mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
-
-/ {
-    /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
-        compatible = "zmk,input-processor-temp-layer";
-        #input-processor-cells = <2>;
-        require-prior-idle-ms = <200>;
-        excluded-positions = <
-            18 // J
-            19 // K
-            // 20 // L
-            21 // ;
-            22 // Z
-            // 31 // .
-            // 32 // ,
-            // 33 // /
-            34 // Ctrl
-        >;
-    };
+&zip_temp_layer {
+    require-prior-idle-ms = <200>;
+    excluded-positions = <
+        18 // J
+        19 // K
+        // 20 // L
+        21 // ;
+        22 // Z
+        // 31 // .
+        // 32 // ,
+        // 33 // /
+        34 // Ctrl
+    >;
 };
 
 / {
@@ -87,7 +80,7 @@
     scroller {
         layers = <EXTRA_FINCTIONS MEDIA>;
         input-processors =
-            // <&zip_xy_scaler 3 2>,
+            <&zip_xy_scaler 3 2>,
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>;
     };
