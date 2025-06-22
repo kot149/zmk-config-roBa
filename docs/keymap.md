@@ -106,20 +106,19 @@ https://zenn.dev/kot149/articles/zmk-auto-mouse-layer
 `roBa_R.overlay`に以下を追記すると、レイヤー2ではカーソル移動量3分の1、レイヤー3では3倍になる。
 ```dts
 #include <input/processors.dtsi>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
 
-        cpi-low {
-            layers = <2>;
-            input-processors = <&zip_xy_scaler 1 3>;
-        };
+&trackball_listener {
+    compatible = "zmk,input-listener";
+    device = <&trackball>;
 
-        cpi-high {
-            layers = <3>;
-            input-processors = <&zip_xy_scaler 3 1>;
-        };
+    cpi-low {
+        layers = <2>;
+        input-processors = <&zip_xy_scaler 1 3>;
+    };
+
+    cpi-high {
+        layers = <3>;
+        input-processors = <&zip_xy_scaler 3 1>;
     };
 };
 ```
@@ -133,18 +132,16 @@ zmk-pmw3610-driverの`snipe-layers`を使う手もある。こっちだとデフ
 ```dts
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
 
-        scroller {
-            layers = <4>;
-            input-processors =
-                // <&zip_xy_scaler 3 2>,
-                <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-                <&zip_xy_to_scroll_mapper>;
-        };
+&trackball_listener {
+    compatible = "zmk,input-listener";
+
+    scroller {
+        layers = <4>;
+        input-processors =
+            // <&zip_xy_scaler 3 2>,
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>;
     };
 };
 ```
