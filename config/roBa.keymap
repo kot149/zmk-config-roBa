@@ -46,7 +46,7 @@
 
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
-#ifdef CONFIG_SHIELD_ROBA_R
+#if defined(CONFIG_SHIELD_ROBA_R)
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 / {
     /omit-if-no-ref/ zip_temp_layer: zip_temp_layer {
