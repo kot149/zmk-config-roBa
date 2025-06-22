@@ -11,23 +11,23 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: 6b44d33db2f4bad7d98e475e6f7968493b05af73 # main
+      revision: main
       import: app/west.yml
     - name: zmk-pmw3610-driver
       remote: kot149
-      revision: b9511f92e4212697e4fd8747c9837c4b9dfc105a # main
+      revision: main
       path: modules/zmk-pmw3610-driver
     - name: zmk-listeners
       remote: ssbb
-      revision: c240ceaf353d3138bea7695eef17049b7ade995b # v1
+      revision: v1
       path: modules/zmk-listeners
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: c12cf5cb28e44809d9f07e895ffcf10c0026d3dd # main
+      revision: main
       path: modules/zmk-rgbled-widget
     - name: zmk-layout-shift
       remote: kot149
-      revision: 3b87dc680ea75ab5d63c0b0ed2183aa14ec95d8f # v1
+      revision: v1
       path: modules/zmk-layout-shift
   self:
     path: config
