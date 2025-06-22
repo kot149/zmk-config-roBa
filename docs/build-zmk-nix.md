@@ -3,8 +3,8 @@
 [zmk-nix](https://github.com/lilyinstarlight/zmk-nix) を使ってroBaのファームウェアをビルドする手順です。
 
 Nixは再現性の高いビルドを可能にするパッケージマネージャです。
-厳密なビルドキャッシュの管理により、高速なビルドが可能になります。
-筆者環境では、GitHub Actionsを使うビルドが2分ほど、Dockerを使用したビルドが1分ほどかかるのに対して、zmk-nixを使うと30秒ほどでした。
+GitHub ActionsやDockerを使用したビルドよりも高速なビルドが可能になります。
+筆者環境では、GitHub Actionsを使うビルドが2分ほど、Dockerを使用したビルドが1分ほどかかるのに対して、zmk-nixを使うと20～30秒ほどでした。
 
 ## 手順
 1. Windowsの場合、[公式ドキュメント](https://learn.microsoft.com/ja-jp/windows/wsl/install) に従い、WSLを導入する。以下WSL内で作業する
