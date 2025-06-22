@@ -60,18 +60,6 @@
     >;
 };
 
-/ {
-    input_processors {
-        wheel_x_scaler: wheel_x_scaler {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_HWHEEL>;
-            track-remainders;
-        };
-    };
-};
-
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
 &trackball_listener {
@@ -80,7 +68,7 @@
     scroller {
         layers = <EXTRA_FINCTIONS MEDIA>;
         input-processors =
-            <&zip_xy_scaler 3 2>,
+            <&zip_xy_scaler 2 3>,
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>;
     };
@@ -99,6 +87,16 @@
 };
 
 / {
+    input_processors {
+        wheel_x_scaler: wheel_x_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+    };
+
     layer_listeners {
         compatible = "zmk,layer-listeners";
 
