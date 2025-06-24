@@ -206,7 +206,7 @@
         };
 
         Ctrl_V {
-            bindings = <&kp V>;
+            bindings = <&kp LC(V)>;
             key-positions = <25 26>;
             layers = <0>;
         };
