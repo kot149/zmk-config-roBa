@@ -57,47 +57,43 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# バナーを表示
-echo -e "\033[36mZMK設定ファイルコピースクリプト\033[0m"
+# 実行情報を表示
+echo -e "\033[36mZMK Config Converter - roBa to moNa2\033[0m"
 if [ "$DRY_RUN" = true ]; then
-    echo -e "\033[33m[DRY RUN MODE] 実際のファイル操作は行いません\033[0m"
+    echo -e "\033[33m   [DRY RUN] Preview mode - no files will be modified\033[0m"
 fi
-echo -e "\033[33mソース: $SOURCE_DIR\033[0m"
-echo -e "\033[33mターゲット: $TARGET_DIR\033[0m"
-echo -e "\033[33m置換: '$SOURCE_PATTERN' → '$TARGET_PATTERN'\033[0m"
-echo -e "\033[33m除外ディレクトリ: ${EXCLUDE_DIRS[*]}\033[0m"
-echo -e "\033[33m除外ファイル: ${EXCLUDE_FILES[*]}\033[0m"
-echo ""
+echo -e "\033[90m   Source:     $SOURCE_DIR\033[0m"
+echo -e "\033[90m   Target:     $TARGET_DIR\033[0m"
+echo -e "\033[90m   Pattern:    '$SOURCE_PATTERN' → '$TARGET_PATTERN'\033[0m"
+echo -e "\033[90m   Excluded:   dirs(${EXCLUDE_DIRS[*]}) files(${EXCLUDE_FILES[*]})\033[0m"
+echo
 
 # 絶対パスに変換
 SOURCE_DIR=$(realpath "$SOURCE_DIR")
 TARGET_DIR=$(realpath "$TARGET_DIR")
 
-# ターゲットディレクトリが存在するか確認
+# ターゲットディレクトリの処理
 if [[ -d "$TARGET_DIR" ]]; then
     if [ "$DRY_RUN" = true ]; then
-        echo -e "\033[33m[DRY RUN] ターゲットディレクトリが既に存在します: $TARGET_DIR\033[0m"
-        echo -e "\033[33m[DRY RUN] .gitディレクトリとREADME.mdを除いて既存の内容をクリアします\033[0m"
+        echo -e "\033[33m[PREVIEW] Target directory exists, would clear contents (preserving .git & README.md)\033[0m"
     else
-        echo -n "ターゲットディレクトリが既に存在します。上書きしますか？ (Y/N): "
+        echo -n "Target directory exists. Overwrite? (Y/N): "
         read -r confirmation
         if [[ "$confirmation" != "Y" && "$confirmation" != "y" ]]; then
-            echo -e "\033[31m処理を中止しました。\033[0m"
+            echo -e "\033[31mOperation cancelled\033[0m"
             exit 0
         fi
 
-        # .gitディレクトリとREADME.mdを除いて既存の内容をクリア
-        echo -e "\033[33mターゲットディレクトリの内容をクリアしています...\033[0m"
+        echo -e "\033[90mClearing target directory contents...\033[0m"
         find "$TARGET_DIR" -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "README.md" -exec rm -rf {} + 2>/dev/null
-        echo -e "\033[32mターゲットディレクトリをクリアしました。\033[0m"
+        echo -e "\033[32mTarget directory cleared\033[0m"
     fi
 else
     if [ "$DRY_RUN" = true ]; then
-        echo -e "\033[33m[DRY RUN] ターゲットディレクトリを作成します: $TARGET_DIR\033[0m"
+        echo -e "\033[90m[PREVIEW] Would create target directory: $TARGET_DIR\033[0m"
     else
-        # ターゲットディレクトリを作成
         mkdir -p "$TARGET_DIR"
-        echo -e "\033[32mターゲットディレクトリを作成しました: $TARGET_DIR\033[0m"
+        echo -e "\033[32mCreated target directory: $TARGET_DIR\033[0m"
     fi
 fi
 
@@ -161,11 +157,6 @@ copy_and_replace_content() {
     local target_path="$2"
 
     if [ "$DRY_RUN" = true ]; then
-        if is_binary_file "$source_path"; then
-            echo -e "\033[37m[DRY RUN] コピー: $source_path -> $target_path\033[0m"
-        else
-            echo -e "\033[32m[DRY RUN] コピー+置換: $source_path -> $target_path\033[0m"
-        fi
         return
     fi
 
@@ -175,11 +166,9 @@ copy_and_replace_content() {
     if is_binary_file "$source_path"; then
         # バイナリファイルはそのままコピー
         cp "$source_path" "$target_path"
-        echo -e "\033[37mコピー: $source_path -> $target_path\033[0m"
     else
         # テキストファイルは内容を置換してコピー（大文字小文字のパターンを考慮）
         sed -e "s|roBa|moNa2|g" -e "s|ROBA|MONA2|g" -e "s|roba|mona2|g" "$source_path" > "$target_path"
-        echo -e "\033[32mコピー+置換: $source_path -> $target_path\033[0m"
     fi
 }
 
@@ -187,7 +176,7 @@ copy_and_replace_content() {
 total_files=0
 processed_files=0
 
-echo "ファイル数をカウント中..."
+echo -e "\033[90mScanning files...\033[0m"
 while IFS= read -r -d '' file; do
     relative_path="${file#$SOURCE_DIR/}"
     dir_path=$(dirname "$relative_path")
@@ -199,8 +188,8 @@ while IFS= read -r -d '' file; do
     fi
 done < <(find "$SOURCE_DIR" -type f -print0)
 
-echo "処理対象ファイル数: $total_files"
-echo ""
+echo -e "\033[90mFound $total_files files to process\033[0m"
+echo
 
 # ファイルをコピーしながら内容とファイル名を置換
 while IFS= read -r -d '' file; do
@@ -215,7 +204,7 @@ while IFS= read -r -d '' file; do
         new_filename="${new_filename//roBa/moNa2}"
         new_filename="${new_filename//ROBA/MONA2}"
         new_filename="${new_filename//roba/mona2}"
-        
+
         new_dir_path="$dir_path"
         new_dir_path="${new_dir_path//roBa/moNa2}"
         new_dir_path="${new_dir_path//ROBA/MONA2}"
@@ -228,21 +217,35 @@ while IFS= read -r -d '' file; do
             target_file_path="$TARGET_DIR/$new_dir_path/$new_filename"
         fi
 
-        # ファイルをコピーして内容を置換
-        copy_and_replace_content "$file" "$target_file_path"
+        if [ "$DRY_RUN" = true ]; then
+            # Dry runモードでは変更されるファイルパスを表示
+            if is_binary_file "$file"; then
+                echo -e "\033[37m  Copy: $relative_path → ${new_dir_path:+$new_dir_path/}$new_filename\033[0m"
+            else
+                echo -e "\033[32m  Replace: $relative_path → ${new_dir_path:+$new_dir_path/}$new_filename\033[0m"
+            fi
+        else
+            # ファイルをコピーして内容を置換
+            copy_and_replace_content "$file" "$target_file_path"
 
-        ((processed_files++))
-        echo "進捗: $processed_files / $total_files ファイル"
+            ((processed_files++))
+            # プログレスバーを表示
+            progress=$((processed_files * 100 / total_files))
+            bar=$(yes '█' | head -n $((progress * 30 / 100)) | tr -d '\n')
+
+            printf "\r\033[32m[%-30s] %d%% (%d/%d)\033[0m" "$bar" "$progress" "$processed_files" "$total_files"
+        fi
     fi
 done < <(find "$SOURCE_DIR" -type f -print0)
 
-echo ""
+echo
+echo
 if [ "$DRY_RUN" = true ]; then
-    echo -e "\033[32m[DRY RUN] 完了！\033[0m"
-    echo -e "\033[32m[DRY RUN] $processed_files ファイルが処理対象です。\033[0m"
-    echo -e "\033[32m[DRY RUN] ターゲットディレクトリ: $TARGET_DIR\033[0m"
+    echo -e "\033[36m[PREVIEW] Complete!\033[0m"
+    echo -e "\033[90mWould process $total_files files\033[0m"
+    echo -e "\033[90mTarget: $TARGET_DIR\033[0m"
 else
-    echo -e "\033[32mコピー完了！\033[0m"
-    echo -e "\033[32m$processed_files ファイルを処理しました。\033[0m"
-    echo -e "\033[32mターゲットディレクトリ: $TARGET_DIR\033[0m"
+    echo -e "\033[32mConversion complete!\033[0m"
+    echo -e "\033[90mProcessed $processed_files files\033[0m"
+    echo -e "\033[90mOutput: $TARGET_DIR\033[0m"
 fi
