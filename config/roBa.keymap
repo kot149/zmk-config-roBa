@@ -163,67 +163,67 @@
             layers = <0>;
         };
 
-        Ctrl-A {
+        Ctrl_A {
             bindings = <&kp LC(A)>;
             key-positions = <10 11>;
             layers = <0>;
         };
 
-        Ctrl-W {
+        Ctrl_W {
             bindings = <&kp LC(W)>;
             key-positions = <1 2>;
             layers = <0>;
         };
 
-        Ctrl-R {
+        Ctrl_R {
             bindings = <&kp LC(R)>;
             key-positions = <2 3>;
             layers = <0>;
         };
 
-        Ctrl-T {
+        Ctrl_T {
             bindings = <&kp LC(T)>;
             key-positions = <3 4>;
             layers = <0>;
         };
 
-        Ctrl-Z {
+        Ctrl_Z {
             bindings = <&kp LC(Z)>;
             key-positions = <23 22>;
             layers = <0>;
         };
 
-        Ctrl-X {
+        Ctrl_X {
             bindings = <&kp LC(X)>;
             key-positions = <23 24>;
             layers = <0>;
         };
 
-        Ctrl-C {
+        Ctrl_C {
             bindings = <&kp LC(C)>;
             key-positions = <24 25>;
             layers = <0>;
         };
 
-        Ctrl-V {
+        Ctrl_V {
             bindings = <&kp V>;
             key-positions = <25 26>;
             layers = <0>;
         };
 
-        Ctrl-N {
+        Ctrl_N {
             bindings = <&kp LC(N)>;
             key-positions = <29 30>;
             layers = <0>;
         };
 
-        Ctrl-S {
+        Ctrl_S {
             bindings = <&kp LC(S)>;
             key-positions = <11 12>;
             layers = <0>;
         };
 
-        Ctrl-F {
+        Ctrl_F {
             bindings = <&kp LC(F)>;
             key-positions = <13 14>;
             layers = <0>;
