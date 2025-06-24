@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# デフォルト値
-SOURCE_DIR="."
-TARGET_DIR="../zmk-config-moNa2"
+# スクリプトの場所を基準にしたデフォルト値
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SOURCE_DIR="$(dirname "$SCRIPT_DIR")"  # scripts の親ディレクトリ（zmk-config-roBa）
+TARGET_DIR="$(dirname "$SOURCE_DIR")/zmk-config-moNa2"  # zmk-config-roBa の親の zmk-config-moNa2
 SOURCE_PATTERN="roBa"
 TARGET_PATTERN="moNa2"
+DRY_RUN=false
 EXCLUDE_DIRS=(".git" ".vscode" "build" "docs")
 EXCLUDE_FILES=("convert-to-moNa2.ps1" "convert-to-moNa2.sh" "README.md")
 
@@ -12,10 +14,11 @@ EXCLUDE_FILES=("convert-to-moNa2.ps1" "convert-to-moNa2.sh" "README.md")
 show_help() {
     echo "使用方法: $0 [オプション]"
     echo "オプション:"
-    echo "  -s, --source-dir DIR     ソースディレクトリ (デフォルト: .)"
-    echo "  -t, --target-dir DIR     ターゲットディレクトリ (デフォルト: ../zmk-config-moNa2)"
+    echo "  -s, --source-dir DIR     ソースディレクトリ (デフォルト: スクリプト場所の親ディレクトリ)"
+    echo "  -t, --target-dir DIR     ターゲットディレクトリ (デフォルト: ソースディレクトリの隣のzmk-config-moNa2)"
     echo "  -p, --source-pattern STR 置換元パターン (デフォルト: roBa)"
     echo "  -r, --target-pattern STR 置換先パターン (デフォルト: moNa2)"
+    echo "  -n, --dry-run           実際にファイルをコピーせずに動作を確認"
     echo "  -h, --help              このヘルプを表示"
 }
 
@@ -38,6 +41,10 @@ while [[ $# -gt 0 ]]; do
             TARGET_PATTERN="$2"
             shift 2
             ;;
+        -n|--dry-run)
+            DRY_RUN=true
+            shift
+            ;;
         -h|--help)
             show_help
             exit 0
@@ -52,6 +59,9 @@ done
 
 # バナーを表示
 echo -e "\033[36mZMK設定ファイルコピースクリプト\033[0m"
+if [ "$DRY_RUN" = true ]; then
+    echo -e "\033[33m[DRY RUN MODE] 実際のファイル操作は行いません\033[0m"
+fi
 echo -e "\033[33mソース: $SOURCE_DIR\033[0m"
 echo -e "\033[33mターゲット: $TARGET_DIR\033[0m"
 echo -e "\033[33m置換: '$SOURCE_PATTERN' → '$TARGET_PATTERN'\033[0m"
@@ -65,21 +75,30 @@ TARGET_DIR=$(realpath "$TARGET_DIR")
 
 # ターゲットディレクトリが存在するか確認
 if [[ -d "$TARGET_DIR" ]]; then
-    echo -n "ターゲットディレクトリが既に存在します。上書きしますか？ (Y/N): "
-    read -r confirmation
-    if [[ "$confirmation" != "Y" && "$confirmation" != "y" ]]; then
-        echo -e "\033[31m処理を中止しました。\033[0m"
-        exit 0
-    fi
+    if [ "$DRY_RUN" = true ]; then
+        echo -e "\033[33m[DRY RUN] ターゲットディレクトリが既に存在します: $TARGET_DIR\033[0m"
+        echo -e "\033[33m[DRY RUN] .gitディレクトリとREADME.mdを除いて既存の内容をクリアします\033[0m"
+    else
+        echo -n "ターゲットディレクトリが既に存在します。上書きしますか？ (Y/N): "
+        read -r confirmation
+        if [[ "$confirmation" != "Y" && "$confirmation" != "y" ]]; then
+            echo -e "\033[31m処理を中止しました。\033[0m"
+            exit 0
+        fi
 
-    # .gitディレクトリとREADME.mdを除いて既存の内容をクリア
-    echo -e "\033[33mターゲットディレクトリの内容をクリアしています...\033[0m"
-    find "$TARGET_DIR" -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "README.md" -exec rm -rf {} + 2>/dev/null
-    echo -e "\033[32mターゲットディレクトリをクリアしました。\033[0m"
+        # .gitディレクトリとREADME.mdを除いて既存の内容をクリア
+        echo -e "\033[33mターゲットディレクトリの内容をクリアしています...\033[0m"
+        find "$TARGET_DIR" -mindepth 1 -maxdepth 1 ! -name ".git" ! -name "README.md" -exec rm -rf {} + 2>/dev/null
+        echo -e "\033[32mターゲットディレクトリをクリアしました。\033[0m"
+    fi
 else
-    # ターゲットディレクトリを作成
-    mkdir -p "$TARGET_DIR"
-    echo -e "\033[32mターゲットディレクトリを作成しました: $TARGET_DIR\033[0m"
+    if [ "$DRY_RUN" = true ]; then
+        echo -e "\033[33m[DRY RUN] ターゲットディレクトリを作成します: $TARGET_DIR\033[0m"
+    else
+        # ターゲットディレクトリを作成
+        mkdir -p "$TARGET_DIR"
+        echo -e "\033[32mターゲットディレクトリを作成しました: $TARGET_DIR\033[0m"
+    fi
 fi
 
 # バイナリファイルかどうかをチェックする関数
@@ -113,16 +132,13 @@ is_binary_file() {
 # ディレクトリが除外対象かチェックする関数
 is_excluded_dir() {
     local dir_path="$1"
-    local dir_name
 
-    while [[ "$dir_path" != "." && "$dir_path" != "/" ]]; do
-        dir_name=$(basename "$dir_path")
-        for exclude_dir in "${EXCLUDE_DIRS[@]}"; do
-            if [[ "$dir_name" == "$exclude_dir" ]]; then
-                return 0  # 除外対象
-            fi
-        done
-        dir_path=$(dirname "$dir_path")
+    # パスに除外ディレクトリが含まれているかチェック（完全一致）
+    for exclude_dir in "${EXCLUDE_DIRS[@]}"; do
+        # パスが除外ディレクトリで始まるか、パス内に/除外ディレクトリ/が含まれるかをチェック
+        if [[ "$dir_path" == "$exclude_dir" ]] || [[ "$dir_path" == "$exclude_dir"/* ]] || [[ "$dir_path" == *"/$exclude_dir" ]] || [[ "$dir_path" == *"/$exclude_dir/"* ]]; then
+            return 0  # 除外対象
+        fi
     done
 
     return 1  # 除外対象ではない
@@ -143,6 +159,15 @@ is_excluded_file() {
 copy_and_replace_content() {
     local source_path="$1"
     local target_path="$2"
+
+    if [ "$DRY_RUN" = true ]; then
+        if is_binary_file "$source_path"; then
+            echo -e "\033[37m[DRY RUN] コピー: $source_path -> $target_path\033[0m"
+        else
+            echo -e "\033[32m[DRY RUN] コピー+置換: $source_path -> $target_path\033[0m"
+        fi
+        return
+    fi
 
     # ターゲットディレクトリを作成
     mkdir -p "$(dirname "$target_path")"
@@ -168,7 +193,8 @@ while IFS= read -r -d '' file; do
     dir_path=$(dirname "$relative_path")
     filename=$(basename "$file")
 
-    if ! is_excluded_dir "$dir_path" && ! is_excluded_file "$filename"; then
+    # 除外チェック（相対パス全体とファイル名両方をチェック）
+    if ! is_excluded_dir "$relative_path" && ! is_excluded_file "$filename"; then
         ((total_files++))
     fi
 done < <(find "$SOURCE_DIR" -type f -print0)
@@ -182,7 +208,8 @@ while IFS= read -r -d '' file; do
     dir_path=$(dirname "$relative_path")
     filename=$(basename "$file")
 
-    if ! is_excluded_dir "$dir_path" && ! is_excluded_file "$filename"; then
+    # 除外チェック（相対パス全体とファイル名両方をチェック）
+    if ! is_excluded_dir "$relative_path" && ! is_excluded_file "$filename"; then
         # ファイル名とディレクトリパスの置換（大文字小文字のパターンを考慮）
         new_filename="$filename"
         new_filename="${new_filename//roBa/moNa2}"
@@ -210,6 +237,12 @@ while IFS= read -r -d '' file; do
 done < <(find "$SOURCE_DIR" -type f -print0)
 
 echo ""
-echo -e "\033[32mコピー完了！\033[0m"
-echo -e "\033[32m$processed_files ファイルを処理しました。\033[0m"
-echo -e "\033[32mターゲットディレクトリ: $TARGET_DIR\033[0m"
+if [ "$DRY_RUN" = true ]; then
+    echo -e "\033[32m[DRY RUN] 完了！\033[0m"
+    echo -e "\033[32m[DRY RUN] $processed_files ファイルが処理対象です。\033[0m"
+    echo -e "\033[32m[DRY RUN] ターゲットディレクトリ: $TARGET_DIR\033[0m"
+else
+    echo -e "\033[32mコピー完了！\033[0m"
+    echo -e "\033[32m$processed_files ファイルを処理しました。\033[0m"
+    echo -e "\033[32mターゲットディレクトリ: $TARGET_DIR\033[0m"
+fi
