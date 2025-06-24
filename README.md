@@ -3,9 +3,8 @@
 
 また、
 
-- [ローカルビルド手順やキーマップ説明などのドキュメント](https://github.com/kot149/zmk-config-roBa/blob/main/docs)
+- [ローカルビルド手順やキーマップ備忘録などのドキュメント](https://github.com/kot149/zmk-config-roBa/blob/main/docs)
 - [ローカルビルド用スクリプト](https://github.com/kot149/zmk-config-roBa/blob/main/scripts)
-- [zmk-nix](https://github.com/lilyinstarlight/zmk-nix) 用のnixファイル
 - README
 
 などを追加しています。

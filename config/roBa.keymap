@@ -1,4 +1,4 @@
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 1000
 
 // #define ZMK_POINTING_DEFAULT_MOVE_VAL 700
 
@@ -6,6 +6,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors/rgbled_widget.dtsi>
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
@@ -47,7 +48,6 @@
 &sl { release-after-ms = <1000>; };
 
 &zip_temp_layer {
-    #input-processor-cells = <2>;
     require-prior-idle-ms = <200>;
     excluded-positions = <
         18 // J
@@ -62,19 +62,9 @@
     >;
 };
 
-/ {
-    input_processors {
-        wheel_x_scaler: wheel_x_scaler {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_HWHEEL>;
-            track-remainders;
-        };
-    };
-};
-
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
+
+&trackball { cpi = <800>; };
 
 &trackball_listener {
     compatible = "zmk,input-listener";
@@ -82,7 +72,7 @@
     scroller {
         layers = <EXTRA_FINCTIONS MEDIA>;
         input-processors =
-            // <&zip_xy_scaler 3 2>,
+            <&zip_xy_scaler 2 3>,
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>;
     };
@@ -101,6 +91,16 @@
 };
 
 / {
+    input_processors {
+        wheel_x_scaler: wheel_x_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+    };
+
     layer_listeners {
         compatible = "zmk,layer-listeners";
 
@@ -136,6 +136,7 @@
         Escape {
             bindings = <&kp ESCAPE>;
             key-positions = <0 1>;
+            layers = <0>;
         };
 
         hat {
@@ -153,11 +154,79 @@
         caps_word {
             bindings = <&caps_word>;
             key-positions = <22 33>;
+            layers = <0>;
         };
 
         dot_slash_backslash {
             bindings = <&kp BACKSLASH>;
             key-positions = <33 32>;
+            layers = <0>;
+        };
+
+        Ctrl_A {
+            bindings = <&kp LC(A)>;
+            key-positions = <10 11>;
+            layers = <0>;
+        };
+
+        Ctrl_W {
+            bindings = <&kp LC(W)>;
+            key-positions = <1 2>;
+            layers = <0>;
+        };
+
+        Ctrl_R {
+            bindings = <&kp LC(R)>;
+            key-positions = <2 3>;
+            layers = <0>;
+        };
+
+        Ctrl_T {
+            bindings = <&kp LC(T)>;
+            key-positions = <3 4>;
+            layers = <0>;
+        };
+
+        Ctrl_Z {
+            bindings = <&kp LC(Z)>;
+            key-positions = <23 22>;
+            layers = <0>;
+        };
+
+        Ctrl_X {
+            bindings = <&kp LC(X)>;
+            key-positions = <23 24>;
+            layers = <0>;
+        };
+
+        Ctrl_C {
+            bindings = <&kp LC(C)>;
+            key-positions = <24 25>;
+            layers = <0>;
+        };
+
+        Ctrl_V {
+            bindings = <&kp LC(V)>;
+            key-positions = <25 26>;
+            layers = <0>;
+        };
+
+        Ctrl_N {
+            bindings = <&kp LC(N)>;
+            key-positions = <29 30>;
+            layers = <0>;
+        };
+
+        Ctrl_S {
+            bindings = <&kp LC(S)>;
+            key-positions = <11 12>;
+            layers = <0>;
+        };
+
+        Ctrl_F {
+            bindings = <&kp LC(F)>;
+            key-positions = <13 14>;
+            layers = <0>;
         };
     };
 
@@ -591,8 +660,6 @@
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &mt LCTRL ESCAPE
             >;
-
-            sensor-bindings = <&encoder_volume>;
         };
 
         LANG1_ETD {
@@ -709,10 +776,10 @@
 
         CONFIGURATION {
             bindings = <
-&bootloader  &sys_reset  &none  &none  &tog_ls                            &none         &none         &out OUT_TOG  &sys_reset      &bootloader
-&none        &none       &none  &none  &tog_ls_on  &trans      &ind_con      &ind_bat      &none         &none         &windows_sleep  &none
+&bootloader  &sys_reset  &none  &none  &tog_ls                                &none         &none         &out OUT_TOG  &sys_reset      &bootloader
+&none        &none       &none  &none  &tog_ls_on   &trans      &ind_con      &ind_bat      &none         &none         &windows_sleep  &none
 &none        &none       &none  &none  &tog_ls_off  &none       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &td_bt_clear
-&none        &none       &none  &none  &none  &none       &none         &none                                                     &td_bt_clear_all
+&none        &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
             >;
         };
     };

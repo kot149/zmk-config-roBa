@@ -191,6 +191,13 @@ https://zenn.dev/kot149/articles/zmk-auto-mouse-layer
 ## トラボで矢印キー入力
 トラボの上下左右操作にキーを割り当てる機能が[kumamuk-git/zmk-pmw3610-driver](https://github.com/kumamuk-git/zmk-pmw3610-driver) には実装されている(私がプルリクしました)。
 
+また、より汎用的にモジュールとして実装するzmk-input-processor-keybindが開発中。
+
+https://github.com/te9no/zmk-input-processor-keybind
+https://github.com/zettaface/zmk-input-processor-keybind
+
+ここでは、とりあえずkumamuk-git/zmk-pmw3610-driverのものを使う方法を紹介する。
+
 ### 単純なキー割り当て
 単純に矢印キーなどを割り当てるだけなら、`roBa_R.overlay`に記述するだけで済む。
 ```dts
@@ -222,14 +229,7 @@ https://zenn.dev/kot149/articles/zmk-auto-mouse-layer
 ### マクロの割り当て
 マクロは`roBa.keymap`に記述されているので、そのままでは`roBa_R.overlay`から参照できない。
 
-それを可能にするには、`roBa.keymap`で`roBa_R.overlay`をincludeし、`&trackball`を参照できるようにすることで、keymap側からトラボの設定をする。
-ただし、それをやると左手側のビルドが通らなくなってしまう。
-これを解決するには、左右でキーマップを分ける必要がある。具体的には、
-1. `roBa.keymap`を`roBa_L.keymap`にリネームする
-2. `roBa_R.keymap`を作成し、`roBa_L.keymap`をincludeする
-3. `roBa_R.keymap`に`&trackball`の設定を記述する
-
-これで左右のビルドが通るようになる。
+[このPR](https://github.com/kumamuk-git/zmk-config-roBa/pull/36) がマージされれば、`roBa.keymap`で`&trackball`の設定ができるようになるので、このPRの変更を取り込む。
 
 <details>
 <summary style="font-weight: bold;">キーマップファイルのファイル名に関する仕様</summary>
