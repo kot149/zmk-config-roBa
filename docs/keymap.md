@@ -199,7 +199,9 @@ https://github.com/zettaface/zmk-input-processor-keybind
 ここでは、とりあえずkumamuk-git/zmk-pmw3610-driverのものを使う方法を紹介する。
 
 ### 単純なキー割り当て
+
 単純に矢印キーなどを割り当てるだけなら、`roBa_R.overlay`に記述するだけで済む。
+
 ```dts
 #include <dt-bindings/zmk/keys.h>
 
@@ -227,9 +229,26 @@ https://github.com/zettaface/zmk-input-processor-keybind
 ```
 
 ### マクロの割り当て
-マクロは`roBa.keymap`に記述されているので、そのままでは`roBa_R.overlay`から参照できない。
 
-[このPR](https://github.com/kumamuk-git/zmk-config-roBa/pull/36) がマージされれば、`roBa.keymap`で`&trackball`の設定ができるようになるので、このPRの変更を取り込む。
+[PR #36](https://github.com/kumamuk-git/zmk-config-roBa/pull/36) の変更で、`roBa.keymap`から`&trackball`が参照できるようになっている。(それ以前のバージョンだと、左側のファームウェアのビルドで参照エラーが発生してしまう。)
+この変更を取り込んだ後、roBa.keymapに以下のように記述すればよい。
+
+```
+&trackball {
+    arrows {
+        layers = <3>;
+        bindings =
+            <&kp RIGHT_ARROW>,
+            <&kp LEFT_ARROW>,
+            <&kp UP_ARROW>,
+            <&kp DOWN_ARROW>;
+
+        tick = <10>;
+        // wait-ms = <5>;
+        // tap-ms = <5>;
+    };
+};
+```
 
 <details>
 <summary style="font-weight: bold;">キーマップファイルのファイル名に関する仕様</summary>
