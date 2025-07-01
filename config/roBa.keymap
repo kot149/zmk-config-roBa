@@ -75,12 +75,12 @@
     // enable-8way;
 
     history_back {
-        pattern = <GESTURE_RIGHT>;
+        pattern = <GESTURE_UP GESTURE_RIGHT>;
         bindings = <&kp LA(LEFT)>;
     };
 
     history_forward {
-        pattern = <GESTURE_LEFT>;
+        pattern = <GESTURE_UP GESTURE_LEFT>;
         bindings = <&kp LA(RIGHT)>;
     };
 
@@ -94,9 +94,19 @@
         bindings = <&kp LC(T)>;
     };
 
-    win_tab {
-        pattern = <GESTURE_UP>;
+    app_switcher {
+        pattern = <GESTURE_DOWN GESTURE_UP>;
         bindings = <&kp LG(TAB)>;
+    };
+
+    virtual_desktop_prev {
+        pattern = <GESTURE_LEFT GESTURE_DOWN>;
+        bindings = <&kp LG(LC(LEFT))>;
+    };
+
+    virtual_desktop_next {
+        pattern = <GESTURE_RIGHT GESTURE_DOWN>;
+        bindings = <&kp LG(LC(RIGHT))>;
     };
 
     // left {
