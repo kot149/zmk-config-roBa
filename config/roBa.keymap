@@ -17,7 +17,7 @@
 #include <layout_shift_kp_override.dtsi>
 
 #define DEFAULT 0
-#define LANG1_ETD 1
+#define LANG1_EAGER_TAP_DANCE 1
 #define NUMPAD_AND_ARROWS 2
 #define FUNCTIONS_AND_SYMBOLS 3
 #define MISC 4
@@ -70,22 +70,23 @@
 &trackball_listener {
     compatible = "zmk,input-listener";
 
-    scroller {
-        layers = <EXTRA_FINCTIONS MEDIA>;
-        input-processors =
-            <&zip_xy_scaler 2 3>,
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            <&zip_xy_to_scroll_mapper>;
-    };
-
     auto-mouse-layer {
         layers = <DEFAULT MOUSE>;
         input-processors = <&zip_temp_layer MOUSE 10000>;
         process-next;
     };
 
+    scroller {
+        layers = <FUNCTIONS_AND_SYMBOLS MISC EXTRA_FINCTIONS MEDIA>;
+        input-processors =
+            <&zip_xy_scaler 2 3>,
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>;
+        process-next;
+    };
+
     disable-scroll-x {
-        layers = <MEDIA>;
+        layers = <MISC MEDIA>;
         input-processors = <&wheel_x_scaler 0 1>;
         process-next;
     };
@@ -663,12 +664,12 @@
             >;
         };
 
-        LANG1_ETD {
+        LANG1_EAGER_TAP_DANCE {
             bindings = <
 &trans  &trans  &trans  &trans                            &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                            &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                            &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_ETD  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_EAGER_TAP_DANCE  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 
