@@ -72,7 +72,17 @@
 &zip_mouse_gesture {
     stroke-size = <150>;
     movement-threshold = <10>;
-    enable-8way; // Uncomment to enable 8-way gesture detection
+    // enable-8way;
+
+    history_back {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp LA(LEFT)>;
+    };
+
+    history_forward {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LA(RIGHT)>;
+    };
 
     close_tab {
         pattern = <GESTURE_DOWN GESTURE_RIGHT>;
@@ -84,24 +94,9 @@
         bindings = <&kp LC(T)>;
     };
 
-    find {
-        pattern = <GESTURE_LEFT GESTURE_DOWN>;
-        bindings = <&kp LC(F)>;
-    };
-
-    escape {
-        pattern = <GESTURE_UP GESTURE_RIGHT GESTURE_DOWN>;
-        bindings = <&kp ESCAPE>;
-    };
-
-    z {
-        pattern = <GESTURE_RIGHT GESTURE_DOWN_LEFT GESTURE_RIGHT>;
-        bindings = <&kp LS(Z)>;
-    };
-
-    n {
-        pattern = <GESTURE_UP GESTURE_DOWN_RIGHT GESTURE_UP>;
-        bindings = <&kp LS(N)>;
+    win_tab {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp LG(TAB)>;
     };
 
     // left {
