@@ -16,6 +16,8 @@
 // #include <layout_shift.dtsi>
 #include <layout_shift_kp_override.dtsi>
 
+#include <mouse-gesture.dtsi>
+
 #define DEFAULT 0
 #define LANG1_ETD 1
 #define NUMPAD_AND_ARROWS 2
@@ -52,7 +54,7 @@
     excluded-positions = <
         18 // J
         19 // K
-        // 20 // L
+        20 // L
         21 // ;
         22 // Z
         // 31 // .
@@ -66,8 +68,66 @@
 
 &trackball { cpi = <800>; };
 
+&zip_mouse_gesture {
+    stroke-size = <150>;
+    movement-threshold = <10>;
+    enable-8way; // Uncomment to enable 8-way gesture detection
+
+    close_tab {
+        pattern = <GESTURE_DOWN GESTURE_RIGHT>;
+        bindings = <&kp LC(W)>;
+    };
+
+    new_tab {
+        pattern = <GESTURE_DOWN GESTURE_LEFT>;
+        bindings = <&kp LC(T)>;
+    };
+
+    find {
+        pattern = <GESTURE_LEFT GESTURE_DOWN>;
+        bindings = <&kp LC(F)>;
+    };
+
+    escape {
+        pattern = <GESTURE_UP GESTURE_RIGHT GESTURE_DOWN>;
+        bindings = <&kp ESCAPE>;
+    };
+
+    z {
+        pattern = <GESTURE_RIGHT GESTURE_DOWN_LEFT GESTURE_RIGHT>;
+        bindings = <&kp LS(Z)>;
+    };
+
+    n {
+        pattern = <GESTURE_UP GESTURE_DOWN_RIGHT GESTURE_UP>;
+        bindings = <&kp LS(N)>;
+    };
+
+    // left {
+    //     gesture = <GESTURE_LEFT>;
+    //     bindings = <&kp LEFT>;
+    // };
+
+    // right {
+    //     gesture = <GESTURE_RIGHT>;
+    //     bindings = <&kp RIGHT>;
+    // };
+
+    // up {
+    //     gesture = <GESTURE_UP>;
+    //     bindings = <&kp UP>;
+    // };
+
+    // down {
+    //     gesture = <GESTURE_DOWN>;
+    //     bindings = <&kp DOWN>;
+    // };
+};
+
 &trackball_listener {
     compatible = "zmk,input-listener";
+
+    input-processors = <&zip_mouse_gesture>;
 
     scroller {
         layers = <EXTRA_FINCTIONS MEDIA>;
@@ -750,7 +810,7 @@
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click  &trans  &mo 12
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click  &mouse_gesture  &mo 12
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                     &trans
             >;

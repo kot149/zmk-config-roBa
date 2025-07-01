@@ -31,6 +31,11 @@ manifest:
       remote: caksoylar
       revision: main
       path: modules/zmk-rgbled-widget
+    # https://github.com/kot149/zmk-mouse-gesture
+    - name: zmk-mouse-gesture
+      remote: kot149
+      revision: v1
+      path: modules/zmk-mouse-gesture
     # https://github.com/kot149/zmk-layout-shift
     - name: zmk-layout-shift
       remote: kot149
