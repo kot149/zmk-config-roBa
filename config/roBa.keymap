@@ -19,7 +19,7 @@
 #include <mouse-gesture.dtsi>
 
 #define DEFAULT 0
-#define LANG1_ETD 1
+#define LANG1_EAGER_TAP_DANCE 1
 #define NUMPAD_AND_ARROWS 2
 #define FUNCTIONS_AND_SYMBOLS 3
 #define MISC 4
@@ -61,6 +61,7 @@
         // 32 // ,
         // 33 // /
         34 // Ctrl
+        42
     >;
 };
 
@@ -129,22 +130,23 @@
 
     input-processors = <&zip_mouse_gesture>;
 
-    scroller {
-        layers = <EXTRA_FINCTIONS MEDIA>;
-        input-processors =
-            <&zip_xy_scaler 2 3>,
-            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-            <&zip_xy_to_scroll_mapper>;
-    };
-
     auto-mouse-layer {
         layers = <DEFAULT MOUSE>;
         input-processors = <&zip_temp_layer MOUSE 10000>;
         process-next;
     };
 
+    scroller {
+        layers = <FUNCTIONS_AND_SYMBOLS MISC EXTRA_FINCTIONS MEDIA>;
+        input-processors =
+            <&zip_xy_scaler 2 3>,
+            <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
+            <&zip_xy_to_scroll_mapper>;
+        process-next;
+    };
+
     disable-scroll-x {
-        layers = <MEDIA>;
+        layers = <MISC MEDIA>;
         input-processors = <&wheel_x_scaler 0 1>;
         process-next;
     };
@@ -718,16 +720,16 @@
 &mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 13 T                                                                         &lt 13 Y                 &kp U  &kp I                   &kp O                &lt 11 P
 &mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 12 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &mt LCTRL ESCAPE
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 12 ESCAPE
             >;
         };
 
-        LANG1_ETD {
+        LANG1_EAGER_TAP_DANCE {
             bindings = <
 &trans  &trans  &trans  &trans                            &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                            &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                            &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_ETD  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_EAGER_TAP_DANCE  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 
