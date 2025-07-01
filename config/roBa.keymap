@@ -59,6 +59,7 @@
         // 32 // ,
         // 33 // /
         34 // Ctrl
+        42
     >;
 };
 
@@ -658,7 +659,7 @@
 &mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 13 T                                                                         &lt 13 Y                 &kp U  &kp I                   &kp O                &lt 11 P
 &mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 12 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &mt LCTRL ESCAPE
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 12 ESCAPE
             >;
         };
 
