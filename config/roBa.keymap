@@ -133,102 +133,119 @@
             bindings = <&kp EQUAL>;
             key-positions = <0 1>;
             layers = <2>;
+            require-prior-idle-ms = <400>;
         };
 
         Escape {
             bindings = <&kp ESCAPE>;
             key-positions = <0 1>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         hat {
             bindings = <&kp CARET>;
             key-positions = <10 11>;
             layers = <2>;
+            require-prior-idle-ms = <400>;
         };
 
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <18 19>;
             layers = <10>;
+            require-prior-idle-ms = <400>;
         };
 
         caps_word {
             bindings = <&caps_word>;
             key-positions = <22 33>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         dot_slash_backslash {
             bindings = <&kp BACKSLASH>;
             key-positions = <33 32>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_A {
             bindings = <&kp LC(A)>;
             key-positions = <10 11>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_W {
             bindings = <&kp LC(W)>;
             key-positions = <1 2>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_R {
             bindings = <&kp LC(R)>;
             key-positions = <2 3>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_T {
             bindings = <&kp LC(T)>;
             key-positions = <3 4>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_Z {
             bindings = <&kp LC(Z)>;
             key-positions = <23 22>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_X {
             bindings = <&kp LC(X)>;
             key-positions = <23 24>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_C {
             bindings = <&kp LC(C)>;
             key-positions = <24 25>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_V {
             bindings = <&kp LC(V)>;
             key-positions = <25 26>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_N {
             bindings = <&kp LC(N)>;
             key-positions = <29 30>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_S {
             bindings = <&kp LC(S)>;
             key-positions = <11 12>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
 
         Ctrl_F {
             bindings = <&kp LC(F)>;
             key-positions = <13 14>;
             layers = <0>;
+            require-prior-idle-ms = <400>;
         };
     };
 
