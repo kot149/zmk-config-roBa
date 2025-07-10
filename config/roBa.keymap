@@ -133,27 +133,24 @@
             bindings = <&kp EQUAL>;
             key-positions = <0 1>;
             layers = <2>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Escape {
-            bindings = <&kp ESCAPE>;
-            key-positions = <0 1>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
         };
 
         hat {
             bindings = <&kp CARET>;
             key-positions = <10 11>;
             layers = <2>;
-            require-prior-idle-ms = <400>;
         };
 
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <18 19>;
             layers = <10>;
+        };
+
+        Escape {
+            bindings = <&kp ESCAPE>;
+            key-positions = <0 1>;
+            layers = <0>;
             require-prior-idle-ms = <400>;
         };
 
