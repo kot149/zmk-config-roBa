@@ -147,6 +147,7 @@
             <&zip_xy_scaler 2 3>,
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>;
+
         process-next;
     };
 
@@ -209,6 +210,12 @@
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <18 19>;
+            layers = <10>;
+        };
+
+        shift_middle_click {
+            bindings = <&mkp_with_mod LEFT_SHIFT MCLK>;
+            key-positions = <19 20>;
             layers = <10>;
         };
 
@@ -565,6 +572,21 @@
             label = "SCREENSOT_SAVE";
         };
 
+        mkp_with_mod: mkp_with_mod {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            bindings =
+                <&macro_press>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_param_2to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_2to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+
+            label = "MKP_WITH_MOD";
+        };
+
         /omit-if-no-ref/
 
         screenshot_copy: screenshot_copy {
@@ -745,19 +767,19 @@
 
         LANG1_EAGER_TAP_DANCE {
             bindings = <
-&trans  &trans  &trans  &trans                            &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans                            &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans                            &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans                                        &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans                                        &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans                                        &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_EAGER_TAP_DANCE  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 
         NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS           &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &to_kp 5 TAB
-&mt LEFT_CONTROL ASTERISK       &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &to_kp 6 TAB
-&mt LEFT_SHIFT N0  &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
-&mt LCTRL COMMA    &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
+&kp PLUS                   &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &to_kp 5 TAB
+&mt LEFT_CONTROL ASTERISK  &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &to_kp 6 TAB
+&mt LEFT_SHIFT N0          &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
+&mt LCTRL COMMA            &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PLUS) LC(MINUS)>;
