@@ -72,15 +72,15 @@
 &zip_mouse_gesture {
     stroke-size = <150>;
     movement-threshold = <10>;
-    // enable-8way;
+    // enable-eager-mode;
 
     history_back {
-        pattern = <GESTURE_UP GESTURE_RIGHT>;
+        pattern = <GESTURE_RIGHT>;
         bindings = <&kp LA(LEFT)>;
     };
 
     history_forward {
-        pattern = <GESTURE_UP GESTURE_LEFT>;
+        pattern = <GESTURE_LEFT>;
         bindings = <&kp LA(RIGHT)>;
     };
 
