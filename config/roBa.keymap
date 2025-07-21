@@ -144,7 +144,7 @@
     scroller {
         layers = <FUNCTIONS_AND_SYMBOLS MISC EXTRA_FINCTIONS MEDIA>;
         input-processors =
-            <&zip_xy_scaler 2 3>,
+            <&zip_xy_scaler 3 1>,
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>;
 
