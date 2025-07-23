@@ -269,10 +269,10 @@ keymapファイルの名前解決手順は、例えば`roBa_R`のビルドの場
 
 ## マウスカーソルのポーリングレート
 
-### Bluetoothの通信間隔
-`roBa_R.conf`の以下をパラメーターでPCとの通信間隔？を設定できる。これにより、マウスカーソルのポーリングレートが向上する。
+<!-- <!-- ### Bluetoothの通信間隔 -->
+`roBa_R.conf`の以下をパラメーターでPCとの通信間隔？を設定できる。
 
-デフォルトはMIN`24`、MAX`40`。値は`6`～`3199`の値で設定する。単位は1.25ms。
+デフォルトはMIN`6`、MAX`12`。値は`6`～`3199`の値で設定する。単位は1.25ms。
 
 ```dts
 CONFIG_BT_PERIPHERAL_PREF_MIN_INT=12
@@ -285,12 +285,17 @@ CONFIG_BT_PERIPHERAL_PREF_MAX_INT=12
 
 という計算。
 
+12よりポーリングレートを高くしたい場合は、MAXの値を小さくする。
+12辺りで十分な場合、必要以上に短い通信間隔にするとラグの原因になるので、MINも12に揃えておくとよいかもしれない。
+
 公式ドキュメント:
 - [CONFIG_BT_PERIPHERAL_PREF_MIN_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MIN_INT.html)
-- [CONFIG_BT_PERIPHERAL_PREF_MAX_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MAX_INT.html)
+- [CONFIG_BT_PERIPHERAL_PREF_MAX_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MAX_INT.html) -->
 
 ### PMW3610のポーリングレート
-また、PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`で以下をいずれかを設定する。
+
+PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`で以下をいずれかを設定する。
+
 ```dts
 CONFIG_PMW3610_POLLING_RATE_125=y      # 125Hz
 CONFIG_PMW3610_POLLING_RATE_125_SW=y   # ハードは250Hz動作、ソフトで125Hzで制御
