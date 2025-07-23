@@ -237,19 +237,11 @@
             bindings = <&kp BACKSLASH>;
             key-positions = <33 32>;
             layers = <0>;
-            require-prior-idle-ms = <400>;
         };
 
         Ctrl_A {
             bindings = <&kp LC(A)>;
             key-positions = <10 11>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_W {
-            bindings = <&kp LC(W)>;
-            key-positions = <1 2>;
             layers = <0>;
             require-prior-idle-ms = <400>;
         };
@@ -299,13 +291,6 @@
         Ctrl_N {
             bindings = <&kp LC(N)>;
             key-positions = <29 30>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_S {
-            bindings = <&kp LC(S)>;
-            key-positions = <11 12>;
             layers = <0>;
             require-prior-idle-ms = <400>;
         };
