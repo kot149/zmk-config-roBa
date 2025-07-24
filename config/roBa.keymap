@@ -68,10 +68,8 @@
 
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
-&trackball { cpi = <800>; };
-
 &zip_mouse_gesture {
-    stroke-size = <150>;
+    stroke-size = <25>;
     movement-threshold = <10>;
     // enable-eager-mode;
 
@@ -134,7 +132,10 @@
 &trackball_listener {
     compatible = "zmk,input-listener";
 
-    input-processors = <&zip_mouse_gesture &zip_report_rate_limit 15>;
+    input-processors = <
+        &zip_mouse_gesture
+        &zip_report_rate_limit 15
+    >;
 
     auto-mouse-layer {
         layers = <DEFAULT MOUSE>;
@@ -145,6 +146,7 @@
     scroller {
         layers = <FUNCTIONS_AND_SYMBOLS MISC EXTRA_FINCTIONS MEDIA>;
         input-processors =
+            <&zip_report_rate_limit 15>,
             <&zip_xy_scaler 3 1>,
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_xy_to_scroll_mapper>;
