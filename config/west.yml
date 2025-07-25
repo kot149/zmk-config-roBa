@@ -2,6 +2,8 @@ manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: inorichi
+      url-base: https://github.com/inorichi
     - name: caksoylar
       url-base: https://github.com/caksoylar
     - name: badjeff
@@ -16,25 +18,48 @@ manifest:
       remote: zmkfirmware
       revision: main
       import: app/west.yml
-    # https://github.com/badjeff/zmk-pmw3610-driver
+
+    # https://github.com/inorichi/zmk-pmw3610-driver
     - name: zmk-pmw3610-driver
+      remote: inorichi
+      revision: main
+      path: modules/zmk-pmw3610-driver
+
+    # # https://github.com/badjeff/zmk-pmw3610-driver
+    # - name: zmk-pmw3610-driver
+    #   remote: badjeff
+    #   revision: main
+    #   path: modules/zmk-pmw3610-driver-badjeff
+
+    # https://github.com/badjeff/zmk-input-processor-report-rate-limit
+    - name: zmk-input-processor-report-rate-limit
       remote: badjeff
       revision: main
-      path: modules/zmk-pmw3610-driver-badjeff
+      path: modules/zmk-input-processor-report-rate-limit
+
     # https://github.com/ssbb/zmk-listeners
     - name: zmk-listeners
       remote: ssbb
       revision: v1
       path: modules/zmk-listeners
+
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
       remote: caksoylar
       revision: main
       path: modules/zmk-rgbled-widget
+
+    # https://github.com/kot149/zmk-mouse-gesture
+    - name: zmk-mouse-gesture
+      remote: kot149
+      revision: v1
+      path: modules/zmk-mouse-gesture
+
     # https://github.com/kot149/zmk-layout-shift
     - name: zmk-layout-shift
       remote: kot149
       revision: v1
       path: modules/zmk-layout-shift
+
   self:
     path: config

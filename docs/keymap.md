@@ -199,7 +199,9 @@ https://github.com/zettaface/zmk-input-processor-keybind
 ここでは、とりあえずkumamuk-git/zmk-pmw3610-driverのものを使う方法を紹介する。
 
 ### 単純なキー割り当て
+
 単純に矢印キーなどを割り当てるだけなら、`roBa_R.overlay`に記述するだけで済む。
+
 ```dts
 #include <dt-bindings/zmk/keys.h>
 
@@ -227,9 +229,26 @@ https://github.com/zettaface/zmk-input-processor-keybind
 ```
 
 ### マクロの割り当て
-マクロは`roBa.keymap`に記述されているので、そのままでは`roBa_R.overlay`から参照できない。
 
-[このPR](https://github.com/kumamuk-git/zmk-config-roBa/pull/36) がマージされれば、`roBa.keymap`で`&trackball`の設定ができるようになるので、このPRの変更を取り込む。
+[PR #36](https://github.com/kumamuk-git/zmk-config-roBa/pull/36) の変更で、`roBa.keymap`から`&trackball`が参照できるようになっている。(それ以前のバージョンだと、左側のファームウェアのビルドで参照エラーが発生してしまう。)
+この変更を取り込んだ後、roBa.keymapに以下のように記述すればよい。
+
+```
+&trackball {
+    arrows {
+        layers = <3>;
+        bindings =
+            <&kp RIGHT_ARROW>,
+            <&kp LEFT_ARROW>,
+            <&kp UP_ARROW>,
+            <&kp DOWN_ARROW>;
+
+        tick = <10>;
+        // wait-ms = <5>;
+        // tap-ms = <5>;
+    };
+};
+```
 
 <details>
 <summary style="font-weight: bold;">キーマップファイルのファイル名に関する仕様</summary>
@@ -250,10 +269,10 @@ keymapファイルの名前解決手順は、例えば`roBa_R`のビルドの場
 
 ## マウスカーソルのポーリングレート
 
-### Bluetoothの通信間隔
-`roBa_R.conf`の以下をパラメーターでPCとの通信間隔？を設定できる。これにより、マウスカーソルのポーリングレートが向上する。
+<!-- <!-- ### Bluetoothの通信間隔 -->
+`roBa_R.conf`の以下をパラメーターでPCとの通信間隔？を設定できる。
 
-デフォルトはMIN`24`、MAX`40`。値は`6`～`3199`の値で設定する。単位は1.25ms。
+デフォルトはMIN`6`、MAX`12`。値は`6`～`3199`の値で設定する。単位は1.25ms。
 
 ```dts
 CONFIG_BT_PERIPHERAL_PREF_MIN_INT=12
@@ -266,12 +285,17 @@ CONFIG_BT_PERIPHERAL_PREF_MAX_INT=12
 
 という計算。
 
+12よりポーリングレートを高くしたい場合は、MAXの値を小さくする。
+12辺りで十分な場合、必要以上に短い通信間隔にするとラグの原因になるので、MINも12に揃えておくとよいかもしれない。
+
 公式ドキュメント:
 - [CONFIG_BT_PERIPHERAL_PREF_MIN_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MIN_INT.html)
-- [CONFIG_BT_PERIPHERAL_PREF_MAX_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MAX_INT.html)
+- [CONFIG_BT_PERIPHERAL_PREF_MAX_INT](https://docs.nordicsemi.com/bundle/ncs-1.8.0/page/kconfig/CONFIG_BT_PERIPHERAL_PREF_MAX_INT.html) -->
 
 ### PMW3610のポーリングレート
-また、PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`で以下をいずれかを設定する。
+
+PMW3610(トラックボールセンサー)のポーリングレートを変更できる。`roBa_R.conf`で以下をいずれかを設定する。
+
 ```dts
 CONFIG_PMW3610_POLLING_RATE_125=y      # 125Hz
 CONFIG_PMW3610_POLLING_RATE_125_SW=y   # ハードは250Hz動作、ソフトで125Hzで制御
