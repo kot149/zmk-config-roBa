@@ -69,9 +69,10 @@
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
 &zip_mouse_gesture {
-    stroke-size = <25>;
+    stroke-size = <150>;
     movement-threshold = <10>;
     // enable-eager-mode;
+    idle-timeout-ms = <150>;
 
     history_back {
         pattern = <GESTURE_RIGHT>;
