@@ -26,13 +26,10 @@
 #define MISC 4
 #define ALT_TAB 5
 #define CTRL_TAB 6
-#define CTRL_ALT_TAB_TB 7
-#define ALT_TAB_TB 8
-#define CTRL_TAB_TB 9
-#define MOUSE 10
-#define MEDIA 11
-#define EXTRA_FINCTIONS 12
-#define CONFIGURATION 13
+#define MOUSE 7
+#define MEDIA 8
+#define EXTRA_FINCTIONS 9
+#define CONFIGURATION 10
 
 &mt {
     tapping-term-ms = <200>;
@@ -71,7 +68,9 @@
 &zip_mouse_gesture {
     stroke-size = <150>;
     movement-threshold = <10>;
+
     // enable-eager-mode;
+
     idle-timeout-ms = <150>;
 
     history_back {
@@ -113,17 +112,14 @@
     //     gesture = <GESTURE_LEFT>;
     //     bindings = <&kp LEFT>;
     // };
-
     // right {
     //     gesture = <GESTURE_RIGHT>;
     //     bindings = <&kp RIGHT>;
     // };
-
     // up {
     //     gesture = <GESTURE_UP>;
     //     bindings = <&kp UP>;
     // };
-
     // down {
     //     gesture = <GESTURE_DOWN>;
     //     bindings = <&kp DOWN>;
@@ -132,7 +128,6 @@
 
 &trackball_listener {
     compatible = "zmk,input-listener";
-
     input-processors = <
         &zip_mouse_gesture
         &zip_report_rate_limit 15
@@ -177,12 +172,12 @@
         compatible = "zmk,layer-listeners";
 
         release_alt {
-            layers = <ALT_TAB ALT_TAB_TB>;
+            layers = <ALT_TAB>;
             bindings = <&kt_on LEFT_ALT &kt_off LEFT_ALT>;
         };
 
         release_ctrl {
-            layers = <CTRL_TAB CTRL_TAB_TB>;
+            layers = <CTRL_TAB>;
             bindings = <&kt_on LCTRL &kt_off LCTRL>;
         };
 
@@ -214,13 +209,13 @@
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <18 19>;
-            layers = <10>;
+            layers = <7>;
         };
 
         shift_middle_click {
             bindings = <&mkp_with_mod LEFT_SHIFT MCLK>;
             key-positions = <19 20>;
-            layers = <10>;
+            layers = <7>;
         };
 
         Escape {
@@ -315,7 +310,7 @@
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <0>;
-            bindings = <&tog_off 10>;
+            bindings = <&tog_off 7>;
         };
 
         /omit-if-no-ref/
@@ -357,7 +352,7 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
                 <&macro_tap>,
-                <&sl 10>;
+                <&sl 7>;
         };
 
         /omit-if-no-ref/
@@ -393,7 +388,7 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
                 <&macro_tap>,
-                <&tog_off ALT_TAB &tog_off CTRL_TAB>;
+                <&tog_off 5 &tog_off 6>;
         };
 
         /omit-if-no-ref/
@@ -566,12 +561,10 @@
             #binding-cells = <2>;
             bindings =
                 <&macro_press>,
-                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
-                <&macro_param_2to1 &mkp MACRO_PLACEHOLDER>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER &macro_param_2to1 &mkp MACRO_PLACEHOLDER>,
                 <&macro_pause_for_release>,
                 <&macro_release>,
-                <&macro_param_2to1 &mkp MACRO_PLACEHOLDER>,
-                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>;
+                <&macro_param_2to1 &mkp MACRO_PLACEHOLDER &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
 
             label = "MKP_WITH_MOD";
         };
@@ -747,19 +740,19 @@
 
         DEFAULT {
             bindings = <
-&mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 13 T                                                                         &lt 13 Y                 &kp U  &kp I                   &kp O                &lt 11 P
-&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 12 MINUS
+&mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 10 T                                                                         &lt 10 Y                 &kp U  &kp I                   &kp O                &lt 8 P
+&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 9 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 12 ESCAPE
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
             >;
         };
 
         LANG1_EAGER_TAP_DANCE {
             bindings = <
-&trans  &trans  &trans  &trans                                        &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans                                        &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans                                        &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &eager_tap_dance LANG1 LANG1_EAGER_TAP_DANCE  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &trans                    &trans                      &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &eager_tap_dance LANG1 1  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 
@@ -796,55 +789,28 @@
 
         ALT_TAB {
             bindings = <
-&kp TAB      &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &kp TAB
-&kp LS(TAB)  &trans  &kp UP  &trans  &trans  &trans      &trans  &trans  &trans  &kp UP  &trans  &kp LS(TAB)
-&trans       &kp LEFT      &kp DOWN      &kp RIGHT  &trans  &trans      &trans  &trans  &kp LEFT      &kp DOWN      &kp RIGHT  &trans
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp TAB      &trans    &trans    &trans     &trans                      &trans  &trans    &trans    &trans     &kp TAB
+&kp LS(TAB)  &trans    &kp UP    &trans     &trans  &trans      &trans  &trans  &trans    &kp UP    &trans     &kp LS(TAB)
+&trans       &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans      &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &trans
+&trans       &trans    &trans    &trans     &trans  &trans      &trans  &trans                                 &trans
             >;
         };
 
         CTRL_TAB {
             bindings = <
-&kp LS(TAB)  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &kp LS(TAB)
-&kp TAB      &trans  &kp UP  &trans  &trans  &trans      &trans  &trans  &trans  &kp UP  &trans  &kp TAB
-&kp LS(TAB)  &kp LEFT      &kp DOWN      &kp RIGHT  &trans  &trans      &trans  &trans  &kp LEFT      &kp DOWN      &kp RIGHT  &kp LS(TAB)
-&trans       &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        CTRL_ALT_TAB_TB {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        ALT_TAB_TB {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
-            >;
-        };
-
-        CTRL_TAB_TB {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                          &trans
+&kp LS(TAB)  &trans    &trans    &trans     &trans                      &trans  &trans    &trans    &trans     &kp LS(TAB)
+&kp TAB      &trans    &kp UP    &trans     &trans  &trans      &trans  &trans  &trans    &kp UP    &trans     &kp TAB
+&kp LS(TAB)  &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans      &trans  &trans  &kp LEFT  &kp DOWN  &kp RIGHT  &kp LS(TAB)
+&trans       &trans    &trans    &trans     &trans  &trans      &trans  &trans                                 &trans
             >;
         };
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click  &mouse_gesture  &mo 12
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                     &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans          &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click  &mouse_gesture  &mo 9
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans          &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
             >;
         };
 
@@ -859,10 +825,10 @@
 
         EXTRA_FINCTIONS {
             bindings = <
-&trans  &trans  &trans  &trans                          &trans                      &kp F13  &kp F14  &kp F15  &kp F16  &trans
-&trans  &trans  &trans  &trans                          &trans  &trans      &trans  &kp F17  &kp F18  &kp F19  &kp F20  &trans
-&trans  &trans  &trans  &trans                          &trans  &trans      &trans  &kp F21  &kp F22  &kp F23  &kp F24  &trans
-&trans  &trans  &trans  &eager_tap_dance LANGUAGE_1 12  &trans  &trans      &trans  &trans                              &trans
+&trans  &trans  &trans  &trans                         &trans                      &kp F13  &kp F14  &kp F15  &kp F16  &trans
+&trans  &trans  &trans  &trans                         &trans  &trans      &trans  &kp F17  &kp F18  &kp F19  &kp F20  &trans
+&trans  &trans  &trans  &trans                         &trans  &trans      &trans  &kp F21  &kp F22  &kp F23  &kp F24  &trans
+&trans  &trans  &trans  &eager_tap_dance LANGUAGE_1 9  &trans  &trans      &trans  &trans                              &trans
             >;
         };
 
