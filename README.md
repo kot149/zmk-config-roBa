@@ -42,6 +42,7 @@
 |---------|-------|
 | GitHub | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/zmkfirmware/zmk) |
 | ドキュメント | <img src="https://raw.githubusercontent.com/zmkfirmware/zmk/refs/heads/main/docs/static/img/zmk_logo.svg" width="16" height="16"> [zmk.dev/docs](https://zmk.dev/docs) |
+| ZMK physical layouts converter | [ZMK physical layouts converter](https://zmk-physical-layout-converter.streamlit.app) |
 | Keymap Editor | [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) |
 | zmk-nix | <img src="https://github.com/favicon.ico" width="16" height="16"> [zmk-nix](https://github.com/lilyinstarlight/zmk-nix) |
 | zmk-rgbled-widget | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/caksoylar/zmk-rgbled-widget) |
@@ -54,3 +55,7 @@
 | GitHub | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/qmk/qmk_firmware) |
 | keycodes | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/qmk/qmk_firmware/blob/master/quantum/keycodes.h) |
 | ドキュメント | <img src="https://docs.qmk.fm/favicon.ico" width="16" height="16"> [docs.qmk.fm](https://docs.qmk.fm) |
+
+## キーマップ
+
+![キーマップ画像](keymap-drawer/roBa.svg)
