@@ -245,58 +245,9 @@
             require-prior-idle-ms = <400>;
         };
 
-        Ctrl_R {
-            bindings = <&kp LC(R)>;
-            key-positions = <2 3>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_T {
-            bindings = <&kp LC(T)>;
-            key-positions = <3 4>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
         Ctrl_Z {
             bindings = <&kp LC(Z)>;
             key-positions = <23 22>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_X {
-            bindings = <&kp LC(X)>;
-            key-positions = <23 24>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_C {
-            bindings = <&kp LC(C)>;
-            key-positions = <24 25>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_V {
-            bindings = <&kp LC(V)>;
-            key-positions = <25 26>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_N {
-            bindings = <&kp LC(N)>;
-            key-positions = <29 30>;
-            layers = <0>;
-            require-prior-idle-ms = <400>;
-        };
-
-        Ctrl_F {
-            bindings = <&kp LC(F)>;
-            key-positions = <13 14>;
             layers = <0>;
             require-prior-idle-ms = <400>;
         };
