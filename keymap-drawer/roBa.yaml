@@ -43,7 +43,7 @@ layers:
   - {t: TAB, h: '&mo_exit_alttab 4'}
   - {t: BACKSPACE, h: '&mo_exit_alttab 4'}
   - {t: ENTER, h: '&mo_exit_alttab 2'}
-  - {t: ESCAPE, h: LCTRL}
+  - {t: ESCAPE, h: '12'}
   '1':
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -99,7 +99,7 @@ layers:
   - {t: ▽, type: trans}
   - Ctl+END
   - '&to_kp 5 TAB'
-  - '*'
+  - {t: '*', h: LEFT CONTROL}
   - '4'
   - '5'
   - '6'
@@ -233,27 +233,27 @@ layers:
   - TAB
   - Sft+TAB
   - {t: ▽, type: trans}
+  - UP
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - UP
   - {t: ▽, type: trans}
   - Sft+TAB
   - {t: ▽, type: trans}
+  - LEFT
+  - DOWN
+  - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - LEFT
+  - DOWN
+  - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -277,27 +277,27 @@ layers:
   - Sft+TAB
   - TAB
   - {t: ▽, type: trans}
+  - UP
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - UP
   - {t: ▽, type: trans}
   - TAB
   - Sft+TAB
+  - LEFT
+  - DOWN
+  - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - LEFT
+  - DOWN
+  - RIGHT
   - Sft+TAB
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -461,7 +461,7 @@ layers:
   - {t: ▽, type: trans}
   - '&mkp MB1'
   - '&td_right_click'
-  - {t: ▽, type: trans}
+  - '&mouse_gesture'
   - '12'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -620,15 +620,18 @@ combos:
 - p: [0, 1]
   k: '='
   l: ['2']
-- p: [0, 1]
-  k: ESCAPE
-  l: ['0']
 - p: [10, 11]
   k: ^
   l: ['2']
 - p: [18, 19]
   k: '&mkp MCLK'
   l: ['10']
+- p: [19, 20]
+  k: '&mkp_with_mod LEFT_SHIFT MCLK'
+  l: ['10']
+- p: [0, 1]
+  k: ESCAPE
+  l: ['0']
 - p: [22, 33]
   k: '&caps_word'
   l: ['0']
@@ -637,9 +640,6 @@ combos:
   l: ['0']
 - p: [10, 11]
   k: Ctl+A
-  l: ['0']
-- p: [1, 2]
-  k: Ctl+W
   l: ['0']
 - p: [2, 3]
   k: Ctl+R
@@ -661,9 +661,6 @@ combos:
   l: ['0']
 - p: [29, 30]
   k: Ctl+N
-  l: ['0']
-- p: [11, 12]
-  k: Ctl+S
   l: ['0']
 - p: [13, 14]
   k: Ctl+F
