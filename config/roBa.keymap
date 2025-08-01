@@ -69,8 +69,6 @@
     stroke-size = <150>;
     enable-eager-mode;
 
-    idle-timeout-ms = <150>;
-
     history_back {
         pattern = <GESTURE_RIGHT>;
         bindings = <&kp LA(LEFT)>;
