@@ -29,10 +29,10 @@ manifest:
         file: app/west.yml
 
     # https://github.com/inorichi/zmk-pmw3610-driver
-    - name: zmk-pmw3610-driver
-      remote: inorichi
-      revision: main
-      path: modules/zmk-pmw3610-driver
+    # - name: zmk-pmw3610-driver
+    #   remote: inorichi
+    #   revision: main
+    #   path: modules/zmk-pmw3610-driver
 
     # # https://github.com/badjeff/zmk-pmw3610-driver
     # - name: zmk-pmw3610-driver
