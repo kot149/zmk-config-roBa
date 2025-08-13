@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/petejohanson
     - name: caksoylar
       url-base: https://github.com/caksoylar
+    - name: badjeff
+      url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
     - name: kot149
