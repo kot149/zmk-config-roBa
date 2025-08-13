@@ -457,8 +457,8 @@ layers:
   - ''
   - '&tog_ls_on'
   - {t: ▽, type: trans}
-  - '&ind_con'
-  - '&ind_bat'
+  - ''
+  - ''
   - ''
   - ''
   - '&windows_sleep'
