@@ -459,6 +459,15 @@ layers:
   - {t: ▽, type: trans}
   - '&ind_con'
   - '&ind_bat'
+<<<<<<< HEAD
+=======
+  - ''
+  - ''
+  - '&windows_sleep'
+  - ''
+  - ''
+  - ''
+>>>>>>> 01d38e4 ([Draw] Revert "Disable rgbled-widget")
   - ''
   - ''
   - '&tog_ls_off'
