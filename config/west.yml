@@ -53,10 +53,10 @@ manifest:
       path: modules/zmk-listeners
 
     # https://github.com/caksoylar/zmk-rgbled-widget
-    - name: zmk-rgbled-widget
-      remote: caksoylar
-      revision: main
-      path: modules/zmk-rgbled-widget
+    # - name: zmk-rgbled-widget
+    #   remote: caksoylar
+    #   revision: main
+    #   path: modules/zmk-rgbled-widget
 
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
