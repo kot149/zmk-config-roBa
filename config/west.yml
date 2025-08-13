@@ -4,12 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: petejohanson
       url-base: https://github.com/petejohanson
-    - name: inorichi
-      url-base: https://github.com/inorichi
     - name: caksoylar
       url-base: https://github.com/caksoylar
-    - name: badjeff
-      url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
     - name: kot149
@@ -28,17 +24,17 @@ manifest:
       import:
         file: app/west.yml
 
-    # # https://github.com/badjeff/zmk-pmw3610-driver
+    # https://github.com/inorichi/zmk-pmw3610-driver
     # - name: zmk-pmw3610-driver
     #   remote: inorichi
     #   revision: main
     #   path: modules/zmk-pmw3610-driver
 
-    # https://github.com/badjeff/zmk-pmw3610-driver
-    - name: zmk-pmw3610-driver
-      remote: badjeff
-      revision: main
-      path: modules/zmk-pmw3610-driver-badjeff
+    # # https://github.com/badjeff/zmk-pmw3610-driver
+    # - name: zmk-pmw3610-driver
+    #   remote: badjeff
+    #   revision: main
+    #   path: modules/zmk-pmw3610-driver-badjeff
 
     # https://github.com/badjeff/zmk-input-processor-report-rate-limit
     - name: zmk-input-processor-report-rate-limit
