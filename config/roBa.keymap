@@ -219,14 +219,14 @@
             bindings = <&kp ESCAPE>;
             key-positions = <0 1>;
             layers = <0>;
-            require-prior-idle-ms = <400>;
+            require-prior-idle-ms = <300>;
         };
 
         caps_word {
             bindings = <&caps_word>;
             key-positions = <22 33>;
             layers = <0>;
-            require-prior-idle-ms = <400>;
+            require-prior-idle-ms = <300>;
         };
 
         dot_slash_backslash {
@@ -239,14 +239,14 @@
             bindings = <&kp LC(A)>;
             key-positions = <10 11>;
             layers = <0>;
-            require-prior-idle-ms = <400>;
+            require-prior-idle-ms = <300>;
         };
 
         Ctrl_Z {
             bindings = <&kp LC(Z)>;
             key-positions = <23 22>;
             layers = <0>;
-            require-prior-idle-ms = <400>;
+            require-prior-idle-ms = <300>;
         };
     };
 
@@ -688,7 +688,7 @@
 
         DEFAULT {
             bindings = <
-&mt LWIN Q                        &kp W             &kp E         &kp R                          &lt 10 T                                                                         &lt 10 Y                 &kp U  &kp I                   &kp O                &lt 8 P
+&mt LWIN Q                        &mt LALT W             &kp E         &kp R                          &lt 10 T                                                                         &lt 10 Y                 &kp U  &kp I                   &kp O                &lt 8 P
 &mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 9 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
