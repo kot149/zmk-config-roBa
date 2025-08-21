@@ -2,7 +2,7 @@ layout: {zmk_keyboard: roBa}
 layers:
   '0':
   - {t: Q, h: LWIN}
-  - W
+  - {t: W, h: LALT}
   - E
   - R
   - {t: T, h: '10'}
