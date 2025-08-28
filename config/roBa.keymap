@@ -693,6 +693,7 @@
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
             >;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
 
         LANG1_EAGER_TAP_DANCE {
