@@ -19,6 +19,8 @@
 
 #include <mouse-gesture.dtsi>
 
+#include <scroll-snap.dtsi>
+
 #define DEFAULT 0
 #define LANG1_EAGER_TAP_DANCE 1
 #define NUMPAD_AND_ARROWS 2
@@ -127,6 +129,7 @@
     input-processors = <
         &zip_mouse_gesture
         &zip_report_rate_limit 15
+        // &zip_cursor_snap
     >;
 
     auto-mouse-layer {
@@ -142,6 +145,7 @@
             &zip_xy_scaler 3 1
             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
             &zip_xy_to_scroll_mapper
+            &zip_scroll_snap
         >;
 
         process-next;
