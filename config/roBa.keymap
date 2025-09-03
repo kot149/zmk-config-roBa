@@ -141,11 +141,11 @@
     scroller {
         layers = <FUNCTIONS_AND_SYMBOLS MISC EXTRA_FINCTIONS MEDIA>;
         input-processors = <
-            &zip_report_rate_limit 15
             &zip_xy_scaler 3 1
             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
             &zip_xy_to_scroll_mapper
             &zip_scroll_snap
+            &zip_report_rate_limit 15
         >;
 
         process-next;
