@@ -61,5 +61,11 @@ manifest:
       revision: v1
       path: modules/zmk-layout-shift
 
+    # https://github.com/kot149/zmk-scroll-snap
+    - name: zmk-scroll-snap
+      remote: kot149
+      revision: v1
+      path: modules/zmk-scroll-snap
+
   self:
     path: config
