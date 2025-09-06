@@ -5,8 +5,8 @@ layers:
   - {t: W, h: LALT}
   - E
   - R
-  - {t: T, h: '10'}
-  - {t: Y, h: '10'}
+  - T
+  - Y
   - U
   - I
   - O
@@ -28,8 +28,8 @@ layers:
   - C
   - V
   - B
-  - {t: ESCAPE, h: LCTRL}
-  - '&zoom_out'
+  - '10'
+  - {t: '&zoom_out', h: '&mo_exit_AML 10'}
   - N
   - M
   - {t: ',', s: '!'}
@@ -441,40 +441,40 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '10':
-  - '&reset_bootloader'
+  - {t: '&td_reset', h: '&bootloader'}
   - ''
   - ''
   - ''
-  - {t: '&tog_ls', type: held}
-  - ''
+  - '&tog_ls'
+  - '&ind_con'
+  - '&ind_bat'
   - ''
   - OUT TOG
-  - ''
-  - '&reset_bootloader'
+  - {t: '&td_reset', h: '&bootloader'}
   - ''
   - ''
   - ''
   - ''
   - '&tog_ls_on'
   - {t: ▽, type: trans}
-  - '&ind_con'
-  - '&ind_bat'
-  - ''
-  - ''
-  - '&windows_sleep'
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - '&tog_ls_off'
-  - ''
+  - '&td_bt_clear'
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
   - {t: BT, h: '2'}
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
-  - '&td_bt_clear'
+  - ''
+  - ''
+  - ''
+  - ''
+  - '&tog_ls_off'
+  - {type: held}
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
   - ''
   - ''
   - ''
