@@ -648,6 +648,18 @@
             bindings = <&kp C_VOLUME_DOWN>, <&kp C_VOLUME_UP>;
         };
 
+        // /omit-if-no-ref/
+
+        lt_zoom_out: lt_zoom_out {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&mo_exit_AML>, <&zoom_out>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            flavor = "balanced";
+        };
+
         /omit-if-no-ref/
 
         sl_250: sl_250 {
@@ -686,6 +698,8 @@
             tapping-term-ms = <250>;
         };
 
+        /omit-if-no-ref/
+
         td_reset: td_reset {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -693,6 +707,8 @@
 
             tapping-term-ms = <300>;
         };
+
+        /omit-if-no-ref/
 
         reset_bootloader: reset_bootloader {
             compatible = "zmk,behavior-hold-tap";
@@ -709,9 +725,9 @@
 
         DEFAULT {
             bindings = <
-&mt LWIN Q                        &mt LALT W             &kp E         &kp R                          &lt 10 T                                                                         &lt 10 Y                 &kp U  &kp I                   &kp O                &lt 8 P
+&mt LWIN Q                        &mt LALT W        &kp E         &kp R                          &kp T                                                                            &kp Y                    &kp U  &kp I                   &kp O                &lt 8 P
 &mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &kp L                &lt 9 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mt LCTRL ESCAPE           &zoom_out                    &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mo 10                     &lt_zoom_out 10 0            &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
@@ -804,10 +820,10 @@
 
         CONFIGURATION {
             bindings = <
-&reset_bootloader  &none  &none  &none  &tog_ls                                &none         &none         &out OUT_TOG  &none           &reset_bootloader
-&none              &none       &none  &none  &tog_ls_on   &trans      &ind_con      &ind_bat      &none         &none         &windows_sleep  &none
-&none              &none       &none  &none  &tog_ls_off  &none       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &td_bt_clear
-&none              &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
+&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
+&none                 &none       &none  &none  &tog_ls_on   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
+&none                 &none       &none  &none  &tog_ls_off  &none       &none         &none         &none         &none         &none           &none
+&none                 &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
             >;
         };
     };
