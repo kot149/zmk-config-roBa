@@ -685,6 +685,23 @@
 
             tapping-term-ms = <250>;
         };
+
+        td_reset: td_reset {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&none>, <&sys_reset>;
+
+            tapping-term-ms = <300>;
+        };
+
+        reset_bootloader: reset_bootloader {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&bootloader>, <&td_reset>;
+
+            tapping-term-ms = <500>;
+            flavor = "balanced";
+        };
     };
 
     keymap {
@@ -787,10 +804,10 @@
 
         CONFIGURATION {
             bindings = <
-&bootloader  &sys_reset  &none  &none  &tog_ls                                &none         &none         &out OUT_TOG  &sys_reset      &bootloader
-&none        &none       &none  &none  &tog_ls_on   &trans      &ind_con      &ind_bat      &none         &none         &windows_sleep  &none
-&none        &none       &none  &none  &tog_ls_off  &none       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &td_bt_clear
-&none        &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
+&reset_bootloader  &none  &none  &none  &tog_ls                                &none         &none         &out OUT_TOG  &none           &reset_bootloader
+&none              &none       &none  &none  &tog_ls_on   &trans      &ind_con      &ind_bat      &none         &none         &windows_sleep  &none
+&none              &none       &none  &none  &tog_ls_off  &none       &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &td_bt_clear
+&none              &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
             >;
         };
     };
