@@ -441,16 +441,16 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '10':
-  - '&bootloader'
-  - '&sys_reset'
+  - '&reset_bootloader'
+  - ''
   - ''
   - ''
   - {t: '&tog_ls', type: held}
   - ''
   - ''
   - OUT TOG
-  - '&sys_reset'
-  - '&bootloader'
+  - ''
+  - '&reset_bootloader'
   - ''
   - ''
   - ''
