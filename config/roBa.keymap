@@ -67,6 +67,13 @@
 
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
+&trackball {
+    cpi = <800>;
+    swap-xy;
+    // invert-x;
+    // invert-y;
+};
+
 &zip_mouse_gesture {
     stroke-size = <150>;
     enable-eager-mode;
@@ -124,11 +131,12 @@
     // };
 };
 
-&trackball {
-    cpi = <800>;
-    swap-xy;
-    // invert-x;
-    // invert-y;
+&zip_scroll_snap {
+    require-n-samples = <8>;
+    immediate-snap-threshold = <750>;
+    lock-duration-ms = <175>;
+    lock-for-next-n-events = <8>;
+    idle-reset-timeout-ms = <175>;
 };
 
 &trackball_listener {
