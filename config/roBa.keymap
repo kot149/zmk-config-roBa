@@ -79,13 +79,6 @@
 
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
-&trackball {
-    cpi = <800>;
-    swap-xy;
-    // invert-x;
-    // invert-y;
-};
-
 &zip_mouse_gesture {
     stroke-size = <150>;
     enable-eager-mode;
