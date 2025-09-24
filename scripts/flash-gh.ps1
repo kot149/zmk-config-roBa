@@ -8,7 +8,7 @@ param(
 # Set file paths
 # --------------------------------------------
 $flashScriptPath = Join-Path "scripts" "flash.ps1"
-$artifactsDownloadDir = Join-Path "build" "gh"
+$artifactsDownloadDir = Join-Path "firmware" "gh"
 
 if (-not (Test-Path $flashScriptPath)) {
     Write-Error "Flash script not found at path: $flashScriptPath"
