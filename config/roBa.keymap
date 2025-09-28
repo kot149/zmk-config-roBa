@@ -460,16 +460,6 @@
 
         /omit-if-no-ref/
 
-        td_right_click_close_tab: td_right_click_close_tab {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&mkp RCLK>, <&kp LC(W)>;
-
-            tapping-term-ms = <250>;
-        };
-
-        /omit-if-no-ref/
-
         td_colon: td_colon {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -746,6 +736,18 @@
             tapping-term-ms = <500>;
             flavor = "balanced";
         };
+
+        /omit-if-no-ref/
+
+        td_right_click_close_tab: td_right_click_close_tab {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&mkp RCLK>, <&kp LC(W)>;
+
+            tapping-term-ms = <250>;
+        };
+
+        /omit-if-no-ref/
 
         td_right_click_close_tab_mouse_gesture: td_right_click_close_tab_mouse_gesture {
             compatible = "zmk,behavior-hold-tap";
