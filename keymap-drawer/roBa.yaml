@@ -20,8 +20,8 @@ layers:
   - '&zoom_in'
   - H
   - J
-  - K
-  - '&mouse_gesture_hold_tap 0 L'
+  - '&mouse_gesture_kp 0 K'
+  - L
   - {t: '-', h: '9'}
   - {t: '&kp_exit_AML Z', h: LEFT SHIFT}
   - {t: X, h: LEFT SHIFT}
@@ -328,8 +328,8 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&mkp MB1'
-  - '&td_right_click'
-  - '&mouse_gesture'
+  - {t: '&td_right_click_close_tab', h: '&mouse_gesture'}
+  - ''
   - '9'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
