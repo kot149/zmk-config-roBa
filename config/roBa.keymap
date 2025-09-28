@@ -739,7 +739,7 @@
 
         /omit-if-no-ref/
 
-        td_right_click_close_tab: td_right_click_close_tab {
+        td_rclick_close_tab: td_rclick_close_tab {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&mkp RCLK>, <&kp LC(W)>;
@@ -749,10 +749,10 @@
 
         /omit-if-no-ref/
 
-        td_right_click_close_tab_mouse_gesture: td_right_click_close_tab_mouse_gesture {
+        td_rclick_close_tab_mouse_gesture: td_rclick_close_tab_mouse_gesture {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&mouse_gesture>, <&td_right_click_close_tab>;
+            bindings = <&mouse_gesture>, <&td_rclick_close_tab>;
 
             tapping-term-ms = <150>;
             flavor = "balanced";
@@ -833,7 +833,7 @@
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans          &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click_close_tab_mouse_gesture 0 0 &none  &mo 9
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0 &none  &mo 9
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans          &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
             >;
