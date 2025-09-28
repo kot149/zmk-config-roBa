@@ -21,7 +21,7 @@ layers:
   - H
   - J
   - K
-  - L
+  - '&mouse_gesture_hold_tap 0 L'
   - {t: '-', h: '9'}
   - {t: '&kp_exit_AML Z', h: LEFT SHIFT}
   - {t: X, h: LEFT SHIFT}
