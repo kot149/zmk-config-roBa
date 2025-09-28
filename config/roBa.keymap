@@ -45,7 +45,13 @@
     flavor = "balanced";
 };
 
-&mouse_gesture_hold_tap {
+&mouse_gesture_kp {
+    tapping-term-ms = <200>;
+    quick-tap-ms = <250>;
+    flavor = "balanced";
+};
+
+&mouse_gesture_mkp {
     tapping-term-ms = <200>;
     quick-tap-ms = <250>;
     flavor = "balanced";
@@ -454,7 +460,7 @@
 
         /omit-if-no-ref/
 
-        td_right_click: td_right_click {
+        td_right_click_close_tab: td_right_click_close_tab {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             bindings = <&mkp RCLK>, <&kp LC(W)>;
@@ -740,6 +746,15 @@
             tapping-term-ms = <500>;
             flavor = "balanced";
         };
+
+        td_right_click_close_tab_mouse_gesture: td_right_click_close_tab_mouse_gesture {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mouse_gesture>, <&td_right_click_close_tab>;
+
+            tapping-term-ms = <150>;
+            flavor = "balanced";
+        };
     };
 
     keymap {
@@ -748,7 +763,7 @@
         DEFAULT {
             bindings = <
 &mt LWIN Q                        &mt LALT W        &kp E         &kp R                          &kp T                                                                            &kp Y                    &kp U  &kp I                   &kp O                &lt 8 P
-&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K                   &mouse_gesture_hold_tap 0 L                &lt 9 MINUS
+&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &mouse_gesture_kp 0 K   &kp L                &lt 9 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mo 10                     &lt_zoom_out 10 0            &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
             >;
@@ -816,7 +831,7 @@
         MOUSE {
             bindings = <
 &trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans          &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click  &mouse_gesture  &mo 9
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_right_click_close_tab_mouse_gesture 0 0 &none  &mo 9
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans          &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
             >;
