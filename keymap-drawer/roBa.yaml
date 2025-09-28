@@ -328,7 +328,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&mkp MB1'
-  - {t: '&td_right_click_close_tab', h: '&mouse_gesture'}
+  - {t: '&td_rclick_close_tab', h: '&mouse_gesture'}
   - ''
   - '9'
   - {t: ▽, type: trans}
