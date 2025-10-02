@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
+    - name: hsgw
+      url-base: https://github.com/hsgw
     - name: kot149
       url-base: https://github.com/kot149
   projects:
@@ -66,6 +68,12 @@ manifest:
       remote: kot149
       revision: v1
       path: modules/zmk-scroll-snap
+
+    # https://github.com/hsgw/zmk-feature-sensor_rotation
+    - name: zmk-feature-sensor_rotation
+      remote: hsgw
+      revision: main
+      path: modules/zmk-feature-sensor_rotation
 
   self:
     path: config

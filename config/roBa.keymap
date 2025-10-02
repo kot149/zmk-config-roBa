@@ -21,6 +21,8 @@
 
 #include <scroll-snap.dtsi>
 
+#include <input/processors/sensor_rotation.dtsi>
+
 #define DEFAULT 0
 #define LANG1_EAGER_TAP_DANCE 1
 #define NUMPAD_AND_ARROWS 2
@@ -151,10 +153,15 @@
     idle-reset-timeout-ms = <175>;
 };
 
+&sensor_rotation {
+    rotation-angle = <30>;
+};
+
 &trackball_listener {
     compatible = "zmk,input-listener";
     input-processors = <
         &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
+        &sensor_rotation
         &zip_mouse_gesture
         &zip_report_rate_limit 15
         // &zip_cursor_snap
