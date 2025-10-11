@@ -167,7 +167,7 @@
     };
 
     scroller {
-        layers = <FUNCTIONS_AND_SYMBOLS MISC EXTRA_FINCTIONS MEDIA>;
+        layers = <EXTRA_FINCTIONS MISC MEDIA>;
         input-processors = <
             &zip_xy_scaler 3 1
             &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
@@ -180,8 +180,9 @@
     };
 
     disable-scroll-x {
-        layers = <MISC MEDIA>;
+        layers = <EXTRA_FINCTIONS>;
         input-processors = <&wheel_x_scaler 0 1>;
+
         process-next;
     };
 };
