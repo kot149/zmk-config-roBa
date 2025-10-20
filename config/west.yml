@@ -37,6 +37,12 @@ manifest:
       revision: main
       path: modules/zmk-input-processor-report-rate-limit
 
+    # https://github.com/badjeff/zmk-behavior-insomnia/
+    - name: zmk-behavior-insomnia
+      remote: badjeff
+      revision: main
+      path: modules/zmk-behavior-insomnia
+
     # https://github.com/ssbb/zmk-listeners
     - name: zmk-listeners
       remote: ssbb
