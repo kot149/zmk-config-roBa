@@ -3,7 +3,9 @@
 [zmk-nix](https://github.com/lilyinstarlight/zmk-nix) を使ってroBaのファームウェアをビルドする手順です。
 
 > [!note]
-> **[urob氏のzmk-config](https://github.com/urob/zmk-config)のローカルビルド環境の方おすすめです。**
+> **zmk-workspaceを使用する方がおすすめです。**
+> 
+> 詳細→ https://zenn.dev/kot149/articles/zmk-workspace
 
 Nixは再現性の高いビルドを可能にするパッケージマネージャです。
 GitHub ActionsやDockerを使用したビルドよりも高速なビルドが可能になります。
