@@ -2,7 +2,9 @@
 Dockerを使用して、roBaのファームウェアをGitHub Actionsを使わずローカルPCでビルドするための手順です。
 
 > [!note]
-> **[urob氏のzmk-config](https://github.com/urob/zmk-config)のローカルビルド環境の方おすすめです。**
+> **zmk-workspaceを使用する方がおすすめです。**
+> 
+> 詳細→ https://zenn.dev/kot149/articles/zmk-workspace
 
 手順は基本的には公式ドキュメントに説明されている通りですが、具体的にroBaの場合はどういうコマンドを打てばいいのかを記載します。
 なお、公式ドキュメントにはDocker(VSCode/Dev Conteiner CLI/Podman)/ネイティブ環境と複数パターン書かれていますが、ここではDocker+VSCodeでの方法だけ記載します。
