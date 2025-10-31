@@ -446,8 +446,8 @@ layers:
   - ''
   - ''
   - '&tog_ls'
-  - '&ind_con'
-  - '&ind_bat'
+  - ''
+  - ''
   - ''
   - OUT TOG
   - {t: '&td_reset', h: '&bootloader'}
