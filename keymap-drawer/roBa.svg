@@ -2124,8 +2124,6 @@ path.combo {
 </g>
 <g transform="translate(448, 112)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
 <text x="0" y="0" class="key tap"><tspan style="font-size: 64%">&amp;td_bt_cle…</tspan></text>
 </g>
 <g transform="translate(504, 99)" class="key keypos-17">
@@ -2134,16 +2132,6 @@ path.combo {
 <a href="#x_x">
 <text x="0" y="24" class="key hold layer-activator">0</text>
 </a></g>
-=======
-=======
-<text x="0" y="0" class="key tap"><tspan style="font-size: 88%">&amp;ind_con</tspan></text>
->>>>>>> 01d38e4 ([Draw] Revert "Disable rgbled-widget")
-</g>
-<g transform="translate(504, 99)" class="key keypos-17">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 88%">&amp;ind_bat</tspan></text>
-</g>
->>>>>>> 5a083af ([Draw] Use Zephyr's built-in PMW3610 driver)
 <g transform="translate(560, 92)" class="key keypos-18">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">BT</text>
