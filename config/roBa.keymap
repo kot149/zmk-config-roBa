@@ -5,7 +5,7 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <behaviors/rgbled_widget.dtsi>
+// #include <behaviors/rgbled_widget.dtsi>
 #include <input/processors/report_rate_limit.dtsi>
 
 #include <behaviors.dtsi>
@@ -853,7 +853,7 @@
 
         CONFIGURATION {
             bindings = <
-&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
+&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                &none         &none         &none         &out OUT_TOG    &reset_bootloader 0 0
 &none                 &none       &none  &none  &tog_ls_on   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
 &none                 &none       &none  &none  &tog_ls_off  &none       &none         &none         &none         &none         &none           &none
 &none                 &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
