@@ -15,7 +15,7 @@ manifest:
     - name: kot149
       url-base: https://github.com/kot149
   projects:
-    # # https://github.com/zmkfirmware/zmk
+    # https://github.com/zmkfirmware/zmk
     # - name: zmk
     #   remote: zmkfirmware
     #   revision: main
