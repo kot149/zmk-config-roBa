@@ -5,21 +5,12 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <behaviors/rgbled_widget.dtsi>
-#include <input/processors/report_rate_limit.dtsi>
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
-
-// #include <layout_shift.dtsi>
-#include <layout_shift_kp_override.dtsi>
-
-#include <mouse-gesture.dtsi>
-
-#include <scroll-snap.dtsi>
 
 #define DEFAULT 0
 #define LANG1_EAGER_TAP_DANCE 1
@@ -40,18 +31,6 @@
 };
 
 &lt {
-    tapping-term-ms = <200>;
-    quick-tap-ms = <250>;
-    flavor = "balanced";
-};
-
-&mouse_gesture_kp {
-    tapping-term-ms = <200>;
-    quick-tap-ms = <250>;
-    flavor = "balanced";
-};
-
-&mouse_gesture_mkp {
     tapping-term-ms = <200>;
     quick-tap-ms = <250>;
     flavor = "balanced";
@@ -79,77 +58,10 @@
 
 &mkp_input_listener { input-processors = <&zip_temp_layer MOUSE 10000>; };
 
-&zip_mouse_gesture {
-    stroke-size = <150>;
-    enable-eager-mode;
-
-    history_back {
-        pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LA(LEFT)>;
-    };
-
-    history_forward {
-        pattern = <GESTURE_LEFT>;
-        bindings = <&kp LA(RIGHT)>;
-    };
-
-    close_tab {
-        pattern = <GESTURE_DOWN GESTURE_RIGHT>;
-        bindings = <&kp LC(W)>;
-    };
-
-    new_tab {
-        pattern = <GESTURE_DOWN GESTURE_LEFT>;
-        bindings = <&kp LC(T)>;
-    };
-
-    app_switcher {
-        pattern = <GESTURE_DOWN GESTURE_UP>;
-        bindings = <&kp LG(TAB)>;
-    };
-
-    virtual_desktop_prev {
-        pattern = <GESTURE_LEFT GESTURE_DOWN>;
-        bindings = <&kp LG(LC(LEFT))>;
-    };
-
-    virtual_desktop_next {
-        pattern = <GESTURE_RIGHT GESTURE_DOWN>;
-        bindings = <&kp LG(LC(RIGHT))>;
-    };
-
-    // left {
-    //     gesture = <GESTURE_LEFT>;
-    //     bindings = <&kp LEFT>;
-    // };
-    // right {
-    //     gesture = <GESTURE_RIGHT>;
-    //     bindings = <&kp RIGHT>;
-    // };
-    // up {
-    //     gesture = <GESTURE_UP>;
-    //     bindings = <&kp UP>;
-    // };
-    // down {
-    //     gesture = <GESTURE_DOWN>;
-    //     bindings = <&kp DOWN>;
-    // };
-};
-
-&zip_scroll_snap {
-    require-n-samples = <8>;
-    immediate-snap-threshold = <750>;
-    lock-duration-ms = <175>;
-    lock-for-next-n-events = <8>;
-    idle-reset-timeout-ms = <175>;
-};
-
 &trackball_listener {
     compatible = "zmk,input-listener";
     input-processors = <
         &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
-        &zip_mouse_gesture
-        &zip_report_rate_limit 15
         // &zip_cursor_snap
     >;
 
@@ -165,8 +77,6 @@
             &zip_xy_scaler 3 1
             &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
             &zip_xy_to_scroll_mapper
-            &zip_scroll_snap
-            &zip_report_rate_limit 15
         >;
 
         process-next;
@@ -189,29 +99,6 @@
             codes = <INPUT_REL_HWHEEL>;
             track-remainders;
         };
-    };
-
-    layer_listeners {
-        compatible = "zmk,layer-listeners";
-
-        release_alt {
-            layers = <ALT_TAB>;
-            bindings = <&kt_on LEFT_ALT &kt_off LEFT_ALT>;
-        };
-
-        release_ctrl {
-            layers = <CTRL_TAB>;
-            bindings = <&kt_on LCTRL &kt_off LCTRL>;
-        };
-
-        // AML_indicator {
-        //     layers = <MOUSE>;
-        //     bindings = <&kp LS(LA(LC(LG(H)))) &kp LS(LA(LC(LG(H))))>;
-        // };
-        // AML {
-        //     layers = <MOUSE>;
-        //     bindings = <&to MOUSE &none>;
-        // };
     };
 
     combos {
@@ -517,7 +404,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp LS(F11)>;
-            label = "SCREENSOT_SAVE";
+            // label = "SCREENSOT_SAVE";
         };
 
         mkp_with_mod: mkp_with_mod {
@@ -530,7 +417,7 @@
                 <&macro_release>,
                 <&macro_param_2to1 &mkp MACRO_PLACEHOLDER &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
 
-            label = "MKP_WITH_MOD";
+            // label = "MKP_WITH_MOD";
         };
 
         /omit-if-no-ref/
@@ -746,7 +633,7 @@
         td_rclick_close_tab_mouse_gesture: td_rclick_close_tab_mouse_gesture {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            bindings = <&mouse_gesture>, <&td_rclick_close_tab>;
+            bindings = <&none>, <&td_rclick_close_tab>;
 
             tapping-term-ms = <150>;
             flavor = "balanced";
@@ -759,7 +646,7 @@
         DEFAULT {
             bindings = <
 &mt LWIN Q                        &mt LALT W        &kp E         &kp R                          &kp T                                                                            &kp Y                    &kp U  &kp I                   &kp O                &lt 8 P
-&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &mouse_gesture_kp 0 K   &kp L                &lt 9 MINUS
+&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &kp K   &kp L                &lt 9 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mo 10                     &lt_zoom_out 10 0            &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
 &kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
             >;
@@ -853,9 +740,9 @@
 
         CONFIGURATION {
             bindings = <
-&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
-&none                 &none       &none  &none  &tog_ls_on   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
-&none                 &none       &none  &none  &tog_ls_off  &none       &none         &none         &none         &none         &none           &none
+&reset_bootloader 0 0 &none       &none  &none  &none                                &none      &none      &none         &out OUT_TOG    &reset_bootloader 0 0
+&none                 &none       &none  &none  &none   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
+&none                 &none       &none  &none  &none  &none       &none         &none         &none         &none         &none           &none
 &none                 &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
             >;
         };
