@@ -20,7 +20,7 @@ layers:
   - '&zoom_in'
   - H
   - J
-  - '&mouse_gesture_kp 0 K'
+  - K
   - L
   - {t: '-', h: '9'}
   - {t: '&kp_exit_AML Z', h: LEFT SHIFT}
@@ -328,7 +328,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&mkp MB1'
-  - {t: '&td_rclick_close_tab', h: '&mouse_gesture'}
+  - '&td_rclick_close_tab'
   - ''
   - '9'
   - {t: ▽, type: trans}
@@ -445,9 +445,9 @@ layers:
   - ''
   - ''
   - ''
-  - '&tog_ls'
-  - '&ind_con'
-  - '&ind_bat'
+  - ''
+  - ''
+  - ''
   - ''
   - OUT TOG
   - {t: '&td_reset', h: '&bootloader'}
@@ -455,7 +455,7 @@ layers:
   - ''
   - ''
   - ''
-  - '&tog_ls_on'
+  - ''
   - {t: ▽, type: trans}
   - '&td_bt_clear'
   - {t: BT, h: '0'}
@@ -467,7 +467,7 @@ layers:
   - ''
   - ''
   - ''
-  - '&tog_ls_off'
+  - ''
   - {type: held}
   - ''
   - ''
