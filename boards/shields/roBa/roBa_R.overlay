@@ -14,13 +14,6 @@
             ;
 };
 
-/ {
-    trackball_listener {
-        status = "okay";
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-    };
-};
 
 &pinctrl {
     spi0_default: spi0_default {
@@ -63,4 +56,13 @@
         x-input-code = <INPUT_REL_X>;
         y-input-code = <INPUT_REL_Y>;
     };
+};
+
+&trackball_split {
+    device = <&trackball>;
+    status = "okay";
+};
+
+&trackball_listener {
+    status = "okay";
 };
