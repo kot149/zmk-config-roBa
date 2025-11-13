@@ -9,5 +9,6 @@ features:
   - pointer
   - encoder
 siblings:
+  - roBa_dongle
   - roBa_L
   - roBa_R
