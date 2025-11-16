@@ -45,6 +45,14 @@
     flavor = "balanced";
 };
 
+&to { /delete-property/ locking; };
+
+&tog { /delete-property/ locking; };
+
+&sk { release-after-ms = <700>; };
+
+&sl { release-after-ms = <1000>; };
+
 &mouse_gesture_kp {
     tapping-term-ms = <200>;
     quick-tap-ms = <250>;
@@ -57,9 +65,6 @@
     flavor = "balanced";
 };
 
-&sk { release-after-ms = <700>; };
-
-&sl { release-after-ms = <1000>; };
 
 &zip_temp_layer {
     require-prior-idle-ms = <200>;
