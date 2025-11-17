@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
+    - name: 4mplelab
+      url-base: https://github.com/4mplelab
     - name: kot149
       url-base: https://github.com/kot149
   projects:
@@ -48,6 +50,12 @@ manifest:
       remote: caksoylar
       revision: main
       path: modules/zmk-rgbled-widget
+
+    # https://github.com/4mplelab/zmk-feature-charge-indicator.git
+    - name: zmk-feature-charge-indicator
+      remote: 4mplelab
+      revision: main
+      path: modules/zmk-feature-charge-indicator
 
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
