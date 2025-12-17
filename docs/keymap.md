@@ -102,86 +102,8 @@ https://zenn.dev/kot149/articles/zmk-auto-mouse-layer
 スクロールレイヤーやAMLは若干挙動が異なるので、人によってはInput Processorを使う方が好みかもしれない。
 特にAMLの方はキー押下ででAML解除してくれる機能を設定できるが、これはzmk-pmw3610-driverにはない仕様。
 
-### 低CPI/高CPIモード
-`roBa_R.overlay`に以下を追記すると、レイヤー2ではカーソル移動量3分の1、レイヤー3では3倍になる。
-```dts
-#include <input/processors.dtsi>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        cpi-low {
-            layers = <2>;
-            input-processors = <&zip_xy_scaler 1 3>;
-        };
-
-        cpi-high {
-            layers = <3>;
-            input-processors = <&zip_xy_scaler 3 1>;
-        };
-    };
-};
-```
-
-zmk-pmw3610-driverの`snipe-layers`を使う手もある。こっちだとデフォルトと別CPIの2パターンだけになってしまうが、大抵はそれで充分。
-
-### スクロールレイヤー
-`roBa_R.overlay`に以下を追記すると、レイヤー4ではカーソル移動がスクロールに変換される。
-自分の試したところ、y方向のスクロールが逆になったので`&zip_xy_transform`で反転させている。
-スクロール量が多すぎるor少なすぎる場合は、`&zip_xy_scaler`の部分をコメント解除して調整できる。
-```dts
-#include <input/processors.dtsi>
-#include <dt-bindings/zmk/input_transform.h>
-/ {
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        scroller {
-            layers = <4>;
-            input-processors =
-                // <&zip_xy_scaler 3 2>,
-                <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,
-                <&zip_xy_to_scroll_mapper>;
-        };
-    };
-};
-```
-
-### 横スクロール無効化
-zmk-pmw3610-driverは縦横両方にスクロールするようになっており、横スクロールをオフにする機能はない。
-横スクロールはShift+スクロールなどでやるから普段は縦スクロールのみに固定したいという人もいるだろう。
-
-スクロール量に倍率をかけるInput Processorがあるので、これで横方向のスクロールを0倍にすれば無効化できる。
-
-以下を`roBa_R.overlay`に記述すると、レイヤー10で横スクロールが無効になる。
-レイヤー10はスクロールレイヤーに指定されている必要があることに注意。
-```dts
-#include <input/processors.dtsi>
-#include <zephyr/dt-bindings/input/input-event-codes.h>
-/{
-    input_processors {
-        wheel_x_scaler: wheel_x_scaler {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_HWHEEL>;
-            track-remainders;
-        };
-    };
-
-    trackball_listener {
-        compatible = "zmk,input-listener";
-        device = <&trackball>;
-
-        disable-scroll-x {
-            layers = <10>; //スクロールレイヤー
-            input-processors = <&wheel_x_scaler 0 1>;
-        };
-    };
-};
-```
+Zennに記事を作成したので、そちらを参照。
+https://zenn.dev/kot149/articles/zmk-input-processor-cheat-sheet
 
 ### オートマウスレイヤー
 Zennに記事を作成したので、そちらを参照。
@@ -191,12 +113,12 @@ https://zenn.dev/kot149/articles/zmk-auto-mouse-layer
 ## トラボで矢印キー入力
 トラボの上下左右操作にキーを割り当てる機能が[kumamuk-git/zmk-pmw3610-driver](https://github.com/kumamuk-git/zmk-pmw3610-driver) には実装されている(私がプルリクしました)。
 
-また、より汎用的にモジュールとして実装するzmk-input-processor-keybindが開発中。
+また、より汎用的にモジュールとして実装するzmk-input-processor-keybindがある。
 
 https://github.com/te9no/zmk-input-processor-keybind
 https://github.com/zettaface/zmk-input-processor-keybind
 
-ここでは、とりあえずkumamuk-git/zmk-pmw3610-driverのものを使う方法を紹介する。
+以下では、kumamuk-git/zmk-pmw3610-driverのものを使う方法を紹介しているが、zmk-input-processor-keybindの方がより汎用的なので、そちらを使う方がよい。
 
 ### 単純なキー割り当て
 
