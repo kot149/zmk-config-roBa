@@ -18,7 +18,7 @@ manifest:
     # https://github.com/zmkfirmware/zmk
     - name: zmk
       remote: zmkfirmware
-      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
+      revision: main
       import: app/west.yml
 
     # # https://github.com/inorichi/zmk-pmw3610-driver
