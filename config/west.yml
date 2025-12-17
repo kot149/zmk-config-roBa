@@ -30,7 +30,7 @@ manifest:
     # https://github.com/badjeff/zmk-pmw3610-driver
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: zmk-0.3
+      revision: zmk-0.4
       path: modules/zmk-pmw3610-driver-badjeff
 
     # https://github.com/badjeff/zmk-input-processor-report-rate-limit
