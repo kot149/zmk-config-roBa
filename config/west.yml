@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: Genteure
+      url-base: https://github.com/Genteure
     - name: ssbb
       url-base: https://github.com/ssbb
     - name: 4mplelab
@@ -56,6 +58,12 @@ manifest:
       remote: 4mplelab
       revision: main
       path: modules/zmk-feature-charge-indicator
+
+    # https://github.com/Genteure/zmk-bthome
+    - name: zmk-bthome
+      remote: Genteure
+      revision: main
+      path: modules/zmk-bthome
 
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
