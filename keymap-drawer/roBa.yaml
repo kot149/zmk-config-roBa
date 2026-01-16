@@ -442,7 +442,7 @@ layers:
   - {t: ▽, type: trans}
   '10':
   - {t: '&td_reset', h: '&bootloader'}
-  - ''
+  - '&bthome0 BTHOME_BTN_PRESS'
   - ''
   - ''
   - '&tog_ls'
@@ -452,7 +452,7 @@ layers:
   - OUT TOG
   - {t: '&td_reset', h: '&bootloader'}
   - ''
-  - ''
+  - '&bthome1 BTHOME_BTN_PRESS'
   - ''
   - ''
   - '&tog_ls_on'
@@ -464,25 +464,25 @@ layers:
   - {t: BT, h: '3'}
   - {t: BT, h: '4'}
   - ''
-  - ''
+  - '&bthome2 BTHOME_BTN_PRESS'
   - ''
   - ''
   - '&tog_ls_off'
   - {type: held}
   - ''
+  - {t: BT DISC, h: '0'}
+  - {t: BT DISC, h: '1'}
+  - {t: BT DISC, h: '2'}
+  - {t: BT DISC, h: '3'}
+  - {t: BT DISC, h: '4'}
   - ''
   - ''
   - ''
   - ''
   - ''
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - '&bthome0 BTHOME_BTN_PRESS'
+  - '&bthome1 BTHOME_BTN_PRESS'
   - '&td_bt_clear_all'
 combos:
 - p: [0, 1]
