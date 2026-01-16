@@ -14,6 +14,8 @@ manifest:
       url-base: https://github.com/4mplelab
     - name: kot149
       url-base: https://github.com/kot149
+    - name: t-ogura
+      url-base: https://github.com/t-ogura
   projects:
     # https://github.com/zmkfirmware/zmk
     - name: zmk
@@ -74,6 +76,12 @@ manifest:
       remote: kot149
       revision: v1
       path: modules/zmk-scroll-snap
+
+    # https://github.com/t-ogura/prospector-zmk-module
+    - name: prospector-zmk-module
+      remote: t-ogura
+      revision: v1.1.1
+      path: modules/prospector-scanner-zmk-module
 
   self:
     path: config
