@@ -80,7 +80,7 @@ manifest:
     # https://github.com/t-ogura/prospector-zmk-module
     - name: prospector-zmk-module
       remote: t-ogura
-      revision: v1.1.1
+      revision: feature/v2.1.0-touch-mode
       path: modules/prospector-scanner-zmk-module
 
   self:
