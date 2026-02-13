@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: cormoran
+      url-base: https://github.com/cormoran
     - name: ssbb
       url-base: https://github.com/ssbb
     - name: 4mplelab
@@ -74,6 +76,13 @@ manifest:
       remote: kot149
       revision: v1
       path: modules/zmk-scroll-snap
+
+    # https://github.com/cormoran/zmk-west-commands
+    - name: zmk-west-commands
+      remote: cormoran
+      revision: main
+      import: true
+      path: modules/zmk-west-commands
 
   self:
     path: config
