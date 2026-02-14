@@ -136,3 +136,29 @@
         device = <&trackball_split>;
     };
 };
+
+/ {
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_split: trackball_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    trackball_listener: trackball_listener {
+        compatible = "zmk,input-listener";
+        status = "disabled";
+        device = <&trackball_split>;
+    };
+};
+
+/ {
+    chg_stat: chg_stat {
+        compatible = "custom,chg-stat";
+        status = "okay";
+        gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
+    };
+};

@@ -12,6 +12,8 @@ manifest:
       url-base: https://github.com/ssbb
     - name: rschenk
       url-base: https://github.com/rschenk
+    - name: 4mplelab
+      url-base: https://github.com/4mplelab
     - name: kot149
       url-base: https://github.com/kot149
   projects:
@@ -20,6 +22,12 @@ manifest:
       remote: zmkfirmware
       revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
       import: app/west.yml
+
+    # https://github.com/rschenk/zmk-component-raytac-dongle/
+    - name: zmk-component-raytac-dongle
+      remote: rschenk
+      revision: v0.3
+      path: modules/zmk-component-raytac-dongle
 
     # # https://github.com/inorichi/zmk-pmw3610-driver
     # - name: zmk-pmw3610-driver
@@ -51,11 +59,12 @@ manifest:
       revision: main
       path: modules/zmk-rgbled-widget
 
-    # https://github.com/rschenk/zmk-component-raytac-dongle/
-    - name: zmk-component-raytac-dongle
-      remote: rschenk
-      revision: v0.3
-      path: modules/zmk-component-raytac-dongle
+    # https://github.com/4mplelab/zmk-feature-charge-indicator.git
+    - name: zmk-feature-charge-indicator
+      remote: 4mplelab
+      revision: main
+      path: modules/zmk-feature-charge-indicator
+
 
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
