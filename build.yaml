@@ -1,7 +1,7 @@
 ---
 include:
- - board: seeeduino_xiao_ble
-   shield: roBa_dongle prospector_adapter
+ - board: raytac_mdbt50q_rx
+   shield: roBa_dongle
    snippet: studio-rpc-usb-uart
  - board: seeeduino_xiao_ble
    shield: roBa_R rgbled_adapter
