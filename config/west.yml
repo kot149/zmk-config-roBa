@@ -10,8 +10,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
-    - name: 4mplelab
-      url-base: https://github.com/4mplelab
+    - name: carrefinho
+      url-base: https://github.com/carrefinho
     - name: kot149
       url-base: https://github.com/kot149
   projects:
@@ -56,6 +56,12 @@ manifest:
       remote: 4mplelab
       revision: main
       path: modules/zmk-feature-charge-indicator
+
+    # https://github.com/rschenk/zmk-component-raytac-dongle/
+    - name: zmk-component-raytac-dongle
+      remote: rschenk
+      revision: v0.3
+      path: modules/zmk-component-raytac-dongle
 
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
