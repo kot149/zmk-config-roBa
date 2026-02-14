@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
+    - name: cormoran
+      url-base: https://github.com/cormoran
     - name: 4mplelab
       url-base: https://github.com/4mplelab
     - name: kot149
@@ -17,9 +19,15 @@ manifest:
   projects:
     # https://github.com/zmkfirmware/zmk
     - name: zmk
-      remote: zmkfirmware
-      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
+      remote: cormoran
+      revision: v0.3+custom-studio-protocol
       import: app/west.yml
+
+    # https://github.com/cormoran/zmk-module-runtime-input-processor
+    - name: zmk-module-runtime-input-processor
+      remote: cormoran
+      revision: main
+      path: modules/zmk-module-runtime-input-processor
 
     # # https://github.com/inorichi/zmk-pmw3610-driver
     # - name: zmk-pmw3610-driver
