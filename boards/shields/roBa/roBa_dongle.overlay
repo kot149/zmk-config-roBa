@@ -24,3 +24,7 @@
 &trackball_listener {
     status = "okay";
 };
+
+&mdbt50q_rx_buttons {
+    status = "okay";
+};

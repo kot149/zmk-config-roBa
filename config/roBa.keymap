@@ -53,6 +53,26 @@
 
 &sl { release-after-ms = <1000>; };
 
+/ {
+    input_processors {
+        zip_button_to_key: zip_button_to_key {
+            compatible = "zmk,input-processor-behaviors";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_KEY>;
+            codes    = <INPUT_KEY_0>;
+            bindings = <&reset_bootloader 0 0>;
+        };
+    };
+
+    mdbt50q_rx_buttons_listener: mdbt50q_rx_buttons_listener {
+        compatible = "zmk,input-listener";
+        status = "okay";
+        device = <&mdbt50q_rx_buttons>;
+
+        input-processors = <&zip_button_to_key>;
+    };
+};
+
 &mouse_gesture_kp {
     tapping-term-ms = <200>;
     quick-tap-ms = <250>;
