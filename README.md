@@ -1,13 +1,10 @@
 # zmk-config-roBa
 [kumamuk-git/zmk-config-roBa](https://github.com/kumamuk-git/zmk-config-roBa)のキーマップや設定を自分用にカスタマイズしたものです。
 
-また、
 
-- [ローカルビルド手順やキーマップ備忘録などのドキュメント](https://github.com/kot149/zmk-config-roBa/blob/main/docs)
-- [ローカルビルド用スクリプト](https://github.com/kot149/zmk-config-roBa/blob/main/scripts)
-- README
+## Keymap
 
-などを追加しています。
+![キーマップ画像](keymap-drawer/roBa.svg)
 
 ## リンク集
 
@@ -34,6 +31,7 @@
 |---------|-------|
 | zmk-config-moNa | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/sayu-hub/zmk-config-moNa) |
 | zmk-config-moNa2 | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/sayu-hub/zmk-config-moNa2) |
+| zmk-config-moNa2-v2 | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/sayu-hub/zmk-config-moNa2-v2) |
 | zmk-pmw3610-driver | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/sayu-hub/zmk-pmw3610-driver) |
 
 ### ZMK
@@ -44,9 +42,9 @@
 | ドキュメント | <img src="https://raw.githubusercontent.com/zmkfirmware/zmk/refs/heads/main/docs/static/img/zmk_logo.svg" width="16" height="16"> [zmk.dev/docs](https://zmk.dev/docs) |
 | ZMK physical layouts converter | [ZMK physical layouts converter](https://zmk-physical-layout-converter.streamlit.app) |
 | Keymap Editor | [Keymap Editor](https://nickcoutsos.github.io/keymap-editor/) |
-| zmk-nix | <img src="https://github.com/favicon.ico" width="16" height="16"> [zmk-nix](https://github.com/lilyinstarlight/zmk-nix) |
+| ZMK Studio | <img src="https://raw.githubusercontent.com/zmkfirmware/zmk/refs/heads/main/docs/static/img/zmk_logo.svg" width="16" height="16"> [ZMK Studio](https://zmk.studio) |
 | zmk-rgbled-widget | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/caksoylar/zmk-rgbled-widget) |
-| zmk-battery-center | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/kot149/zmk-battery-center) |
+| badjeff/zmk-pmw3610-driver | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/badjeff/zmk-pmw3610-driver) |
 
 ### QMK
 
@@ -56,6 +54,3 @@
 | keycodes | <img src="https://github.com/favicon.ico" width="16" height="16"> [GitHub](https://github.com/qmk/qmk_firmware/blob/master/quantum/keycodes.h) |
 | ドキュメント | <img src="https://docs.qmk.fm/favicon.ico" width="16" height="16"> [docs.qmk.fm](https://docs.qmk.fm) |
 
-## キーマップ
-
-![キーマップ画像](keymap-drawer/roBa.svg)
