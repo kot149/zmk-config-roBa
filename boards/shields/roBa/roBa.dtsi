@@ -144,3 +144,9 @@
         gpios = <&gpio0 17 GPIO_ACTIVE_LOW>;
     };
 };
+
+/ {
+    mdbt50q_rx_buttons: buttons {
+        status = "disabled";
+    };
+};
