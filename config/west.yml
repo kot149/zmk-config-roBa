@@ -48,7 +48,7 @@ manifest:
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: main
+      revision: v0.3-branch
       path: modules/zmk-rgbled-widget
 
     # https://github.com/4mplelab/zmk-feature-charge-indicator.git
