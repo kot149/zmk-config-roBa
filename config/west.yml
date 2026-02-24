@@ -52,7 +52,7 @@ manifest:
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: main
+      revision: v0.3-branch
       path: modules/zmk-rgbled-widget
 
     # https://github.com/4mplelab/zmk-feature-charge-indicator.git
@@ -88,7 +88,7 @@ manifest:
     # https://github.com/t-ogura/prospector-zmk-module
     - name: prospector-zmk-module
       remote: t-ogura
-      revision: v2.0.0
+      revision: v2.1.0
       path: modules/prospector-scanner-zmk-module
 
   self:

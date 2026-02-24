@@ -9,6 +9,12 @@ if SHIELD_ROBA_R
     config ZMK_SPLIT_ROLE_CENTRAL
         default y
 
+    # Fix for prospector scanner
+    if ZMK_STATUS_ADVERTISEMENT
+        config MIPI_DBI
+        bool
+    endif
+
 endif
 
 if SHIELD_ROBA_L
