@@ -18,7 +18,7 @@ manifest:
     # https://github.com/zmkfirmware/zmk
     - name: zmk
       remote: zmkfirmware
-      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
+      revision: main
       import: app/west.yml
 
     # # https://github.com/inorichi/zmk-pmw3610-driver
@@ -30,13 +30,13 @@ manifest:
     # https://github.com/badjeff/zmk-pmw3610-driver
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: zmk-0.3
+      revision: zmk-0.4
       path: modules/zmk-pmw3610-driver-badjeff
 
     # https://github.com/badjeff/zmk-input-processor-report-rate-limit
     - name: zmk-input-processor-report-rate-limit
       remote: badjeff
-      revision: f43f37aae7aaa7bf0ec4d432683b873a7e3a8efa # for v0.3-branch
+      revision: main
       path: modules/zmk-input-processor-report-rate-limit
 
     # https://github.com/ssbb/zmk-listeners
@@ -48,7 +48,7 @@ manifest:
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: v0.3-branch
+      revision: main
       path: modules/zmk-rgbled-widget
 
     # https://github.com/4mplelab/zmk-feature-charge-indicator.git
