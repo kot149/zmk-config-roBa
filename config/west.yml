@@ -36,7 +36,7 @@ manifest:
     # https://github.com/badjeff/zmk-input-processor-report-rate-limit
     - name: zmk-input-processor-report-rate-limit
       remote: badjeff
-      revision: main
+      revision: f43f37aae7aaa7bf0ec4d432683b873a7e3a8efa # for v0.3-branch
       path: modules/zmk-input-processor-report-rate-limit
 
     # https://github.com/ssbb/zmk-listeners
