@@ -75,5 +75,11 @@ manifest:
       revision: v1
       path: modules/zmk-scroll-snap
 
+    # https://github.com/kot149/zmk-input-inertia
+    - name: zmk-input-inertia
+      remote: kot149
+      revision: v0.4-branch-cancel-scroll-inertia-on-ctrl
+      path: modules/zmk-input-inertia
+
   self:
     path: config
