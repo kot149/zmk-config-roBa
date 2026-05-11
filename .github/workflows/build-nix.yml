@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    uses: urob/zmk-actions/.github/workflows/build-user-config.yml@v7
+    uses: urob/zmk-actions/.github/workflows/build-user-config.yml@be8441abe83c2fe48c6f9f26d664845e93172fa4 # v9.1.1
     with:
       # Optionally choose the toolchain to use: Zephyr SDK (default) or GNU Arm
       # Embedded ('gnuarmemb'). The latter results in slightly faster builds.
