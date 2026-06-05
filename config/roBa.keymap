@@ -428,6 +428,33 @@
     };
 
     behaviors {
+        tog_ls: toggle_layout_shift {
+            compatible = "zmk,behavior-layout-shift-toggle";
+            #binding-cells = <0>;
+            toggle-mode = "flip";
+            layout = <&zlsm_jis>;
+            label = "LAYOUT_SHIFT_TOGGLE";
+            display-name = "Toggle Layout Shift";
+        };
+
+        tog_ls_on: toggle_layout_shift_on {
+            compatible = "zmk,behavior-layout-shift-toggle";
+            #binding-cells = <0>;
+            toggle-mode = "on";
+            layout = <&zlsm_jis>;
+            label = "LAYOUT_SHIFT_TOGGLE_ON";
+            display-name = "Toggle Layout Shift On";
+        };
+
+        tog_ls_off: toggle_layout_shift_off {
+            compatible = "zmk,behavior-layout-shift-toggle";
+            #binding-cells = <0>;
+            toggle-mode = "off";
+            layout = <&zlsm_jis>;
+            label = "LAYOUT_SHIFT_TOGGLE_OFF";
+            display-name = "Toggle Layout Shift Off";
+        };
+
         /omit-if-no-ref/
 
         tog_on: toggle_layer_on {
