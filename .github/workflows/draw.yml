@@ -2,14 +2,14 @@ name: "Draw Keymap"
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - .github/workflows/draw.yml
-      - "config/roBa_L.keymap"
-      - "config/roBa_R.keymap"
-      - "config/roBa.keymap"
-      - "keymap_drawer.config.yaml"
-      - "config/roBa.dtsi"
+  # push:
+  #   paths:
+  #     - .github/workflows/draw.yml
+  #     - "config/roBa_L.keymap"
+  #     - "config/roBa_R.keymap"
+  #     - "config/roBa.keymap"
+  #     - "keymap_drawer.config.yaml"
+  #     - "config/roBa.dtsi"
 
 jobs:
   draw:
