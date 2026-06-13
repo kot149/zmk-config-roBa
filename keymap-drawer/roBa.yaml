@@ -444,8 +444,8 @@ layers:
   - {t: '&td_reset', h: '&bootloader'}
   - ''
   - ''
-  - ''
-  - '&tog_ls'
+  - '&tog_ls_ctrl_cmd'
+  - '&tog_ls_jis'
   - '&ind_con'
   - '&ind_bat'
   - ''
@@ -455,7 +455,7 @@ layers:
   - ''
   - ''
   - ''
-  - '&tog_ls_on'
+  - ''
   - {t: ▽, type: trans}
   - '&td_bt_clear'
   - {t: BT, h: '0'}
@@ -467,7 +467,7 @@ layers:
   - ''
   - ''
   - ''
-  - '&tog_ls_off'
+  - ''
   - {type: held}
   - ''
   - ''
