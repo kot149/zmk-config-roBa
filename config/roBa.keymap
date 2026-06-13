@@ -14,8 +14,31 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// #include <layout_shift.dtsi>
 #include <layout_shift_kp_override.dtsi>
+/ {
+    behaviors {
+        tog_ls_jis: tog_ls_jis {
+            compatible = "zmk,behavior-layout-shift-toggle";
+            #binding-cells = <0>;
+            toggle-mode = "flip";
+            label = "LAYOUT_SHIFT_TOGGLE_US_TO_JIS";
+            display-name = "Toggle Layout Shift";
+            layout-maps = <&layout_shift_map_us_to_jis>;
+        };
+
+        tog_ls_ctrl_cmd: tog_ls_ctrl_cmd {
+            compatible = "zmk,behavior-layout-shift-toggle";
+            #binding-cells = <0>;
+            toggle-mode = "flip";
+            label = "LAYOUT_SHIFT_TOGGLE_CTRL_CMD";
+            display-name = "Toggle Layout Shift";
+            layout-maps = <&layout_shift_map_swap_ctrl_cmd>;
+        };
+    };
+};
+
+&layout_shift_map_us_to_jis { priority = <0>; };
+&layout_shift_map_swap_ctrl_cmd { priority = <1>; };
 
 #include <mouse-gesture.dtsi>
 
@@ -866,9 +889,9 @@
 
         CONFIGURATION {
             bindings = <
-&reset_bootloader 0 0 &none       &none  &none  &tog_ls                                &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
-&none                 &none       &none  &none  &tog_ls_on   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
-&none                 &none       &none  &none  &tog_ls_off  &none       &none         &none         &none         &none         &none           &none
+&reset_bootloader 0 0 &none       &none  &tog_ls_ctrl_cmd  &tog_ls_jis                                &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
+&none                 &none       &none  &none  &none   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
+&none                 &none       &none  &none  &none  &none       &none         &none         &none         &none         &none           &none
 &none                 &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
             >;
         };
