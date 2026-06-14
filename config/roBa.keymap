@@ -41,6 +41,8 @@
 &layout_shift_map_swap_ctrl_cmd { priority = <1>; };
 
 #include <mouse-gesture.dtsi>
+#include <dt-bindings/zmk/trackball_gestures.h>
+#include <behaviors/gesture.dtsi>
 
 #include <scroll-snap.dtsi>
 
@@ -92,6 +94,9 @@
 &zip_temp_layer {
     require-prior-idle-ms = <200>;
     excluded-positions = <
+        1 2
+        11 12 13 14
+
         18 // J
         19 // K
         20 // L
@@ -184,7 +189,8 @@
     compatible = "zmk,input-listener";
     input-processors = <
         &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
-        &zip_mouse_gesture
+        // &zip_mouse_gesture
+        &gesture_processor
         &zip_report_rate_limit 15
         // &zip_cursor_snap
     >;
@@ -862,8 +868,8 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans          &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0 &none  &mo 9
+&trans  &gesture GESTURE_PINCH2  &trans  &trans  &trans                      &trans  &trans    &trans           &trans          &trans
+&trans  &gesture GESTURE_SWIPE2  &gesture GESTURE_SWIPE3  &gesture GESTURE_SWIPE4  &gesture GESTURE_SWIPE5  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0 &none  &mo 9
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans          &trans
 &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
             >;

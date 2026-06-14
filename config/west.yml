@@ -10,6 +10,8 @@ manifest:
       url-base: https://github.com/badjeff
     - name: ssbb
       url-base: https://github.com/ssbb
+    - name: minhe7735
+      url-base: https://github.com/minhe7735
     - name: 4mplelab
       url-base: https://github.com/4mplelab
     - name: kot149
@@ -62,6 +64,11 @@ manifest:
       remote: kot149
       revision: v1
       path: modules/zmk-mouse-gesture
+
+    # https://github.com/minhe7735/zmk-trackball-gestures-module
+    - name: zmk-trackball-gestures-module
+      remote: minhe7735
+      revision: master
 
     # https://github.com/kot149/zmk-layout-shift
     - name: zmk-layout-shift
