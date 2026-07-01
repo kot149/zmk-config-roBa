@@ -1,8 +1,8 @@
 layout: {zmk_keyboard: roBa}
 layers:
   '0':
-  - {t: Q, h: LWIN}
-  - {t: W, h: LALT}
+  - {t: Q, h: Win}
+  - {t: W, h: Alt}
   - E
   - R
   - T
@@ -11,39 +11,39 @@ layers:
   - I
   - O
   - {t: P, h: '8'}
-  - {t: A, h: LCTRL}
+  - {t: A, h: Ctrl}
   - S
   - D
   - F
   - G
-  - LEFT SHIFT
-  - '&zoom_in'
+  - Shift
+  - Zoom+
   - H
   - J
-  - '&mouse_gesture_kp 0 K'
+  - K
   - L
   - {t: '-', h: '9'}
-  - {t: '&kp_exit_AML Z', h: LEFT SHIFT}
-  - {t: X, h: LEFT SHIFT}
+  - {t: Z, h: Shift}
+  - {t: X, h: Shift}
   - C
   - V
   - B
   - '10'
-  - {t: '&zoom_out', h: '&mo_exit_AML 10'}
+  - {t: Zoom-, h: '10'}
   - N
   - M
   - {t: ',', s: '!'}
   - {t: ., s: '?'}
-  - {t: /, h: LEFT SHIFT}
-  - LCTRL
-  - LEFT WIN
-  - LEFT ALT
-  - '&eager_tap_dance LANGUAGE_2 1'
-  - {t: SPACE, h: '&mo_exit_alttab 3'}
-  - {t: TAB, h: '&mo_exit_alttab 4'}
-  - {t: BACKSPACE, h: '&mo_exit_alttab 4'}
-  - {t: ENTER, h: '&mo_exit_alttab 2'}
-  - {t: ESCAPE, h: '9'}
+  - {t: /, h: Shift}
+  - Ctrl
+  - Win
+  - Alt
+  - {t: Lang2, h: '1'}
+  - {t: Space, h: '3'}
+  - {t: Tab, h: '4'}
+  - {t: Bksp, h: '4'}
+  - {t: Enter, h: '2'}
+  - {t: Esc, h: '9'}
   '1':
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -82,7 +82,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - '&eager_tap_dance LANG1 1'
+  - {t: Lang1, h: '1'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -94,12 +94,12 @@ layers:
   - '8'
   - '9'
   - '-'
-  - '&td_alt_f4'
-  - Ctl+HOME
+  - {t: F4, h: Alt+F4}
+  - Ctrl+Home
   - {t: ▽, type: trans}
-  - Ctl+END
-  - '&to_kp 5 TAB'
-  - {t: '*', h: LEFT CONTROL}
+  - Ctrl+End
+  - {t: Tab, h: '5'}
+  - {t: '*', h: Ctrl}
   - '4'
   - '5'
   - '6'
@@ -107,43 +107,43 @@ layers:
   - '='
   - {t: ▽, type: trans}
   - F5
-  - HOME
-  - UP ARROW
-  - END
-  - '&to_kp 6 TAB'
-  - {t: '0', h: LEFT SHIFT}
+  - Home
+  - ↑
+  - End
+  - {t: Tab, h: '6'}
+  - {t: '0', h: Shift}
   - '1'
   - '2'
   - '3'
   - '%'
-  - SPACE
+  - Space
   - {t: ▽, type: trans}
-  - Ctl+LEFT
-  - LEFT
-  - DOWN
-  - RIGHT
-  - Ctl+RIGHT
-  - {t: ',', h: LCTRL}
-  - {t: ',', h: LEFT WIN}
-  - {t: ., h: LEFT ALT}
+  - Ctrl+←
+  - ←
+  - ↓
+  - →
+  - Ctrl+→
+  - {t: ',', h: Ctrl}
+  - {t: ',', h: Win}
+  - {t: ., h: Alt}
   - {t: ▽, type: trans}
-  - ENTER
+  - Enter
   - {t: ▽, type: trans}
-  - DELETE
+  - Del
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '3':
-  - '&to_kp 5 TAB'
+  - {t: Tab, h: '5'}
   - F1
   - F2
   - F3
-  - '&td_alt_f4'
+  - {t: F4, h: Alt+F4}
   - '@'
   - '{'
   - '}'
   - '"'
-  - '&td_colon'
-  - '&to_kp 6 TAB'
+  - {t: ':', h: ;}
+  - {t: Tab, h: '6'}
   - F6
   - F7
   - F8
@@ -167,9 +167,9 @@ layers:
   - ']'
   - '`'
   - '|'
-  - LCTRL
-  - LEFT WIN
-  - LEFT ALT
+  - Ctrl
+  - Win
+  - Alt
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -177,39 +177,39 @@ layers:
   - '>'
   - $
   '4':
-  - '&to_kp 5 TAB'
-  - Ctl+Gui+LEFT
-  - Gui+TAB
-  - Gui+Ctl+RIGHT
-  - '&td_alt_f4'
-  - '&td_alt_f4'
-  - Ctl+W
-  - Sft+Ctl+T
-  - Ctl+T
-  - '&to_kp 5 TAB'
-  - '&to_kp 6 TAB'
-  - Gui+Sft+LEFT ARROW
-  - Gui+UP ARROW
-  - Gui+Sft+RIGHT ARROW
+  - {t: Tab, h: '5'}
+  - Ctrl+Win+←
+  - Win+Tab
+  - Win+Ctrl+→
+  - {t: F4, h: Alt+F4}
+  - {t: F4, h: Alt+F4}
+  - Ctrl+W
+  - Shift+Ctrl+T
+  - Ctrl+T
+  - {t: Tab, h: '5'}
+  - {t: Tab, h: '6'}
+  - Win+Shift+←
+  - Win+↑
+  - Win+Shift+→
   - F5
   - {t: ▽, type: trans}
-  - VOLUME UP
+  - Vol+
   - F5
-  - '&kp_exit_AML LC(PAGE_UP)'
-  - '&kp_exit_AML UP_ARROW'
-  - Ctl+PAGE DOWN
-  - '&to_kp 6 TAB'
-  - Alt+Ctl+Gui+DOWN
-  - Gui+LEFT ARROW
-  - Gui+DOWN
-  - Gui+RIGHT ARROW
-  - {t: Alt+PRINTSCREEN, s: Alt+PRINTSCREEN}
-  - '&screensot_save'
-  - '&kp_exit_AML C_VOLUME_DOWN'
-  - MUTE
-  - Alt+LEFT
-  - DOWN
-  - Alt+RIGHT
+  - Ctrl+PgUp
+  - Alt+↑
+  - Ctrl+PgDn
+  - {t: Tab, h: '6'}
+  - Alt+Ctrl+Win+↓
+  - Win+←
+  - Win+↓
+  - Win+→
+  - {t: Alt+PrtSc, s: Alt+PrtSc}
+  - Scrennshot
+  - Vol-
+  - Mute
+  - Alt+←
+  - Alt+↓
+  - Alt+→
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -217,11 +217,11 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - DELETE
+  - Del
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '5':
-  - TAB
+  - Tab
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -230,30 +230,30 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - TAB
-  - Sft+TAB
+  - Tab
+  - Shift+Tab
   - {t: ▽, type: trans}
-  - UP
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - ↑
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - UP
-  - {t: ▽, type: trans}
-  - Sft+TAB
-  - {t: ▽, type: trans}
-  - LEFT
-  - DOWN
-  - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - ↑
+  - {t: ▽, type: trans}
+  - Shift+Tab
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - →
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - LEFT
-  - DOWN
-  - RIGHT
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - →
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -265,7 +265,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '6':
-  - Sft+TAB
+  - Shift+Tab
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -274,31 +274,31 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - Sft+TAB
-  - TAB
+  - Shift+Tab
+  - Tab
   - {t: ▽, type: trans}
-  - UP
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - ↑
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - UP
-  - {t: ▽, type: trans}
-  - TAB
-  - Sft+TAB
-  - LEFT
-  - DOWN
-  - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - ↑
+  - {t: ▽, type: trans}
+  - Tab
+  - Shift+Tab
+  - ←
+  - ↓
+  - →
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - LEFT
-  - DOWN
-  - RIGHT
-  - Sft+TAB
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - →
+  - Shift+Tab
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -327,8 +327,8 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - '&mkp MB1'
-  - {t: '&td_rclick_close_tab', h: '&mouse_gesture'}
+  - LClick
+  - {t: RClick, h: Gesture}
   - ''
   - '9'
   - {t: ▽, type: trans}
@@ -358,9 +358,9 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - PREV
-  - PLAY PAUSE
-  - NEXT
+  - Prev
+  - Play/Pause
+  - Next
   - {t: ▽, type: trans}
   - {type: held}
   - {t: ▽, type: trans}
@@ -370,9 +370,9 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - VOLUME DOWN
-  - MUTE
-  - VOLUME UP
+  - Vol-
+  - Mute
+  - Vol+
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -434,30 +434,30 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - '&eager_tap_dance LANGUAGE_1 9'
+  - {t: Lang1, h: '9'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '10':
-  - {t: '&td_reset', h: '&bootloader'}
+  - {t: Reset, h: Bootloader}
   - ''
   - ''
-  - '&tog_ls_ctrl_cmd'
-  - '&tog_ls_jis'
-  - '&ind_con'
-  - '&ind_bat'
+  - Toggle Ctrl/Cmd
+  - Toggle JIS
+  - LED Connec tion
+  - LED Battery
   - ''
   - OUT TOG
-  - {t: '&td_reset', h: '&bootloader'}
+  - {t: Reset, h: Bootloader}
   - ''
   - ''
   - ''
   - ''
   - ''
   - {t: ▽, type: trans}
-  - '&td_bt_clear'
+  - {t: '---', h: BT CLR}
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
   - {t: BT, h: '2'}
@@ -483,7 +483,7 @@ layers:
   - ''
   - ''
   - ''
-  - '&td_bt_clear_all'
+  - {t: '---', h: BT CLR ALL}
 combos:
 - p: [0, 1]
   k: '='
@@ -492,23 +492,23 @@ combos:
   k: ^
   l: ['2']
 - p: [18, 19]
-  k: '&mkp MCLK'
+  k: MClick
   l: ['7']
 - p: [19, 20]
-  k: '&mkp_with_mod LEFT_SHIFT MCLK'
+  k: Shift+MClick
   l: ['7']
 - p: [0, 1]
-  k: ESCAPE
+  k: Esc
   l: ['0']
 - p: [22, 33]
-  k: '&caps_word'
+  k: CAPS WORD
   l: ['0']
 - p: [33, 32]
   k: \
   l: ['0']
 - p: [10, 11]
-  k: Ctl+A
+  k: Ctrl+A
   l: ['0']
 - p: [23, 22]
-  k: Ctl+Z
+  k: Ctrl+Z
   l: ['0']

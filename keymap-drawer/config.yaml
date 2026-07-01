@@ -1,0 +1,190 @@
+parse_config:
+  zmk_keycode_map:
+    EXCLAMATION: '!'
+    EXCL: '!'
+    AT_SIGN: '@'
+    AT: '@'
+    HASH: '#'
+    POUND: '#'
+    DOLLAR: $
+    DLLR: $
+    PERCENT: '%'
+    PRCNT: '%'
+    CARET: ^
+    AMPERSAND: '&'
+    AMPS: '&'
+    ASTERISK: '*'
+    ASTRK: '*'
+    STAR: '*'
+    LEFT_PARENTHESIS: (
+    LPAR: (
+    RIGHT_PARENTHESIS: )
+    RPAR: )
+    EQUAL: '='
+    PLUS: +
+    MINUS: '-'
+    UNDERSCORE: _
+    UNDER: _
+    SLASH: /
+    FSLH: /
+    QUESTION: '?'
+    QMARK: '?'
+    BACKSLASH: \
+    BSLH: \
+    PIPE: '|'
+    NON_US_BACKSLASH: \
+    PIPE2: '|'
+    NON_US_BSLH: '|'
+    SEMICOLON: ;
+    SEMI: ;
+    COLON: ':'
+    SINGLE_QUOTE: ''''
+    SQT: ''''
+    APOSTROPHE: ''''
+    APOS: ''''
+    DOUBLE_QUOTES: '"'
+    DQT: '"'
+    COMMA: ','
+    LESS_THAN: <
+    LT: <
+    PERIOD: .
+    DOT: .
+    GREATER_THAN: '>'
+    GT: '>'
+    LEFT_BRACKET: '['
+    LBKT: '['
+    LEFT_BRACE: '{'
+    LBRC: '{'
+    RIGHT_BRACKET: ']'
+    RBKT: ']'
+    RIGHT_BRACE: '}'
+    RBRC: '}'
+    GRAVE: '`'
+    TILDE: '~'
+    NON_US_HASH: '#'
+    NUHS: '#'
+    TILDE2: '~'
+    LEFT_SHIFT: Shift
+    LSHIFT: Shift
+    LEFT_CONTROL: Ctrl
+    LCTRL: Ctrl
+    LEFT_ALT: Alt
+    LALT: Alt
+    LEFT_GUI: Win
+    LEFT_WIN: Win
+    LWIN: Win
+    LGUI: Win
+    RIGHT_SHIFT: Shift
+    RSHIFT: Shift
+    RIGHT_CONTROL: Ctrl
+    RCTRL: Ctrl
+    RIGHT_ALT: Alt
+    RALT: Alt
+    RIGHT_GUI: Win
+    RIGHT_WIN: Win
+    RWIN: Win
+    RGUI: Win
+    LANGUAGE_1: Lang1
+    LANGUAGE_2: Lang2
+    LANG1: Lang1
+    LANG2: Lang2
+    SPACE: Space
+    SPC: Space
+    TAB: Tab
+    BACKSPACE: Bksp
+    BSPC: Bksp
+    ENTER: Enter
+    RET: Enter
+    DELETE: Del
+    DEL: Del
+    ESCAPE: Esc
+    ESC: Esc
+    UP_ARROW: ↑
+    UP: ↑
+    DOWN_ARROW: ↓
+    DOWN: ↓
+    LEFT_ARROW: ←
+    LEFT: ←
+    RIGHT_ARROW: →
+    RIGHT: →
+    HOME: Home
+    END: End
+    PAGE_UP: PgUp
+    PG_UP: PgUp
+    PAGE_DOWN: PgDn
+    PG_DN: PgDn
+    PRINTSCREEN: PrtSc
+    PSCRN: PrtSc
+    C_VOLUME_UP: Vol+
+    C_VOL_UP: Vol+
+    C_VOLUME_DOWN: Vol-
+    C_VOL_DN: Vol-
+    K_MUTE: Mute
+    C_MUTE: Mute
+    C_PREVIOUS: Prev
+    C_PREV: Prev
+    C_NEXT: Next
+    C_PLAY_PAUSE: Play/Pause
+    C_PP: Play/Pause
+  modifier_fn_map:
+    left_ctrl: Ctrl
+    right_ctrl: Ctrl
+    left_shift: Shift
+    right_shift: Shift
+    left_alt: Alt
+    right_alt: Alt
+    left_gui: Win
+    right_gui: Win
+  raw_binding_map:
+    # lt_exit_alttab → tap + &mo hold
+    "&lt_exit_alttab 2 ENTER": {t: Enter, h: "2"}
+    "&lt_exit_alttab 3 SPACE": {t: Space, h: "3"}
+    "&lt_exit_alttab 4 TAB": {t: Tab, h: "4"}
+    "&lt_exit_alttab 4 BACKSPACE": {t: Bksp, h: "4"}
+    # kp_exit_AML → kp label omitted
+    "&kp_exit_AML LC(PAGE_UP)": "Ctrl+PgUp"
+    "&kp_exit_AML LA(UP_ARROW)": "Alt+↑"
+    "&kp_exit_AML C_VOLUME_DOWN": "Vol-"
+    # mt_exit_AML_on_tap → tap + hold
+    "&mt_exit_AML_on_tap LEFT_SHIFT Z": {t: Z, h: Shift}
+    # lt_zoom_out → tap + &mo hold
+    "&lt_zoom_out 10 0": {t: Zoom-, h: "10"}
+    # mo_exit_AML
+    "&mo_exit_AML 10": "10"
+    # zoom
+    "&zoom_in": "Zoom+"
+    "&zoom_out": "Zoom-"
+    # eager_tap_dance
+    "&eager_tap_dance LANGUAGE_2 1": {t: Lang2, h: "1"}
+    "&eager_tap_dance LANG1 1": {t: Lang1, h: "1"}
+    "&eager_tap_dance LANGUAGE_1 9": {t: Lang1, h: "9"}
+    # mouse_gesture_kp
+    "&mouse_gesture_kp 0 K": K
+    "&mouse_gesture": "Gesture"
+    # to_kp
+    "&to_kp 5 TAB": {t: Tab, h: "5"}
+    "&to_kp 6 TAB": {t: Tab, h: "6"}
+    # tap-dance
+    "&td_alt_f4": {t: F4, h: Alt+F4}
+    "&td_colon": {t: ":", h: ";"}
+    "&td_rclick_close_tab": {t: RClick, h: Ctrl+w}
+    "&td_reset": {t: "---", h: Reset}
+    "&reset_bootloader 0 0": {t: Reset, h: Bootloader}
+    "&td_bt_clear": {t: "---", h: BT CLR}
+    "&td_bt_clear_all": {t: "---", h: BT CLR ALL}
+    # screenshot
+    "&screensot_save": "Scrennshot"
+    # toggle layout shift
+    "&tog_ls_ctrl_cmd": "Toggle Ctrl/Cmd"
+    "&tog_ls_jis": "Toggle JIS"
+    # indicators
+    "&ind_con": "LED Connec tion"
+    "&ind_bat": "LED Battery"
+    # bootloader
+    "&bootloader": "Bootloader"
+    # mkp
+    "&mkp MB1": "LClick"
+    "&mkp MCLK": "MClick"
+    "&mkp_with_mod LEFT_SHIFT MCLK": "Shift+MClick"
+    # caps_word
+    "&caps_word": "CAPS WORD"
