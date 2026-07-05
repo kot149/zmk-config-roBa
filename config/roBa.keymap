@@ -56,14 +56,22 @@
 #define EXTRA_FINCTIONS 9
 #define CONFIGURATION 10
 
-#define POS_L_0 0
-#define POS_L_1 10
-#define POS_L_2 22
-#define POS_L_3 34
-#define POS_R_0 (POS_L_0 + 5)
-#define POS_R_1 (POS_L_1 + 6)
-#define POS_R_2 (POS_L_2 + 6)
-#define POS_R_3 (POS_L_3 + 6)
+#define POS_L_0_START 0
+#define POS_L_1_START 10
+#define POS_L_2_START 22
+#define POS_L_3_START 34
+#define POS_R_0_START (POS_L_0_START + 5)
+#define POS_R_1_START (POS_L_1_START + 6)
+#define POS_R_2_START (POS_L_2_START + 6)
+#define POS_R_3_START (POS_L_3_START + 6)
+#define POS_L_0_END (POS_R_0_START - 1)
+#define POS_L_1_END (POS_R_1_START - 1)
+#define POS_L_2_END (POS_R_2_START - 1)
+#define POS_L_3_END (POS_R_3_START - 1)
+#define POS_R_0_END (POS_L_1_START - 1)
+#define POS_R_1_END (POS_L_2_START - 1)
+#define POS_R_2_END (POS_L_3_START - 1)
+#define POS_R_3_END (POS_L_3_START + 2)
 
 &mt {
     tapping-term-ms = <200>;
@@ -101,12 +109,12 @@
 &zip_temp_layer {
     require-prior-idle-ms = <200>;
     excluded-positions = <
-        (POS_R_1 + 2) // J
-        (POS_R_1 + 3) // K
-        (POS_R_1 + 4) // L
-        (POS_R_1 + 5) // ;
-        (POS_L_2) // Z
-        (POS_R_3 + 2) // ESC
+        (POS_R_1_START + 2) // J
+        (POS_R_1_START + 3) // K
+        (POS_R_1_START + 4) // L
+        (POS_R_1_START + 5) // ;
+        (POS_L_2_START) // Z
+        (POS_R_3_END)
     >;
 };
 
@@ -394,18 +402,18 @@
             #binding-cells = <0>;
             bindings = <&mokp 5 LALT>, <&kp TAB>;
             ignored-key-positions = <
-                (POS_L_1)
-                (POS_R_1 + 5)
+                (POS_L_1_START)
+                (POS_R_1_END)
 
-                (POS_L_1 + 2)
-                (POS_L_2 + 1)
-                (POS_L_2 + 2)
-                (POS_L_2 + 3)
+                (POS_L_1_START + 2)
+                (POS_L_2_START + 1)
+                (POS_L_2_START + 2)
+                (POS_L_2_START + 3)
 
-                (POS_R_1 + 3)
-                (POS_R_2 + 2)
-                (POS_R_2 + 3)
-                (POS_R_2 + 4)
+                (POS_R_1_START + 3)
+                (POS_R_2_START + 2)
+                (POS_R_2_START + 3)
+                (POS_R_2_START + 4)
             >;
         };
 
@@ -415,20 +423,20 @@
             #binding-cells = <0>;
             bindings = <&mokp 6 LCTRL>, <&kp TAB>;
             ignored-key-positions = <
-                (POS_L_0)
-                (POS_L_2)
-                (POS_R_0 + 4)
-                (POS_R_2 + 5)
+                (POS_L_0_START)
+                (POS_L_2_START)
+                (POS_R_0_END)
+                (POS_R_2_END)
 
-                (POS_L_1 + 2)
-                (POS_L_2 + 1)
-                (POS_L_2 + 2)
-                (POS_L_2 + 3)
+                (POS_L_1_START + 2)
+                (POS_L_2_START + 1)
+                (POS_L_2_START + 2)
+                (POS_L_2_START + 3)
 
-                (POS_R_1 + 3)
-                (POS_R_2 + 2)
-                (POS_R_2 + 3)
-                (POS_R_2 + 4)
+                (POS_R_1_START + 3)
+                (POS_R_2_START + 2)
+                (POS_R_2_START + 3)
+                (POS_R_2_START + 4)
             >;
         };
 
