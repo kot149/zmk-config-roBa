@@ -61,7 +61,7 @@
                 <&macro_release>,
                 <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
                 <&macro_tap>,
-                <&exit_AML &macro_param_2to1 &sl_250 MACRO_PLACEHOLDER>;
+                <&macro_param_2to1 &sl_250 MACRO_PLACEHOLDER>;
 
             label = "eager_tap_dance";
         };
@@ -228,6 +228,11 @@ CONFIG_PMW3610_POLLING_RATE_250=y      # 250Hz
 アプリやタブを切り替えるショートカット。以下、Altの場合で書く。
 
 これらのショートカットは単純にAlt+Tabを押すだけでなく、`[Alt↓]`, `[Tab↓↑]`×N回, `[Alt↑]`のような動作が求められるので、少ないキー数で実現するには工夫が必要。
+
+[zmk-smart-toggle](https://github.com/caksoylar/zmk-smart-toggle) を使うと簡単に実装できる。
+
+<details>
+<summary style="font-weight: bold;">zmk-smart-toggleを使わないで頑張る方法</summary>
 
 機能を損なうことなく少ないキー数で実現するには、以下の4つの方法が考えられる。
 1. タイムアウトでAltを離す
@@ -421,3 +426,5 @@ Layer-Tapはどこかにあるだろうから実質1キー消費。レイヤー0
 
 #### 作り方
 方法3の実装を流用する。トラボへのマクロ割り当ては[こちら](#マクロの割り当て) を参照。
+
+</details>
