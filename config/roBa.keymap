@@ -485,7 +485,7 @@
 
         /omit-if-no-ref/
 
-        eager_tap_dance: eager_tap_dance {
+        etd: eager_tap_dance {
             compatible = "zmk,behavior-macro-two-param";
             #binding-cells = <2>;
             bindings =
@@ -833,7 +833,7 @@
 &mt LWIN Q                        &mt LALT W        &kp E         &kp R                          &kp T                                                                            &kp Y                    &kp U  &kp I                   &kp O                &lt 8 P
 &mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &mouse_gesture_kp 0 K   &kp L                &lt 9 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mo 10                     &lt_zoom_out 10 0            &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt 3 SPACE  &lt 4 TAB      &lt 4 BACKSPACE  &lt 2 ENTER                                                      &lt 9 ESCAPE
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &etd  LANGUAGE_2 1  &lt 3 SPACE  &lt 4 TAB      &lt 4 BACKSPACE  &lt 2 ENTER                                                      &lt 9 ESCAPE
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -843,7 +843,7 @@
 &trans  &trans  &trans  &trans                    &trans                      &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &eager_tap_dance LANG1 1  &trans  &trans      &trans  &trans                          &trans
+&trans  &trans  &trans  &etd  LANG1 1  &trans  &trans      &trans  &trans                          &trans
             >;
         };
 
@@ -919,7 +919,7 @@
 &trans  &trans  &trans  &trans                         &trans                      &kp F13  &kp F14  &kp F15  &kp F16  &trans
 &trans  &trans  &trans  &trans                         &trans  &trans      &trans  &kp F17  &kp F18  &kp F19  &kp F20  &trans
 &trans  &trans  &trans  &trans                         &trans  &trans      &trans  &kp F21  &kp F22  &kp F23  &kp F24  &trans
-&trans  &trans  &trans  &eager_tap_dance LANGUAGE_1 9  &trans  &trans      &trans  &trans                              &trans
+&trans  &trans  &trans  &etd LANGUAGE_1 9  &trans  &trans      &trans  &trans                              &trans
             >;
         };
 

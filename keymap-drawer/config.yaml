@@ -150,9 +150,9 @@ parse_config:
     "&zoom_in": "Zoom+"
     "&zoom_out": "Zoom-"
     # eager_tap_dance
-    "&eager_tap_dance LANGUAGE_2 1": {t: Lang2, h: "1"}
-    "&eager_tap_dance LANG1 1": {t: Lang1, h: "1"}
-    "&eager_tap_dance LANGUAGE_1 9": {t: Lang1, h: "9"}
+    "&etd LANGUAGE_2 1": {t: Lang2, h: "1"}
+    "&etd LANG1 1": {t: Lang1, h: "1"}
+    "&etd LANGUAGE_1 9": {t: Lang1, h: "9"}
     # mouse_gesture_kp
     "&mouse_gesture_kp 0 K": K
     "&mouse_gesture": "Gesture"
