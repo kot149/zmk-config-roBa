@@ -49,6 +49,7 @@ manifest:
     - name: zmk-smart-toggle
       remote: caksoylar
       revision: v0.3-branch
+      path: modules/zmk-smart-toggle
 
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
