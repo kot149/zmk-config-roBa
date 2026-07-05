@@ -136,11 +136,6 @@ parse_config:
     left_gui: Win
     right_gui: Win
   raw_binding_map:
-    # lt_exit_alttab → tap + &mo hold
-    "&lt_exit_alttab 2 ENTER": {t: Enter, h: "2"}
-    "&lt_exit_alttab 3 SPACE": {t: Space, h: "3"}
-    "&lt_exit_alttab 4 TAB": {t: Tab, h: "4"}
-    "&lt_exit_alttab 4 BACKSPACE": {t: Bksp, h: "4"}
     # kp_exit_AML → kp label omitted
     "&kp_exit_AML LC(PAGE_UP)": "Ctrl+PgUp"
     "&kp_exit_AML LA(UP_ARROW)": "Alt+↑"

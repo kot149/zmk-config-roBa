@@ -98,7 +98,7 @@ layers:
   - Ctrl+Home
   - {t: ▽, type: trans}
   - Ctrl+End
-  - {t: Tab, h: '5'}
+  - '&alttab'
   - {t: '*', h: Ctrl}
   - '4'
   - '5'
@@ -110,7 +110,7 @@ layers:
   - Home
   - ↑
   - End
-  - {t: Tab, h: '6'}
+  - '&ctrltab'
   - {t: '0', h: Shift}
   - '1'
   - '2'
@@ -130,10 +130,10 @@ layers:
   - Enter
   - {t: ▽, type: trans}
   - Del
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   '3':
-  - {t: Tab, h: '5'}
+  - '&alttab'
   - F1
   - F2
   - F3
@@ -143,7 +143,7 @@ layers:
   - '}'
   - '"'
   - {t: ':', h: ;}
-  - {t: Tab, h: '6'}
+  - '&ctrltab'
   - F6
   - F7
   - F8
@@ -171,13 +171,13 @@ layers:
   - Win
   - Alt
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - <
   - '>'
   - $
   '4':
-  - {t: Tab, h: '5'}
+  - '&alttab'
   - Ctrl+Win+←
   - Win+Tab
   - Win+Ctrl+→
@@ -186,8 +186,8 @@ layers:
   - Ctrl+W
   - Shift+Ctrl+T
   - Ctrl+T
-  - {t: Tab, h: '5'}
-  - {t: Tab, h: '6'}
+  - '&alttab'
+  - '&ctrltab'
   - Win+Shift+←
   - Win+↑
   - Win+Shift+→
@@ -198,7 +198,7 @@ layers:
   - Ctrl+PgUp
   - Alt+↑
   - Ctrl+PgDn
-  - {t: Tab, h: '6'}
+  - '&ctrltab'
   - Alt+Ctrl+Win+↓
   - Win+←
   - Win+↓
@@ -216,7 +216,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - Del
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}

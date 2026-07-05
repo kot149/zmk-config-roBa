@@ -56,6 +56,15 @@
 #define EXTRA_FINCTIONS 9
 #define CONFIGURATION 10
 
+#define POS_L_0 0
+#define POS_L_1 10
+#define POS_L_2 22
+#define POS_L_3 34
+#define POS_R_0 (POS_L_0 + 5)
+#define POS_R_1 (POS_L_1 + 6)
+#define POS_R_2 (POS_L_2 + 6)
+#define POS_R_3 (POS_L_3 + 6)
+
 &mt {
     tapping-term-ms = <200>;
     quick-tap-ms = <250>;
@@ -92,16 +101,12 @@
 &zip_temp_layer {
     require-prior-idle-ms = <200>;
     excluded-positions = <
-        18 // J
-        19 // K
-        20 // L
-        21 // ;
-        22 // Z
-        // 31 // .
-        // 32 // ,
-        // 33 // /
-        34 // Ctrl
-        42
+        (POS_R_1 + 2) // J
+        (POS_R_1 + 3) // K
+        (POS_R_1 + 4) // L
+        (POS_R_1 + 5) // ;
+        (POS_L_2) // Z
+        (POS_R_3 + 2) // ESC
     >;
 };
 
@@ -230,15 +235,15 @@
     layer_listeners {
         compatible = "zmk,layer-listeners";
 
-        release_alt {
-            layers = <ALT_TAB>;
-            bindings = <&kt_on LEFT_ALT &kt_off LEFT_ALT>;
-        };
+        // release_alt {
+        //     layers = <ALT_TAB>;
+        //     bindings = <&kt_on LEFT_ALT &kt_off LEFT_ALT>;
+        // };
 
-        release_ctrl {
-            layers = <CTRL_TAB>;
-            bindings = <&kt_on LCTRL &kt_off LCTRL>;
-        };
+        // release_ctrl {
+        //     layers = <CTRL_TAB>;
+        //     bindings = <&kt_on LCTRL &kt_off LCTRL>;
+        // };
 
         // AML_indicator {
         //     layers = <MOUSE>;
@@ -384,21 +389,64 @@
         };
 
         /omit-if-no-ref/
+        alttab: alttab {
+            compatible = "zmk,behavior-smart-toggle";
+            #binding-cells = <0>;
+            bindings = <&mokp 5 LALT>, <&kp TAB>;
+            ignored-key-positions = <
+                (POS_L_1)
+                (POS_R_1 + 5)
 
-        mo_exit_alttab: mo_exit_alttab_ctrltab {
-            compatible = "zmk,behavior-macro-one-param";
+                (POS_L_1 + 2)
+                (POS_L_2 + 1)
+                (POS_L_2 + 2)
+                (POS_L_2 + 3)
+
+                (POS_R_1 + 3)
+                (POS_R_2 + 2)
+                (POS_R_2 + 3)
+                (POS_R_2 + 4)
+            >;
+        };
+
+        /omit-if-no-ref/
+        ctrltab: ctrltab {
+            compatible = "zmk,behavior-smart-toggle";
+            #binding-cells = <0>;
+            bindings = <&mokp 6 LCTRL>, <&kp TAB>;
+            ignored-key-positions = <
+                (POS_L_0)
+                (POS_L_2)
+                (POS_R_0 + 4)
+                (POS_R_2 + 5)
+
+                (POS_L_1 + 2)
+                (POS_L_2 + 1)
+                (POS_L_2 + 2)
+                (POS_L_2 + 3)
+
+                (POS_R_1 + 3)
+                (POS_R_2 + 2)
+                (POS_R_2 + 3)
+                (POS_R_2 + 4)
+            >;
+        };
+
+        /omit-if-no-ref/
+
+        mokp: mokp {
+            compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
             tap-ms = <0>;
-            #binding-cells = <1>;
+            #binding-cells = <2>;
             bindings =
                 <&macro_press>,
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
-                <&macro_tap>,
+                <&macro_param_2to1 &kp MACRO_PLACEHOLDER>,
                 <&macro_pause_for_release>,
                 <&macro_release>,
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
-                <&macro_tap>,
-                <&tog_off 5 &tog_off 6>;
+                <&macro_param_2to1 &kp MACRO_PLACEHOLDER>;
         };
 
         /omit-if-no-ref/
@@ -646,18 +694,6 @@
 
         /omit-if-no-ref/
 
-        lt_exit_alttab: lt_exit_alttab_ctrltab_on_hold_release {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&mo_exit_alttab>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <200>;
-            flavor = "balanced";
-        };
-
-        /omit-if-no-ref/
-
         mt_exit_AML: mt_exit_AML {
             compatible = "zmk,behavior-hold-tap";
             bindings = <&mod_exit_AML>, <&kp_exit_AML>;
@@ -797,7 +833,7 @@
 &mt LWIN Q                        &mt LALT W        &kp E         &kp R                          &kp T                                                                            &kp Y                    &kp U  &kp I                   &kp O                &lt 8 P
 &mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &mouse_gesture_kp 0 K   &kp L                &lt 9 MINUS
 &mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mo 10                     &lt_zoom_out 10 0            &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt_exit_alttab 3 SPACE  &lt_exit_alttab 4 TAB      &lt_exit_alttab 4 BACKSPACE  &lt_exit_alttab 2 ENTER                                                      &lt 9 ESCAPE
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &eager_tap_dance LANGUAGE_2 1  &lt 3 SPACE  &lt 4 TAB      &lt 4 BACKSPACE  &lt 2 ENTER                                                      &lt 9 ESCAPE
             >;
             sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
@@ -813,8 +849,8 @@
 
         NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS                   &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &to_kp 5 TAB
-&mt LEFT_CONTROL ASTERISK  &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &to_kp 6 TAB
+&kp PLUS                   &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &alttab
+&mt LEFT_CONTROL ASTERISK  &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &ctrltab
 &mt LEFT_SHIFT N0          &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
 &mt LCTRL COMMA            &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
             >;
@@ -824,8 +860,8 @@
 
         FUNCTIONS_AND_SYMBOLS {
             bindings = <
-&to_kp 5 TAB  &kp F1        &kp F2        &kp F3   &td_alt_f4                             &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
-&to_kp 6 TAB  &kp F6        &kp F7        &kp F8   &kp F5      &trans      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
+&alttab       &kp F1        &kp F2        &kp F3   &td_alt_f4                             &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
+&ctrltab      &kp F6        &kp F7        &kp F8   &kp F5      &trans      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
 &trans        &kp F9        &kp F10       &kp F11  &kp F12     &trans      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
 &kp LCTRL     &kp LEFT_WIN  &kp LEFT_ALT  &trans   &trans      &trans      &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
             >;
@@ -833,8 +869,8 @@
 
         MISC {
             bindings = <
-&to_kp 5 TAB          &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                                                         &td_alt_f4  &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &to_kp 5 TAB
-&to_kp 6 TAB          &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &kp F5            &trans               &kp C_VOLUME_UP             &kp F5      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &to_kp 6 TAB
+&alttab          &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                                                         &td_alt_f4  &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alttab
+&ctrltab          &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &kp F5            &trans               &kp C_VOLUME_UP             &kp F5      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &ctrltab
 &kp LA(LC(LG(DOWN)))  &kp LG(LEFT_ARROW)      &kp LG(DOWN)      &kp LG(RIGHT_ARROW)      &screenshot_copy  &screensot_save      &kp_exit_AML C_VOLUME_DOWN  &kp K_MUTE  &kp LA(LEFT)              &kp LA(DOWN)               &kp LA(RIGHT)      &trans
 &trans                &trans                  &trans            &trans                   &trans            &trans               &kp DELETE                  &trans                                                                          &trans
             >;

@@ -45,6 +45,11 @@ manifest:
       revision: v1
       path: modules/zmk-listeners
 
+    # https://github.com/caksoylar/zmk-smart-toggle.git
+    - name: zmk-smart-toggle
+      remote: caksoylar
+      revision: v0.3-branch
+
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
       remote: caksoylar
