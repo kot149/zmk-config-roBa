@@ -1,6 +1,6 @@
 layout: {zmk_keyboard: roBa}
 layers:
-  '0':
+  Default:
   - {t: Q, h: Win}
   - {t: W, h: Alt}
   - E
@@ -10,7 +10,7 @@ layers:
   - U
   - I
   - O
-  - {t: P, h: '7'}
+  - {t: P, h: Media}
   - {t: A, h: Ctrl}
   - S
   - D
@@ -22,13 +22,13 @@ layers:
   - J
   - K
   - L
-  - {t: '-', h: '8'}
+  - {t: '-', h: Extra Functions}
   - {t: Z, h: Shift}
   - {t: X, h: Shift}
   - C
   - V
   - B
-  - '9'
+  - Configuration
   - {t: Zoom-, h: '&mo_exit_AML 9'}
   - N
   - M
@@ -39,12 +39,12 @@ layers:
   - Win
   - Alt
   - IME Switch
-  - {t: Space, h: '2'}
-  - {t: Tab, h: '3'}
-  - {t: Bksp, h: '3'}
-  - {t: Enter, h: '1'}
-  - {t: Esc, h: '8'}
-  '1':
+  - {t: Space, h: Functions & Symbols}
+  - {t: Tab, h: Navigations}
+  - {t: Bksp, h: Navigations}
+  - {t: Enter, h: Numpad & Arrows}
+  - {t: Esc, h: Extra Functions}
+  Numpad & Arrows:
   - +
   - '7'
   - '8'
@@ -88,7 +88,7 @@ layers:
   - Del
   - {type: held}
   - {t: ▽, type: trans}
-  '2':
+  Functions & Symbols:
   - Alt+Tab
   - F1
   - F2
@@ -132,7 +132,7 @@ layers:
   - <
   - '>'
   - $
-  '3':
+  Navigations:
   - Alt+Tab
   - Ctrl+Win+←
   - Win+Tab
@@ -176,7 +176,7 @@ layers:
   - Del
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '4':
+  Alt+Tab:
   - Tab
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -220,7 +220,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '5':
+  Ctrl+Tab:
   - Shift+Tab
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -264,7 +264,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '6':
+  Mouse:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -285,8 +285,8 @@ layers:
   - {t: ▽, type: trans}
   - LClick
   - {t: RClick, h: Gesture}
-  - ''
-  - '8'
+  - '&kp_exit_AML L'
+  - Extra Functions
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -308,7 +308,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '7':
+  Media:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -352,7 +352,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '8':
+  Extra Functions:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -396,7 +396,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '9':
+  Configuration:
   - {t: Reset, h: Bootloader}
   - ''
   - ''
@@ -443,28 +443,28 @@ layers:
 combos:
 - p: [0, 1]
   k: '='
-  l: ['1']
+  l: [Numpad & Arrows]
 - p: [10, 11]
   k: ^
-  l: ['1']
+  l: [Numpad & Arrows]
 - p: [18, 19]
   k: MClick
-  l: ['6']
+  l: [Mouse]
 - p: [19, 20]
   k: Shift+MClick
-  l: ['6']
+  l: [Mouse]
 - p: [0, 1]
   k: Esc
-  l: ['0']
+  l: [Default]
 - p: [22, 33]
   k: CAPS WORD
-  l: ['0']
+  l: [Default]
 - p: [33, 32]
   k: \
-  l: ['0']
+  l: [Default]
 - p: [10, 11]
   k: Ctrl+A
-  l: ['0']
+  l: [Default]
 - p: [23, 22]
   k: Ctrl+Z
-  l: ['0']
+  l: [Default]
