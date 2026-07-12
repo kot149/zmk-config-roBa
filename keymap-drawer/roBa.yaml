@@ -29,7 +29,7 @@ layers:
   - V
   - B
   - Configuration
-  - {t: Zoom-, h: '&mo_exit_AML 9'}
+  - {t: Zoom-, h: Configuration}
   - N
   - M
   - {t: ',', s: '!'}
@@ -137,8 +137,8 @@ layers:
   - Ctrl+Win+←
   - Win+Tab
   - Win+Ctrl+→
-  - {t: F4, h: Alt+F4}
-  - {t: F4, h: Alt+F4}
+  - {t: ▽, type: trans}
+  - '&tran'
   - Ctrl+W
   - Shift+Ctrl+T
   - Ctrl+T
@@ -147,10 +147,10 @@ layers:
   - Win+Shift+←
   - Win+↑
   - Win+Shift+→
-  - F5
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - Vol+
-  - F5
+  - {t: ▽, type: trans}
   - Ctrl+PgUp
   - Alt+↑
   - Ctrl+PgDn
