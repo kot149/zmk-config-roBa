@@ -412,7 +412,7 @@
         alt_tab: alt_tab {
             compatible = "zmk,behavior-smart-toggle";
             #binding-cells = <0>;
-            bindings = <&mokp 5 LALT>, <&kp TAB>;
+            bindings = <&mokp 4 LALT>, <&kp TAB>;
             ignored-key-positions = <
                 (POS_L_1_START)
                 (POS_R_1_END)
@@ -434,7 +434,7 @@
         ctrl_tab: ctrl_tab {
             compatible = "zmk,behavior-smart-toggle";
             #binding-cells = <0>;
-            bindings = <&mokp 6 LCTRL>, <&kp TAB>;
+            bindings = <&mokp 5 LCTRL>, <&kp TAB>;
             ignored-key-positions = <
                 (POS_L_0_START)
                 (POS_L_2_START)
