@@ -139,6 +139,8 @@ parse_config:
     # alt_tab / ctrl_tab
     "&alt_tab": "Alt+Tab"
     "&ctrl_tab": "Ctrl+Tab"
+    # IME toggle
+    "&ime_switch": "IME Switch"
     # kp_exit_AML → kp label omitted
     "&kp_exit_AML LC(PAGE_UP)": "Ctrl+PgUp"
     "&kp_exit_AML LA(UP_ARROW)": "Alt+↑"

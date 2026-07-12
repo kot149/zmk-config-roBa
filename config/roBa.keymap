@@ -15,6 +15,7 @@
 #include <dt-bindings/zmk/pointing.h>
 
 #include <layout_shift_kp_override.dtsi>
+
 / {
     behaviors {
         tog_ls_jis: tog_ls_jis {
@@ -45,16 +46,15 @@
 #include <scroll-snap.dtsi>
 
 #define DEFAULT 0
-#define LANG1_EAGER_TAP_DANCE 1
-#define NUMPAD_AND_ARROWS 2
-#define FUNCTIONS_AND_SYMBOLS 3
-#define MISC 4
-#define ALT_TAB 5
-#define CTRL_TAB 6
-#define MOUSE 7
-#define MEDIA 8
-#define EXTRA_FINCTIONS 9
-#define CONFIGURATION 10
+#define NUMPAD_AND_ARROWS 1
+#define FUNCTIONS_AND_SYMBOLS 2
+#define MISC 3
+#define ALT_TAB 4
+#define CTRL_TAB 5
+#define MOUSE 6
+#define MEDIA 7
+#define EXTRA_FINCTIONS 8
+#define CONFIGURATION 9
 
 #define POS_L_0_START 0
 #define POS_L_1_START 10
@@ -104,7 +104,6 @@
     quick-tap-ms = <250>;
     flavor = "balanced";
 };
-
 
 &zip_temp_layer {
     require-prior-idle-ms = <200>;
@@ -269,25 +268,25 @@
         eq {
             bindings = <&kp EQUAL>;
             key-positions = <0 1>;
-            layers = <2>;
+            layers = <1>;
         };
 
         hat {
             bindings = <&kp CARET>;
             key-positions = <10 11>;
-            layers = <2>;
+            layers = <1>;
         };
 
         middle_click {
             bindings = <&mkp MCLK>;
             key-positions = <18 19>;
-            layers = <7>;
+            layers = <6>;
         };
 
         shift_middle_click {
             bindings = <&mkp_with_mod LEFT_SHIFT MCLK>;
             key-positions = <19 20>;
-            layers = <7>;
+            layers = <6>;
         };
 
         Escape {
@@ -333,7 +332,7 @@
             wait-ms = <0>;
             tap-ms = <0>;
             #binding-cells = <0>;
-            bindings = <&tog_off 7>;
+            bindings = <&tog_off 6>;
         };
 
         /omit-if-no-ref/
@@ -375,7 +374,7 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mkp MACRO_PLACEHOLDER>,
                 <&macro_tap>,
-                <&sl 7>;
+                <&sl 6>;
         };
 
         /omit-if-no-ref/
@@ -394,6 +393,19 @@
                 <&macro_release>,
                 <&macro_param_1to1 &mo MACRO_PLACEHOLDER>,
                 <&macro_tap>;
+        };
+
+        /omit-if-no-ref/
+        ime_switch: ime_switch {
+            compatible = "zmk,behavior-adaptive-key";
+            #binding-cells = <0>;
+            bindings = <&kp LANGUAGE_2>; // ime_off
+
+            ime_on {
+                trigger-keys = <LANGUAGE_1 LANGUAGE_2>;
+                bindings = <&kp LANGUAGE_1>;
+                max-prior-idle-ms = <250>;
+            };
         };
 
         /omit-if-no-ref/
@@ -418,6 +430,7 @@
         };
 
         /omit-if-no-ref/
+
         ctrl_tab: ctrl_tab {
             compatible = "zmk,behavior-smart-toggle";
             #binding-cells = <0>;
@@ -489,21 +502,6 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kt_on LCTRL &msc SCRL_DOWN &kt_off LCTRL>;
-        };
-
-        /omit-if-no-ref/
-
-        etd: eager_tap_dance {
-            compatible = "zmk,behavior-macro-two-param";
-            #binding-cells = <2>;
-            bindings =
-                <&macro_press>,
-                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
-                <&macro_pause_for_release>,
-                <&macro_release>,
-                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
-                <&macro_tap>,
-                <&exit_AML &macro_param_2to1 &sl_250 MACRO_PLACEHOLDER>;
         };
     };
 
@@ -746,15 +744,6 @@
 
         /omit-if-no-ref/
 
-        sl_250: sl_250 {
-            compatible = "zmk,behavior-sticky-key";
-            bindings = <&mo>;
-            #binding-cells = <1>;
-            release-after-ms = <250>;
-        };
-
-        /omit-if-no-ref/
-
         td_bt_clear: td_bt_clear {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -830,29 +819,21 @@
 
         DEFAULT {
             bindings = <
-&mt LWIN Q                        &mt LALT W        &kp E         &kp R                          &kp T                                                                            &kp Y                    &kp U  &kp I                   &kp O                &lt 8 P
-&mt LCTRL A                       &kp S             &kp D         &kp F                          &kp G                    &kp LEFT_SHIFT             &zoom_in                     &kp H                    &kp J  &mouse_gesture_kp 0 K   &kp L                &lt 9 MINUS
-&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V                          &kp B                    &mo 10                     &lt_zoom_out 10 0            &kp N                    &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
-&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &etd  LANGUAGE_2 1  &lt 3 SPACE  &lt 4 TAB      &lt 4 BACKSPACE  &lt 2 ENTER                                                      &lt 9 ESCAPE
+&mt LWIN Q                        &mt LALT W        &kp E         &kp R        &kp T                                              &kp Y        &kp U  &kp I                   &kp O                &lt 7 P
+&mt LCTRL A                       &kp S             &kp D         &kp F        &kp G        &kp LEFT_SHIFT      &zoom_in          &kp H        &kp J  &mouse_gesture_kp 0 K   &kp L                &lt 8 MINUS
+&mt_exit_AML_on_tap LEFT_SHIFT Z  &mt LEFT_SHIFT X  &kp C         &kp V        &kp B        &mo 9               &lt_zoom_out 9 0  &kp N        &kp M  &mod_morph_exclamation  &mod_morph_question  &mt LEFT_SHIFT SLASH
+&kp LCTRL                         &kp LEFT_WIN      &kp LEFT_ALT  &ime_switch  &lt 2 SPACE  &lt 3 TAB           &lt 3 BACKSPACE   &lt 1 ENTER                                                      &lt 8 ESCAPE
             >;
-            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
-        };
 
-        LANG1_EAGER_TAP_DANCE {
-            bindings = <
-&trans  &trans  &trans  &trans                    &trans                      &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans                    &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &etd  LANG1 1  &trans  &trans      &trans  &trans                          &trans
-            >;
+            sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
         };
 
         NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS                   &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &alt_tab
-&mt LCTRL ASTERISK         &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &ctrl_tab
-&mt LEFT_SHIFT N0          &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
-&mt LCTRL COMMA            &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
+&kp PLUS            &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &alt_tab
+&mt LCTRL ASTERISK  &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &ctrl_tab
+&mt LEFT_SHIFT N0   &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
+&mt LCTRL COMMA     &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PLUS) LC(MINUS)>;
@@ -860,19 +841,19 @@
 
         FUNCTIONS_AND_SYMBOLS {
             bindings = <
-&alt_tab       &kp F1        &kp F2        &kp F3   &td_alt_f4                             &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
-&ctrl_tab      &kp F6        &kp F7        &kp F8   &kp F5      &trans      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
-&trans        &kp F9        &kp F10       &kp F11  &kp F12     &trans      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
-&kp LCTRL     &kp LEFT_WIN  &kp LEFT_ALT  &trans   &trans      &trans      &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
+&alt_tab   &kp F1        &kp F2        &kp F3   &td_alt_f4                             &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
+&ctrl_tab  &kp F6        &kp F7        &kp F8   &kp F5      &trans      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
+&trans     &kp F9        &kp F10       &kp F11  &kp F12     &trans      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
+&kp LCTRL  &kp LEFT_WIN  &kp LEFT_ALT  &trans   &trans      &trans      &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
             >;
         };
 
         MISC {
             bindings = <
-&alt_tab          &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                                                         &td_alt_f4  &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alt_tab
-&ctrl_tab          &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &kp F5            &trans               &kp C_VOLUME_UP             &kp F5      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &ctrl_tab
+&alt_tab              &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                                                         &td_alt_f4  &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alt_tab
+&ctrl_tab             &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &kp F5            &trans               &kp C_VOLUME_UP             &kp F5      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &ctrl_tab
 &kp LA(LC(LG(DOWN)))  &kp LG(LEFT_ARROW)      &kp LG(DOWN)      &kp LG(RIGHT_ARROW)      &screenshot_copy  &screensot_save      &kp_exit_AML C_VOLUME_DOWN  &kp K_MUTE  &kp LA(LEFT)              &kp LA(DOWN)               &kp LA(RIGHT)      &trans
-&trans                &trans                  &trans            &trans                   &trans            &trans               &kp DELETE                  &trans                                                                          &trans
+&trans                &trans                  &trans            &trans                   &trans            &trans               &kp DELETE                  &trans                                                                              &trans
             >;
 
             sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
@@ -898,10 +879,10 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans           &trans          &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0 &none  &mo 9
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans           &trans          &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                             &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans                                  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0  &none   &mo 8
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans                                  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                            &trans
             >;
         };
 
@@ -916,19 +897,19 @@
 
         EXTRA_FINCTIONS {
             bindings = <
-&trans  &trans  &trans  &trans                         &trans                      &kp F13  &kp F14  &kp F15  &kp F16  &trans
-&trans  &trans  &trans  &trans                         &trans  &trans      &trans  &kp F17  &kp F18  &kp F19  &kp F20  &trans
-&trans  &trans  &trans  &trans                         &trans  &trans      &trans  &kp F21  &kp F22  &kp F23  &kp F24  &trans
-&trans  &trans  &trans  &etd LANGUAGE_1 9  &trans  &trans      &trans  &trans                              &trans
+&trans  &trans  &trans  &trans  &trans                      &kp F13  &kp F14  &kp F15  &kp F16  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp F17  &kp F18  &kp F19  &kp F20  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &kp F21  &kp F22  &kp F23  &kp F24  &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                              &trans
             >;
         };
 
         CONFIGURATION {
             bindings = <
-&reset_bootloader 0 0 &none       &none  &tog_ls_ctrl_cmd  &tog_ls_jis                                &ind_con      &ind_bat      &none         &out OUT_TOG    &reset_bootloader 0 0
-&none                 &none       &none  &none  &none   &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &bt BT_SEL 4
-&none                 &none       &none  &none  &none  &none       &none         &none         &none         &none         &none           &none
-&none                 &none       &none  &none  &none        &none       &none         &none                                                     &td_bt_clear_all
+&reset_bootloader 0 0  &none  &none  &tog_ls_ctrl_cmd  &tog_ls_jis                            &ind_con      &ind_bat      &none         &out OUT_TOG  &reset_bootloader 0 0
+&none                  &none  &none  &none             &none        &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+&none                  &none  &none  &none             &none        &none       &none         &none         &none         &none         &none         &none
+&none                  &none  &none  &none             &none        &none       &none         &none                                                   &td_bt_clear_all
             >;
         };
     };

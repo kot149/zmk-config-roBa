@@ -8,6 +8,8 @@ manifest:
       url-base: https://github.com/caksoylar
     - name: badjeff
       url-base: https://github.com/badjeff
+    - name: urob
+      url-base: https://github.com/urob
     - name: ssbb
       url-base: https://github.com/ssbb
     - name: 4mplelab
@@ -50,6 +52,11 @@ manifest:
       remote: caksoylar
       revision: v0.3-branch
       path: modules/zmk-smart-toggle
+
+    # https://github.com/urob/zmk-adaptive-key
+    - name: zmk-adaptive-key
+      remote: urob
+      revision: v0.3
 
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
