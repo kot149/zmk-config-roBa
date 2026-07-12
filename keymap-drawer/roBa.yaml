@@ -10,7 +10,7 @@ layers:
   - U
   - I
   - O
-  - {t: P, h: '8'}
+  - {t: P, h: '7'}
   - {t: A, h: Ctrl}
   - S
   - D
@@ -22,14 +22,14 @@ layers:
   - J
   - K
   - L
-  - {t: '-', h: '9'}
+  - {t: '-', h: '8'}
   - {t: Z, h: Shift}
   - {t: X, h: Shift}
   - C
   - V
   - B
-  - '10'
-  - {t: Zoom-, h: '10'}
+  - '9'
+  - {t: Zoom-, h: '&mo_exit_AML 9'}
   - N
   - M
   - {t: ',', s: '!'}
@@ -38,57 +38,13 @@ layers:
   - Ctrl
   - Win
   - Alt
-  - {t: Lang2, h: '1'}
-  - {t: Space, h: '3'}
-  - {t: Tab, h: '4'}
-  - {t: Bksp, h: '4'}
-  - {t: Enter, h: '2'}
-  - {t: Esc, h: '9'}
+  - IME Switch
+  - {t: Space, h: '2'}
+  - {t: Tab, h: '3'}
+  - {t: Bksp, h: '3'}
+  - {t: Enter, h: '1'}
+  - {t: Esc, h: '8'}
   '1':
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: Lang1, h: '1'}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  '2':
   - +
   - '7'
   - '8'
@@ -98,7 +54,7 @@ layers:
   - Ctrl+Home
   - {t: ▽, type: trans}
   - Ctrl+End
-  - '&alttab'
+  - Alt+Tab
   - {t: '*', h: Ctrl}
   - '4'
   - '5'
@@ -110,7 +66,7 @@ layers:
   - Home
   - ↑
   - End
-  - '&ctrltab'
+  - Ctrl+Tab
   - {t: '0', h: Shift}
   - '1'
   - '2'
@@ -132,8 +88,8 @@ layers:
   - Del
   - {type: held}
   - {t: ▽, type: trans}
-  '3':
-  - '&alttab'
+  '2':
+  - Alt+Tab
   - F1
   - F2
   - F3
@@ -143,7 +99,7 @@ layers:
   - '}'
   - '"'
   - {t: ':', h: ;}
-  - '&ctrltab'
+  - Ctrl+Tab
   - F6
   - F7
   - F8
@@ -176,8 +132,8 @@ layers:
   - <
   - '>'
   - $
-  '4':
-  - '&alttab'
+  '3':
+  - Alt+Tab
   - Ctrl+Win+←
   - Win+Tab
   - Win+Ctrl+→
@@ -186,8 +142,8 @@ layers:
   - Ctrl+W
   - Shift+Ctrl+T
   - Ctrl+T
-  - '&alttab'
-  - '&ctrltab'
+  - Alt+Tab
+  - Ctrl+Tab
   - Win+Shift+←
   - Win+↑
   - Win+Shift+→
@@ -198,7 +154,7 @@ layers:
   - Ctrl+PgUp
   - Alt+↑
   - Ctrl+PgDn
-  - '&ctrltab'
+  - Ctrl+Tab
   - Alt+Ctrl+Win+↓
   - Win+←
   - Win+↓
@@ -220,18 +176,62 @@ layers:
   - Del
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  '4':
+  - Tab
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Tab
+  - Shift+Tab
+  - {t: ▽, type: trans}
+  - ↑
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ↑
+  - {t: ▽, type: trans}
+  - Shift+Tab
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - →
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - →
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   '5':
-  - Tab
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Tab
   - Shift+Tab
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Shift+Tab
+  - Tab
   - {t: ▽, type: trans}
   - ↑
   - {t: ▽, type: trans}
@@ -242,8 +242,8 @@ layers:
   - {t: ▽, type: trans}
   - ↑
   - {t: ▽, type: trans}
+  - Tab
   - Shift+Tab
-  - {t: ▽, type: trans}
   - ←
   - ↓
   - →
@@ -254,7 +254,7 @@ layers:
   - ←
   - ↓
   - →
-  - {t: ▽, type: trans}
+  - Shift+Tab
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -265,50 +265,6 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   '6':
-  - Shift+Tab
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - Shift+Tab
-  - Tab
-  - {t: ▽, type: trans}
-  - ↑
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ↑
-  - {t: ▽, type: trans}
-  - Tab
-  - Shift+Tab
-  - ←
-  - ↓
-  - →
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ←
-  - ↓
-  - →
-  - Shift+Tab
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  '7':
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -330,7 +286,7 @@ layers:
   - LClick
   - {t: RClick, h: Gesture}
   - ''
-  - '9'
+  - '8'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -352,7 +308,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '8':
+  '7':
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -396,7 +352,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '9':
+  '8':
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -434,13 +390,13 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: Lang1, h: '9'}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  '10':
+  - {t: ▽, type: trans}
+  '9':
   - {t: Reset, h: Bootloader}
   - ''
   - ''
@@ -487,16 +443,16 @@ layers:
 combos:
 - p: [0, 1]
   k: '='
-  l: ['2']
+  l: ['1']
 - p: [10, 11]
   k: ^
-  l: ['2']
+  l: ['1']
 - p: [18, 19]
   k: MClick
-  l: ['7']
+  l: ['6']
 - p: [19, 20]
   k: Shift+MClick
-  l: ['7']
+  l: ['6']
 - p: [0, 1]
   k: Esc
   l: ['0']
