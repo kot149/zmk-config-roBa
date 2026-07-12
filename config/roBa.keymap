@@ -879,10 +879,10 @@
 
         MOUSE {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans                                  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0  &none   &mo 8
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans                                  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                            &trans
+&trans  &trans  &trans  &trans  &trans                      &trans  &trans    &trans                                  &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &mkp MB1  &td_rclick_close_tab_mouse_gesture 0 0  &kp_exit_AML L   &mo 8
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans    &trans                                  &trans           &trans
+&trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans                                                                     &trans
             >;
         };
 
