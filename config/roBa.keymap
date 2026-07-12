@@ -788,7 +788,7 @@
             #binding-cells = <2>;
             bindings = <&bootloader>, <&td_reset>;
 
-            tapping-term-ms = <500>;
+            tapping-term-ms = <250>;
             flavor = "balanced";
         };
 
