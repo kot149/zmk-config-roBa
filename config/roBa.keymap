@@ -197,7 +197,7 @@
     input-processors = <
         &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
         &zip_mouse_gesture
-        &zip_report_rate_limit 15
+        &zip_report_rate_limit 11
         // &zip_cursor_snap
     >;
 
@@ -207,22 +207,26 @@
         process-next;
     };
 
-    scroller {
-        layers = <EXTRA_FINCTIONS NAV MEDIA>;
+    scroller-x {
+        layers = <EXTRA_FINCTIONS>;
         input-processors = <
-            &zip_xy_scaler 3 1
             &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
             &zip_xy_to_scroll_mapper
-            &zip_scroll_snap
+            &wheel_x_scaler 0 1
             &zip_report_rate_limit 15
         >;
 
         process-next;
     };
 
-    disable-scroll-x {
-        layers = <EXTRA_FINCTIONS>;
-        input-processors = <&wheel_x_scaler 0 1>;
+    scroller-xy {
+        layers = <NAV MEDIA>;
+        input-processors = <
+            &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
+            &zip_xy_to_scroll_mapper
+            &zip_scroll_snap
+            &zip_report_rate_limit 15
+        >;
 
         process-next;
     };
