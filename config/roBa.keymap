@@ -397,7 +397,7 @@
         };
 
         /omit-if-no-ref/
-        alttab: alttab {
+        alt_tab: alt_tab {
             compatible = "zmk,behavior-smart-toggle";
             #binding-cells = <0>;
             bindings = <&mokp 5 LALT>, <&kp TAB>;
@@ -418,7 +418,7 @@
         };
 
         /omit-if-no-ref/
-        ctrltab: ctrltab {
+        ctrl_tab: ctrl_tab {
             compatible = "zmk,behavior-smart-toggle";
             #binding-cells = <0>;
             bindings = <&mokp 6 LCTRL>, <&kp TAB>;
@@ -583,14 +583,6 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&td_ZenkakuHankaku &exit_AML>;
-        };
-
-        /omit-if-no-ref/
-
-        alt_tab: alt_tab {
-            compatible = "zmk,behavior-macro-two-param";
-            #binding-cells = <2>;
-            bindings = <&macro_param_1to1 &kt_on MACRO_PLACEHOLDER &macro_param_2to1 &kp MACRO_PLACEHOLDER &macro_param_1to1 &sk MACRO_PLACEHOLDER &macro_param_1to1 &kt_off MACRO_PLACEHOLDER>;
         };
 
         /omit-if-no-ref/
@@ -857,8 +849,8 @@
 
         NUMPAD_AND_ARROWS {
             bindings = <
-&kp PLUS                   &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &alttab
-&mt LEFT_CONTROL ASTERISK  &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &ctrltab
+&kp PLUS                   &kp N7              &kp N8               &kp N9  &kp MINUS                               &td_alt_f4    &kp LC(HOME)  &trans        &kp LC(END)  &alt_tab
+&mt LCTRL ASTERISK         &kp N4              &kp N5               &kp N6  &kp SLASH    &kp EQUAL      &trans      &kp F5        &kp HOME      &kp UP_ARROW  &kp END      &ctrl_tab
 &mt LEFT_SHIFT N0          &kp N1              &kp N2               &kp N3  &kp PERCENT  &kp SPACE      &trans      &kp LC(LEFT)  &kp LEFT      &kp DOWN      &kp RIGHT    &kp LC(RIGHT)
 &mt LCTRL COMMA            &mt LEFT_WIN COMMA  &mt LEFT_ALT PERIOD  &trans  &kp ENTER    &trans         &kp DELETE  &trans                                                 &trans
             >;
@@ -868,8 +860,8 @@
 
         FUNCTIONS_AND_SYMBOLS {
             bindings = <
-&alttab       &kp F1        &kp F2        &kp F3   &td_alt_f4                             &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
-&ctrltab      &kp F6        &kp F7        &kp F8   &kp F5      &trans      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
+&alt_tab       &kp F1        &kp F2        &kp F3   &td_alt_f4                             &kp AT_SIGN       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOUBLE_QUOTES  &td_colon
+&ctrl_tab      &kp F6        &kp F7        &kp F8   &kp F5      &trans      &kp DOLLAR     &kp HASH          &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SINGLE_QUOTE   &kp TILDE
 &trans        &kp F9        &kp F10       &kp F11  &kp F12     &trans      &kp BSLH       &kp AMPERSAND     &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp GRAVE          &kp PIPE
 &kp LCTRL     &kp LEFT_WIN  &kp LEFT_ALT  &trans   &trans      &trans      &kp LESS_THAN  &kp GREATER_THAN                                                                  &kp DOLLAR
             >;
@@ -877,8 +869,8 @@
 
         MISC {
             bindings = <
-&alttab          &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                                                         &td_alt_f4  &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alttab
-&ctrltab          &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &kp F5            &trans               &kp C_VOLUME_UP             &kp F5      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &ctrltab
+&alt_tab          &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &td_alt_f4                                                         &td_alt_f4  &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alt_tab
+&ctrl_tab          &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &kp F5            &trans               &kp C_VOLUME_UP             &kp F5      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &ctrl_tab
 &kp LA(LC(LG(DOWN)))  &kp LG(LEFT_ARROW)      &kp LG(DOWN)      &kp LG(RIGHT_ARROW)      &screenshot_copy  &screensot_save      &kp_exit_AML C_VOLUME_DOWN  &kp K_MUTE  &kp LA(LEFT)              &kp LA(DOWN)               &kp LA(RIGHT)      &trans
 &trans                &trans                  &trans            &trans                   &trans            &trans               &kp DELETE                  &trans                                                                          &trans
             >;
