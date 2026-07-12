@@ -858,7 +858,7 @@
             display-name = "Navigations";
 
             bindings = <
-&alt_tab              &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &trans                                                             &tran       &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alt_tab
+&alt_tab              &kp LC(LG(LEFT))        &kp LG(TAB)       &kp LG(LC(RIGHT))        &trans                                                             &trans       &kp LC(W)                 &kp LS(LC(T))              &kp LC(T)          &alt_tab
 &ctrl_tab             &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &trans            &trans               &kp C_VOLUME_UP             &trans      &kp_exit_AML LC(PAGE_UP)  &kp_exit_AML LA(UP_ARROW)  &kp LC(PAGE_DOWN)  &ctrl_tab
 &kp LA(LC(LG(DOWN)))  &kp LG(LEFT_ARROW)      &kp LG(DOWN)      &kp LG(RIGHT_ARROW)      &screenshot_copy  &screensot_save      &kp_exit_AML C_VOLUME_DOWN  &kp C_MUTE  &kp LA(LEFT)              &kp LA(DOWN)               &kp LA(RIGHT)      &trans
 &trans                &trans                  &trans            &trans                   &trans            &trans               &kp DELETE                  &trans                                                                              &trans
