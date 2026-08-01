@@ -113,7 +113,8 @@
         (POS_R_1_START + 4) // L
         (POS_R_1_START + 5) // ;
         (POS_L_2_START) // Z
-        (POS_R_3_END)
+        (POS_L_3_START) // Ctrl
+        (POS_R_3_END) // /
     >;
 };
 
