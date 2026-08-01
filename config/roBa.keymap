@@ -419,18 +419,18 @@
             #binding-cells = <0>;
             bindings = <&mokp 4 LALT>, <&kp TAB>;
             ignored-key-positions = <
-                (POS_L_1_START)
-                (POS_R_1_END)
+                (POS_L_1_START) // shift+tab
+                (POS_R_1_END) // shift+tab
 
-                (POS_L_1_START + 2)
-                (POS_L_2_START + 1)
-                (POS_L_2_START + 2)
-                (POS_L_2_START + 3)
+                (POS_L_1_START + 2) // ↑
+                (POS_L_2_START + 1) // ←
+                (POS_L_2_START + 2) // ↓
+                (POS_L_2_START + 3) // →
 
-                (POS_R_1_START + 3)
-                (POS_R_2_START + 2)
-                (POS_R_2_START + 3)
-                (POS_R_2_START + 4)
+                (POS_R_1_START + 3) // ↑
+                (POS_R_2_START + 2) // ←
+                (POS_R_2_START + 3) // ↓
+                (POS_R_2_START + 4) // →
             >;
         };
 
@@ -441,20 +441,20 @@
             #binding-cells = <0>;
             bindings = <&mokp 5 LCTRL>, <&kp TAB>;
             ignored-key-positions = <
-                (POS_L_0_START)
-                (POS_L_2_START)
-                (POS_R_0_END)
-                (POS_R_2_END)
+                (POS_L_0_START) // shift+tab
+                (POS_L_2_START) // shift+tab
+                (POS_R_0_END) // shift+tab
+                (POS_R_2_END) // shift+tab
 
-                (POS_L_1_START + 2)
-                (POS_L_2_START + 1)
-                (POS_L_2_START + 2)
-                (POS_L_2_START + 3)
+                (POS_L_1_START + 2) // ↑
+                (POS_L_2_START + 1) // ←
+                (POS_L_2_START + 2) // ↓
+                (POS_L_2_START + 3) // →
 
-                (POS_R_1_START + 3)
-                (POS_R_2_START + 2)
-                (POS_R_2_START + 3)
-                (POS_R_2_START + 4)
+                (POS_R_1_START + 3) // ↑
+                (POS_R_2_START + 2) // ←
+                (POS_R_2_START + 3) // ↓
+                (POS_R_2_START + 4) // →
             >;
         };
 
