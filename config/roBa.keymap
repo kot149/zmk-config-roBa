@@ -422,6 +422,8 @@
                 (POS_L_1_START) // shift+tab
                 (POS_R_1_END) // shift+tab
 
+                (POS_R_1_START+2) // click
+
                 (POS_L_1_START + 2) // ↑
                 (POS_L_2_START + 1) // ←
                 (POS_L_2_START + 2) // ↓
@@ -445,6 +447,8 @@
                 (POS_L_2_START) // shift+tab
                 (POS_R_0_END) // shift+tab
                 (POS_R_2_END) // shift+tab
+
+                (POS_R_1_START+2) // click
 
                 (POS_L_1_START + 2) // ↑
                 (POS_L_2_START + 1) // ←
