@@ -57,6 +57,7 @@ manifest:
     - name: zmk-adaptive-key
       remote: urob
       revision: v0.3
+      path: modules/zmk-adaptive-key
 
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
