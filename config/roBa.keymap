@@ -7,6 +7,7 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <behaviors/rgbled_widget.dtsi>
 #include <input/processors/report_rate_limit.dtsi>
+#include <behaviors/blueboot.dtsi>
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
@@ -782,23 +783,34 @@
 
         /omit-if-no-ref/
 
-        td_reset: td_reset {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            bindings = <&none>, <&sys_reset>;
+        hold_bootloader: hold_bootloader {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&bootloader>, <&none>;
 
-            tapping-term-ms = <300>;
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
+        };
+
+        /omit-if-no-ref/
+
+        reset_blueboot: reset_blueboot {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&blueboot>, <&sys_reset>;
+
+            tapping-term-ms = <250>;
+            flavor = "tap-preferred";
         };
 
         /omit-if-no-ref/
 
         reset_bootloader: reset_bootloader {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            bindings = <&bootloader>, <&td_reset>;
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            bindings = <&hold_bootloader 0 0>, <&reset_blueboot 0 0>;
 
-            tapping-term-ms = <250>;
-            flavor = "balanced";
+            tapping-term-ms = <300>;
         };
 
         /omit-if-no-ref/
@@ -935,7 +947,7 @@
             display-name = "Configuration";
 
             bindings = <
-&reset_bootloader 0 0  &none  &none  &tog_ls_ctrl_cmd  &tog_ls_jis                            &ind_con      &ind_bat      &none         &out OUT_TOG  &reset_bootloader 0 0
+&reset_bootloader        &none  &none  &tog_ls_ctrl_cmd  &tog_ls_jis                            &ind_con      &ind_bat      &none         &out OUT_TOG  &reset_bootloader      
 &none                  &none  &none  &none             &none        &trans      &td_bt_clear  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
 &none                  &none  &none  &none             &none        &none       &none         &none         &none         &none         &none         &none
 &none                  &none  &none  &none             &none        &none       &none         &none                                                   &td_bt_clear_all

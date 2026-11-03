@@ -16,6 +16,8 @@ manifest:
       url-base: https://github.com/4mplelab
     - name: kot149
       url-base: https://github.com/kot149
+    - name: te9no
+      url-base: https://github.com/te9no
   projects:
     # https://github.com/zmkfirmware/zmk
     - name: zmk
@@ -88,6 +90,12 @@ manifest:
       remote: kot149
       revision: 2feeb988f5b5a3c2b5e09ba6472e86e6902463a2 # v1 (2026-11-03)
       path: modules/zmk-scroll-snap
+
+    # https://github.com/te9no/zmk-feature-blueboot
+    - name: zmk-feature-blueboot
+      remote: te9no
+      revision: f099518bce4d7d5a06e60ff9ad7e8d66954286ae # main (2026-11-03)
+      path: modules/zmk-feature-blueboot
 
   self:
     path: config

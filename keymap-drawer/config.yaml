@@ -168,8 +168,7 @@ parse_config:
     "&td_alt_f4": {t: F4, h: Alt+F4}
     "&td_colon": {t: ":", h: ";"}
     "&td_rclick_close_tab": {t: RClick, h: Ctrl+w}
-    "&td_reset": {t: "---", h: Reset}
-    "&reset_bootloader 0 0": {t: Reset, h: Bootloader}
+    "&reset_bootloader": {t: Reset, h: Bootloader}
     "&td_bt_clear": {t: "---", h: BT CLR}
     "&td_bt_clear_all": {t: "---", h: BT CLR ALL}
     # screenshot
