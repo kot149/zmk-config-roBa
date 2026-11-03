@@ -32,7 +32,7 @@ manifest:
     # https://github.com/badjeff/zmk-pmw3610-driver
     - name: zmk-pmw3610-driver
       remote: badjeff
-      revision: zmk-0.3
+      revision: 5c5af40de4d8cdf55dc63c4c5907af1e52da6a95 # zmk-0.3 (2026-11-03)
       path: modules/zmk-pmw3610-driver-badjeff
 
     # https://github.com/badjeff/zmk-input-processor-report-rate-limit
@@ -44,49 +44,49 @@ manifest:
     # https://github.com/ssbb/zmk-listeners
     - name: zmk-listeners
       remote: ssbb
-      revision: v1
+      revision: c240ceaf353d3138bea7695eef17049b7ade995b # v1 (2026-11-03)
       path: modules/zmk-listeners
 
     # https://github.com/caksoylar/zmk-smart-toggle.git
     - name: zmk-smart-toggle
       remote: caksoylar
-      revision: v0.3-branch
+      revision: 46e178221cccef965a511b772d7bc62800f1542e # v0.3-branch (2026-11-03)
       path: modules/zmk-smart-toggle
 
     # https://github.com/urob/zmk-adaptive-key
     - name: zmk-adaptive-key
       remote: urob
-      revision: v0.3
+      revision: 01ccc22889714f276c930dc960a989f80c9e0680 # v0.3
       path: modules/zmk-adaptive-key
 
     # https://github.com/caksoylar/zmk-rgbled-widget
     - name: zmk-rgbled-widget
       remote: caksoylar
-      revision: v0.3-branch
+      revision: 8756cb7b8114069fa3c25c6f6c990f24988fceff # v0.3-branch (2026-11-03)
       path: modules/zmk-rgbled-widget
 
     # https://github.com/4mplelab/zmk-feature-charge-indicator.git
     - name: zmk-feature-charge-indicator
       remote: 4mplelab
-      revision: main
+      revision: f0d311ed7804cda0e5837ef902f0419aeace4a88 # main (2026-11-03)
       path: modules/zmk-feature-charge-indicator
 
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
       remote: kot149
-      revision: v1
+      revision: 66f905e43cb5d36ef397b26c69c36e7da71dc585 # v1 (2026-11-03)
       path: modules/zmk-mouse-gesture
 
     # https://github.com/kot149/zmk-layout-shift
     - name: zmk-layout-shift
       remote: kot149
-      revision: v2
+      revision: c242c13c9c5a6100b3980b8c725c734c368670de # v2 (2026-11-03)
       path: modules/zmk-layout-shift
 
     # https://github.com/kot149/zmk-scroll-snap
     - name: zmk-scroll-snap
       remote: kot149
-      revision: v1
+      revision: 2feeb988f5b5a3c2b5e09ba6472e86e6902463a2 # v1 (2026-11-03)
       path: modules/zmk-scroll-snap
 
   self:
