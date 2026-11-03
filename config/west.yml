@@ -74,7 +74,7 @@ manifest:
     # https://github.com/kot149/zmk-mouse-gesture
     - name: zmk-mouse-gesture
       remote: kot149
-      revision: 66f905e43cb5d36ef397b26c69c36e7da71dc585 # v1 (2026-11-03)
+      revision: 5d80b4489fe6f22d6677984d72d445b5190ef36f # v2 (2026-11-03)
       path: modules/zmk-mouse-gesture
 
     # https://github.com/kot149/zmk-layout-shift
