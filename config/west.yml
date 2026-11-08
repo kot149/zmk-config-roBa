@@ -22,7 +22,7 @@ manifest:
     # https://github.com/zmkfirmware/zmk
     - name: zmk
       remote: zmkfirmware
-      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
+      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7 # v0.3-branch (2026-11-08)
       import: app/west.yml
 
     # # https://github.com/inorichi/zmk-pmw3610-driver
@@ -40,7 +40,7 @@ manifest:
     # https://github.com/badjeff/zmk-input-processor-report-rate-limit
     - name: zmk-input-processor-report-rate-limit
       remote: badjeff
-      revision: f43f37aae7aaa7bf0ec4d432683b873a7e3a8efa # for v0.3-branch
+      revision: f43f37aae7aaa7bf0ec4d432683b873a7e3a8efa # v0.3-branch (2026-11-08)
       path: modules/zmk-input-processor-report-rate-limit
 
     # https://github.com/ssbb/zmk-listeners
